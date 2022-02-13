@@ -1,24 +1,33 @@
 {
-  "name": "te_mini_project",
+  "name": "yt",
   "version": "1.0.0",
-  "description": "This is a TE Mini Project. The Objective of this project is to provide a system that helps students in their studies by providing various resources, notes, e-books and courses.\r Our group of four will be creating a website using HTML5, CSS , JS , MongoDB and Node.js.",
-  "main": "app.js",
+  "description": "### Create a .env file and add your session secret like: SESSION_SECRET=randomstring #### Then install dependencies and run it, as smooth as that!",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.14",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GMohammadAli/Curriculum-Based-System.git"
   },
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/GMohammadAli/Curriculum-Based-System/issues"
   },
-  "homepage": "https://github.com/GMohammadAli/Curriculum-Based-System#readme",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/GMohammadAli/Curriculum-Based-System#readme"
 }
