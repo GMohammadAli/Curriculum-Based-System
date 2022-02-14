@@ -1,0 +1,50 @@
+* {
+  padding: 0;
+  margin:0;
+  box-sizing:border-box;
+}
+.contact{
+  background: url(/Images/Cbgpic2.jpg)no-repeat;
+  background-size: 100% 100%;
+  width:100%;
+  height:100vh;
+}
+.head{
+  background-color:rgb(185,19,185);
+  border-radius:5px ;
+  margin-top:-40px;
+  -webkit-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+-moz-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+
+}
+.effect-1{
+  border: 0;
+  outline: none;
+  width:100%;
+  padding:7px 0 ;
+  border-bottom: 1px solid #ccc;
+}
+.effect-1 ~ .Focus-border{
+  position:absolute;
+  bottom:0;
+  left: 50%;
+  width:0;
+  height:2px;
+  background-color: rgb(185,19,185);
+  transition:0.4s;
+}
+
+
+.btn1{
+  outline:none;
+  border-radius: 10px;
+  border:none;
+  width:125px;
+}
+.btn:hover{
+  -webkit-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+-moz-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+
+}
