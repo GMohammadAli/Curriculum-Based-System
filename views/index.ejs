@@ -99,18 +99,7 @@
               <a class="nav-link" href="http://127.0.0.1:5500/Contact.html">Contact Us</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown d-flex">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -123,8 +112,8 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <form class="text-center" action="/logout?_method=DELETE" method="POST">
-                  <button id ="submit" type="submit">LOGOUT</button>
+                <form class="text-center" action="/logout?_method=DELETE" method="POST" id="logoutForm">
+                  <button class="dropdown-item" id ="submit" type="submit">LOGOUT</button>
                 </form>
               </li>
             </ul>
