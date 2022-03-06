@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const flash = require("express-flash");
@@ -28,6 +29,7 @@ initializePassport(
 );
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,'/views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 app.use(
@@ -40,10 +42,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname,'/public')));
 
 app.get("/", checkAuthenticated, (req, res) => {
   res.render("index", { name: req.user.name });
+});
+
+
+app.get("/home", checkAuthenticated, (req, res) => {
+  res.render("home", { name: req.user.name });
 });
 
 app.get("/register", checkNotAuthenticated, (req, res) => {
@@ -52,6 +59,34 @@ app.get("/register", checkNotAuthenticated, (req, res) => {
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
+});
+
+app.get("/notes", checkAuthenticated, (req, res) => {
+  res.render("notes", { name: req.user.name });
+});
+
+app.get("/about", checkAuthenticated, (req, res) => {
+  res.render("about", { name: req.user.name });
+});
+
+app.get("/links", checkAuthenticated, (req, res) => {
+  res.render("links", { name: req.user.name });
+});
+
+app.get("/contact", checkAuthenticated, (req, res) => {
+  res.render("contact", { name: req.user.name });
+});
+
+app.get("/syllabus", checkAuthenticated, (req, res) => {
+  res.render("syllabus", { name: req.user.name });
+});
+
+app.get("/blog", checkAuthenticated, (req, res) => {
+  res.render("blog", { name: req.user.name });
+});
+
+app.get("/events", checkAuthenticated, (req, res) => {
+  res.render("events", { name: req.user.name });
 });
 
 app.post(
