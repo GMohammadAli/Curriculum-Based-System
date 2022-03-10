@@ -14,89 +14,45 @@
   </head>
   <%- include("partials/Navbar") %>
 <body>
-	<section>
-		<div class="leftBox">
-			<div class="content">
-				<h1>
-					Events and Shows
-				</h1>
-				
-<p>
-	We are going to showcase the technical events done by VESIT students in which the students will have practical knowledge about the sophisticated projects of machine learning and deep learning. It is the must for gaining practical knowledge
-		
-				</p>
-
-			</div>
+	
+    <div class="title">
+		<h2>UPCOMING EVENTS</h2>
+	  </div>
+	  <div
+		id="carouselExampleControls"
+		class="carousel slide"
+		data-bs-ride="carousel"
+	  >
+		<div class="carousel-inner">
+		  <div class="carousel-item active">
+			<img src="/Images/ISA.jpeg" class="d-block w-100" alt="..." />
+		  </div>
+		  <div class="carousel-item">
+			<img src="/Images/CSI.jpeg" class="d-block w-100" alt="..." />
+		  </div>
+		  <div class="carousel-item">
+			<img src="/Images/ISTE.jpeg" class="d-block w-100" alt="..." />
+		  </div>
 		</div>
-
-		<div class="events">
-			<ul>
-				<li>
-					<div class="time">
-						<h2>
-							15 <br><span>March</span>
-						</h2>
-					</div>
-					<div class="details">
-						<h3>
-							Where is the event happening?
-						</h3>
-						
-<p>
-						At the CSI event we will explore all the projects related to computer science and students will get knowledge about their peers who had won awards owing to the projects they had made in their term. 
-						</p>
-
-
-						<!-- <a href="#">View Details</a> -->
-					</div>
-					<div style="clear: both;"></div>
-				</li>
-
-				<li>
-					<div class="time">
-						<h2>
-							27 <br><span>Feb</span>
-						</h2>
-					</div>
-					<div class="details">
-						<h3>
-							Where is the event happening?
-						</h3>
-						
-<p>
-		
-At the CSI event we will explore all the projects related to computer science and students will get knowledge about their peers who had won awards owing to the projects they had made in their term. 
-			
-						</p>
-
-						<!-- <a href="#">View Details</a> -->
-					</div>
-					<div style="clear:both;"></div>
-				</li>
-
-				<li>
-					<div class="time">
-						<h2>
-							12 <br><span>March</span>
-						</h2>
-					</div>
-					<div class="details">
-						<h3>
-							Where is the event happening?
-						</h3>
-						
-<p>
-						At the CSI event we will explore all the projects related to computer science and students will get knowledge about their peers who had won awards owing to the projects they had made in their term. 
-						</p>
-
-
-						<!-- <a href="#">View Details</a> -->
-					</div>
-					<div style="clear:both;"></div>
-				</li>
-			</ul>
-		</div>
-	</section>
+		<button
+		  class="carousel-control-prev"
+		  type="button"
+		  data-bs-target="#carouselExampleControls"
+		  data-bs-slide="prev"
+		>
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button
+		  class="carousel-control-next"
+		  type="button"
+		  data-bs-target="#carouselExampleControls"
+		  data-bs-slide="next"
+		>
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	  </div>
 </body>
 
 </html>

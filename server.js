@@ -80,10 +80,6 @@ app.get("/contact", checkAuthenticated, (req, res) => {
   res.render("contact", { name: req.user.name });
 });
 
-app.get("/syllabus", checkAuthenticated, (req, res) => {
-  res.render("syllabus", { name: req.user.name });
-});
-
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: 'desc' })
   res.render('articles/index', { articles: articles , name: req.user.name })

@@ -10,15 +10,17 @@
   background: url(/Images/Cbgpic2.jpg)no-repeat;
   background-size: 100% 100%;
   width:100%;
-  height:100vh;
+  height:calc(100vh - 56px);
 }
 .head{
-  background-color:rgb(185,19,185);
+  background-color:rgb(0, 0, 0);
   border-radius:5px ;
   margin-top:-40px;
-  -webkit-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
--moz-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+  -webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: rgb(5, 147, 142);
+  -webkit-box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
+-moz-box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
+box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
 
 }
 .navbar{
@@ -31,6 +33,9 @@ box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
 -webkit-text-stroke-color: rgb(5, 147, 142);   
 }
 
+.nav-link {
+  color: rgb(53, 174, 196) !important;
+}
 .effect-1{
   border: 0;
   outline: none;
@@ -48,16 +53,23 @@ box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
   transition:0.4s;
 }
 
+.left-align {
+  right: 0 !important;
+  left: auto !important;
+}
 
-.btn1{
+.dropdown-menu{ 
+  background-color: rgb(82, 125, 132) !important;
+}
+ .btn1{
   outline:none;
   border-radius: 10px;
   border:none;
   width:125px;
-}
-.btn:hover{
-  -webkit-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
--moz-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
-box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
+} 
+.btn1:hover{
+  -webkit-box-shadow: 10px 22px 27px -12px rgb(82, 125, 132);
+-moz-box-shadow: 10px 22px 27px -12px rgb(82, 125, 132);
+box-shadow: 10px 22px 27px -12px rgb(82, 125, 132);
 
-}
+} 

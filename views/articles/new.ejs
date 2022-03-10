@@ -1,12 +1,14 @@
 <%- include("./../partials/head") %>
+<link rel="stylesheet" href="/blog.css">
 <body>
   <%- include("./../partials/Navbar") %>
   <div class="container">
-    <h1 class="mb-4">New Article</h1>
-    
+    <div class="narticle col-sm-8">
+        <h1 class="text-center">New Article</h1>
     <form action="/articles" method="POST">
       <%- include('./../partials/_form_fields') %>
     </form>
+    </div>
   </div>
 </body>
 </html>

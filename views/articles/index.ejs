@@ -1,26 +1,50 @@
 <%- include("./../partials/head") %>
+<link rel="stylesheet" href="/blog.css">
 <body>
   <%- include("./../partials/Navbar") %>
-  <div class="container">
-    <h1 class="mb-4">Blog Articles</h1>
-    <a href="articles/new" class="btn btn-success">New Article</a>
-
+  <div class="container-b">
+    <div>
+      <h1 class="mb-4 title">BLOG ARTICLES</h1>
+    </div>
+    <div class="m-5 col-sm-10">
+      <div class="btn btn-light mt-4 title">
+        <a href="articles/new" class="btn">
+          <i class="fa fa-solid fa-plus"></i></a>
+        </div>
     <% articles.forEach(article => { %>
-      <div class="card mt-4">
-        <div class="card-body">
-          <h4 class="card-title"><%= article.title %></h4>
-          <div class="card-subtitle text-muted mb-2">
-            <%= article.createdAt.toLocaleDateString() %>
-          </div>
-          <div class="card-text mb-2"><%= article.description %></div>
-          <a href="articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
-          <a href="articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
-          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
-            <button type="submit" class="btn btn-danger">Delete</button>
+    <div class="card mt-4 col-sm-12 mb-0">
+      <div class="card-body">
+        <h4 class="card-title"><%= article.title %></h4>
+        <div class="card-subtitle text-muted mb-2">
+          <%= article.createdAt.toLocaleDateString() %>
+        </div>
+        <div class="card-text mb-2"><%= article.description %></div>
+        <div class="card-text mb-2" style="text-align: end;">- By <%= article.markdown %></div>
+        <div class="rmed">
+          <a
+            href="articles/<%= article.slug %>"
+            class="btn"
+            ><i class="fa fa-thin fa-bars"></i></a
+          >
+          <a
+            href="articles/edit/<%= article.id %>"
+            class="btn"
+            ><i class="fa fa-thin fa-pencil"></i></a
+          >
+          <form
+            action="/articles/<%= article.id %>?_method=DELETE"
+            method="POST"
+            class="d-inline"
+          >
+            <button type="submit" class="btn">
+              <i class="fa fa-duatone fa-trash"></i>
+            </button>
           </form>
         </div>
       </div>
+    </div>
     <% }) %>
+  </div>
   </div>
 </body>
 </html>

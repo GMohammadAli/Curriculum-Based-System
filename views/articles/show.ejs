@@ -1,17 +1,21 @@
 <%- include("./../partials/head") %>
+<link rel="stylesheet" href="/blog.css">
 <body>
   <%- include("./../partials/Navbar") %>
   <div class="container">
+    <div class="narticle col-sm-10">
     <h1 class="mb-1"><%= article.title %></h1>
+    <p><%= article.description %></p>
     <div class="text-muted mb-2">
       <%= article.createdAt.toLocaleDateString() %>
     </div>
     <a href="/articles" class="btn btn-secondary">All Articles</a>
-    <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+    <a href="/articles/edit/<%= article.id %>" class="btn btn-info"><i class="fa fa-thin fa-pencil"></i></a>
 
     <div>
-      <%- article.sanitizedHtml %>
+      -By <%- article.sanitizedHtml %>
     </div>
+  </div>
   </div>
 </body>
 </html>
