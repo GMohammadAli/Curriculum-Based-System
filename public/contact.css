@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bangers&family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
 * {
   padding: 0;
   margin:0;
@@ -18,6 +21,16 @@
 box-shadow: 10px 22px 27px -12px rgba(237,21,237,1);
 
 }
+.navbar{
+  font-family: 'Stylish', sans-serif;
+}
+.navbar-brand{
+  font-family: 'Quintessential', cursive;
+  color: rgb(0, 0, 0) !important; 
+  -webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: rgb(5, 147, 142);   
+}
+
 .effect-1{
   border: 0;
   outline: none;

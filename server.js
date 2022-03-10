@@ -3,6 +3,8 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const Article = require('./models/article')
+const articleRouter = require('./routes/articles')
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
@@ -28,8 +30,6 @@ initializePassport(
   }
 );
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname,'/views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 app.use(
@@ -44,13 +44,16 @@ app.use(passport.session());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname,'/public')));
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname,'views'))
+
 app.get("/", checkAuthenticated, (req, res) => {
   res.render("index", { name: req.user.name });
 });
 
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home", { name: req.user.name });
+  res.render("index", { name: req.user.name });
 });
 
 app.get("/register", checkNotAuthenticated, (req, res) => {
@@ -81,8 +84,9 @@ app.get("/syllabus", checkAuthenticated, (req, res) => {
   res.render("syllabus", { name: req.user.name });
 });
 
-app.get("/blog", checkAuthenticated, (req, res) => {
-  res.render("blog", { name: req.user.name });
+app.get("/articles", checkAuthenticated, async (req, res) => {
+  const articles = await Article.find().sort({ createdAt: 'desc' })
+  res.render('articles/index', { articles: articles , name: req.user.name })
 });
 
 app.get("/events", checkAuthenticated, (req, res) => {
@@ -128,10 +132,13 @@ app.delete("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.use('/articles', articleRouter)
+
 mongoose
-  .connect("mongodb://localhost:27017/auth", {
+  .connect("mongodb://localhost:27017/CBS", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useCreateIndex: true
   })
   .then(() => {
     app.listen(3000, () => {
