@@ -56,9 +56,6 @@ app.get("/home", checkAuthenticated, (req, res) => {
   res.render("index", { name: req.user.name });
 });
 
-app.get("/register", checkNotAuthenticated, (req, res) => {
-  res.render("register");
-});
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
@@ -66,6 +63,14 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
 
 app.get("/notes", checkAuthenticated, (req, res) => {
   res.render("notes", { name: req.user.name });
+});
+
+app.get("/Sem1", checkAuthenticated, (req, res) => {
+  res.render("Sem1", { name: req.user.name });
+});
+
+app.get("/Sem2", checkAuthenticated, (req, res) => {
+  res.render("Sem2", { name: req.user.name });
 });
 
 app.get("/about", checkAuthenticated, (req, res) => {
@@ -104,7 +109,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
   if (userFound) {
     req.flash("error", "User with that email already exists");
-    res.redirect("/register");
+    res.redirect("/login");
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -115,10 +120,11 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
       });
 
       await user.save();
+      req.flash("error", "Please Sign In Again!");
       res.redirect("/login");
     } catch (error) {
       console.log(error);
-      res.redirect("/register");
+      res.redirect("/login");
     }
   }
 });
