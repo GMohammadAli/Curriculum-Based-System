@@ -1,0 +1,18 @@
+<%- include("./../partials/head") %>
+<link rel="stylesheet" href="/css/blog.css">
+<body>
+  <%- include("./../partials/Navbar") %>
+  <div class="container">
+    <div class="narticle col-sm-10">
+    <h1 class="mb-1"><%= note.title %></h1>
+    <p><%= note.description %></p>
+    <div class="text-muted mb-2">
+      <%= note.createdOn.toLocaleDateString() %>
+    </div>
+    <a href="/notes" class="btn btn-secondary">All notes</a>
+    <a href="/notes/edit/<%= note.id %>" class="btn btn-info"><i class="fa fa-thin fa-pencil"></i></a>
+  </div>
+  </div>
+</body>
+<%- include("./../partials/footer") %>
+</html>

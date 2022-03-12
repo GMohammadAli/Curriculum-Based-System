@@ -2,7 +2,6 @@ const express = require('express')
 const Article = require('./../models/article')
 const methodOverride = require("method-override")
 const path = require("path")
-const User = require("./../models/User")
 const router = express.Router()
 const app = express()
 
@@ -25,7 +24,7 @@ router.get('/:slug', async (req, res) => {
 })
 
 router.post('/', async (req, res, next) => {
-  req.article = await new Article()
+  req.article = new Article()
   next()
 }, saveArticleAndRedirect('new'))
 
@@ -48,7 +47,6 @@ function saveArticleAndRedirect(path) {
     article.markdown = req.body.markdown
     try {
       article = await article.save()
-      console.log('bruh')
       console.log(`${article.slug}`)
       res.redirect(`/articles/${article.slug}`)
       console.log('--------------X-----------')

@@ -1,0 +1,52 @@
+<%- include("./../partials/head") %>
+<link rel="stylesheet" href="/css/blog.css">
+<body>
+  <%- include("./../partials/Navbar") %>
+  <div class="container-b">
+    <div>
+      <h1 class="mb-4 title">Notes Available</h1>
+    </div>
+    <div class="m-5 col-sm-10">
+      <div class="btn btn-light mt-4 title">
+        <a href="notes/new" class="btn">
+          <i class="fa fa-solid fa-plus"></i></a>
+        </div>
+    <% notes.forEach( note => { %>
+    <div class="card mt-4 col-sm-12 mb-0">
+      <div class="card-body">
+        <h4 class="card-title"><%= note.title %></h4>
+        <div class="card-subtitle text-muted mb-2">
+          <%= note.createdOn.toLocaleDateString() %>
+           <!--  Date Format  -->
+        </div>
+        <div class="card-text mb-2"><%= note.description %></div>
+        <div class="card-text mb-2" style="text-align: end;">- By <%= note.subject %></div>
+        <div class="rmed">
+          <a
+            href="notes/<%= note.slug %>"
+            class="btn"
+            ><i class="fa fa-thin fa-bars"></i></a
+          >
+          <a
+            href="notes/edit/<%= note.id %>"
+            class="btn"
+            ><i class="fa fa-thin fa-pencil"></i></a
+          >
+          <form
+            action="/notes/<%= note.id %>?_method=DELETE"
+            method="POST"
+            class="d-inline"
+          >
+            <button type="submit" class="btn">
+              <i class="fa fa-duatone fa-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  </div>
+</body>
+<%- include("./../partials/footer") %>
+</html>

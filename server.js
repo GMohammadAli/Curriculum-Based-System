@@ -9,6 +9,8 @@ const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const User = require("./models/User");
+const Notes = require("./models/Note");
+const notesRouter = require('./routes/notes');
 const bcrypt = require("bcryptjs");
 const {
   checkAuthenticated,
@@ -61,8 +63,10 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
 });
 
-app.get("/notes", checkAuthenticated, (req, res) => {
-  res.render("notes", { name: req.user.name });
+app.get("/notes", checkAuthenticated, async (req, res) => {
+  const notes = await Notes.find().sort({ createdAt: 'desc' }) /* Sorted In Descending Order*/
+  console.log('Notes Object created!')
+  res.render('notes/index', { notes: notes , name: req.user.name })
 });
 
 app.get("/Sem1", checkAuthenticated, (req, res) => {
@@ -135,6 +139,7 @@ app.delete("/logout", (req, res) => {
 });
 
 app.use('/articles', articleRouter)
+app.use('/notes', notesRouter)
 
 mongoose
   .connect("mongodb://localhost:27017/CBS", {
