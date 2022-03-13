@@ -3,14 +3,14 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
-const Article = require('./models/article')
-const articleRouter = require('./routes/articles')
+const Article = require("./models/article");
+const articleRouter = require("./routes/articles");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const User = require("./models/User");
 const Notes = require("./models/Note");
-const notesRouter = require('./routes/notes');
+const notesRouter = require("./routes/notes");
 const bcrypt = require("bcryptjs");
 const {
   checkAuthenticated,
@@ -44,29 +44,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname,'/public')));
+app.use(express.static(path.join(__dirname, "/public")));
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname,'views'))
+app.set("views", path.join(__dirname, "views"));
 
 app.get("/", checkAuthenticated, (req, res) => {
   res.render("index", { name: req.user.name });
 });
 
-
 app.get("/home", checkAuthenticated, (req, res) => {
   res.render("index", { name: req.user.name });
 });
-
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
 });
 
 app.get("/notes", checkAuthenticated, async (req, res) => {
-  const notes = await Notes.find().sort({ createdAt: 'desc' }) /* Sorted In Descending Order*/
-  console.log('Notes Object created!')
-  res.render('notes/index', { notes: notes , name: req.user.name })
+  const notes = await Notes.find().sort({
+    createdAt: "desc",
+  }); /* Sorted In Descending Order*/
+  console.log("Notes Object created!");
+  res.render("notes/index", { notes: notes, name: req.user.name });
 });
 
 app.get("/Sem1", checkAuthenticated, (req, res) => {
@@ -90,8 +90,8 @@ app.get("/contact", checkAuthenticated, (req, res) => {
 });
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
-  const articles = await Article.find().sort({ createdAt: 'desc' })
-  res.render('articles/index', { articles: articles , name: req.user.name })
+  const articles = await Article.find().sort({ createdAt: "desc" });
+  res.render("articles/index", { articles: articles, name: req.user.name });
 });
 
 app.get("/events", checkAuthenticated, (req, res) => {
@@ -138,14 +138,14 @@ app.delete("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-app.use('/articles', articleRouter)
-app.use('/notes', notesRouter)
+app.use("/articles", articleRouter);
+app.use("/notes", notesRouter);
 
 mongoose
   .connect("mongodb://localhost:27017/CBS", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
   })
   .then(() => {
     app.listen(3000, () => {

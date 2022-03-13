@@ -50,6 +50,7 @@ router.get('/new', (req, res) => {
      note.description = req.body.description
      note.subject = req.body.subject
      note.semester = req.body.semester
+     note.url = req.body.url
       try {
         note = await note.save()
         console.log('function called')

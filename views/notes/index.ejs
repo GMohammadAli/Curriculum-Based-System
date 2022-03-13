@@ -7,21 +7,22 @@
       <h1 class="mb-4 title">Notes Available</h1>
     </div>
     <div class="m-5 col-sm-10">
-      <div class="btn btn-light mt-4 title">
-        <a href="notes/new" class="btn">
-          <i class="fa fa-solid fa-plus"></i></a>
-        </div>
-    <% notes.forEach( note => { %>
-    <div class="card mt-4 col-sm-12 mb-0">
-      <div class="card-body">
-        <h4 class="card-title"><%= note.title %></h4>
-        <div class="card-subtitle text-muted mb-2">
-          <%= note.createdOn.toLocaleDateString() %>
-           <!--  Date Format  -->
-        </div>
-        <div class="card-text mb-2"><%= note.description %></div>
-        <div class="card-text mb-2" style="text-align: end;">- By <%= note.subject %></div>
-        <div class="rmed">
+      <div class="row text-color">
+        <% notes.forEach(note => { %>
+        <div class="col-sm-5 mb-2">
+          <div class="card">
+            <div class="card-body title3">
+              <h5 class="card-title"><%= note.title %></h5>
+              <p class="card-text">
+                <%= note.description %>
+              </p>
+              <span class="badge bg-light text-dark mb-3 title4"><%= note.semester %></span>
+              <p class="card-text">
+                Subject- <%= note.subject %>
+              </p>
+              <a href="<%= note.url  %> ">Open Notes</a>
+            </div>
+          <div class="rmed title4">
           <a
             href="notes/<%= note.slug %>"
             class="btn"
@@ -42,10 +43,15 @@
             </button>
           </form>
         </div>
+        </div>
       </div>
+      <% }) %>
+      </div>
+      <div class="btn btn-light mt-4 col-sm-1 title">
+        <a href="notes/new" class="btn">
+          <i class="fa fa-solid fa-plus"></i></a>
+      </div> 
     </div>
-    <% }) %>
-  </div>
   </div>
 </body>
 <%- include("./../partials/footer") %>

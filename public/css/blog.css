@@ -1,19 +1,21 @@
 @import "cbs.css";
 
-
-.narticle{
-    color: rgb(10, 133, 152) ;
-    font-family: 'Stylish', sans-serif;
-
+.narticle {
+  color: rgb(10, 133, 152);
+  font-family: "Stylish", sans-serif;
 }
 
-body{
-    background-color: rgb(0, 0, 0) ;
+.text1 {
+  color: black;
 }
-.card-body{
-    background-color: rgba(34, 131, 146, 0.712);
+
+body {
+  background-color: rgb(0, 0, 0);
 }
-.buttons{
-    font-family: 'Stylish', sans-serif;
-    color: rgb(255, 255, 255); 
+.card-body {
+  background-color: rgba(34, 131, 146, 0.712);
+}
+.buttons {
+  font-family: "Stylish", sans-serif;
+  color: rgb(255, 255, 255);
 }
