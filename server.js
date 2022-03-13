@@ -1,4 +1,5 @@
 require("dotenv").config();
+const dotenv = require('dotenv');
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -16,6 +17,10 @@ const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require("./middlewares/auth");
+
+dotenv.config({path : './config.env'})
+
+const DB = process.env.DATABASE;
 
 const app = express();
 
@@ -141,14 +146,19 @@ app.delete("/logout", (req, res) => {
 app.use("/articles", articleRouter);
 app.use("/notes", notesRouter);
 
+try{
 mongoose
-  .connect("mongodb://localhost:27017/CBS", {
+  .connect(DB , {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false
   })
   .then(() => {
     app.listen(3000, () => {
       console.log("Server is running on Port 3000");
     });
   });
+}catch(err){
+  console.log(err)
+}
