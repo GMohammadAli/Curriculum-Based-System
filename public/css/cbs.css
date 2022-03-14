@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bangers&family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Stylish&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Quintessential&display=swap");
-.display{
+.display {
   /* background-color: rgba(4, 74, 99, 0.591); */
   /* background-color: rgb(0, 0, 0); */
-  background: url(/Images/homebg.jpg) no-repeat center center fixed; 
+  background: url(/Images/homebg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
-  
- 
-  
 }
 .title {
   color: rgb(0, 0, 0);
@@ -40,14 +36,14 @@
   background-color: aqua !important;
 }
 
-.CBStag{
-  font-size:12px;
+.CBStag {
+  font-size: 12px;
   text-align: center;
-  word-spacing: 3px;  
+  word-spacing: 3px;
 }
 
 .navbar {
-  font-family: "Stylish", sans-serif; 
+  font-family: "Stylish", sans-serif;
 }
 .navbar-brand {
   font-family: "Quintessential", cursive;
@@ -62,7 +58,7 @@ div.container {
   align-items: center;
   justify-content: center;
 }
-.MOTTO{
+.MOTTO {
   margin: 0;
   font-family: "Audiowide", cursive;
   letter-spacing: 0.1em;
@@ -84,7 +80,6 @@ div.container {
 
 .dropdown-menu {
   background-color: rgb(255, 255, 255) !important;
-  
 }
 
 .left-align {
