@@ -21,6 +21,7 @@ const {
 dotenv.config({path : './config.env'})
 
 const DB = process.env.DATABASE;
+const port = process.env.PORT;
 
 const app = express();
 
@@ -146,7 +147,7 @@ app.delete("/logout", (req, res) => {
 app.use("/articles", articleRouter);
 app.use("/notes", notesRouter);
 
-try{
+
 mongoose
   .connect(DB , {
     useUnifiedTopology: true,
@@ -155,10 +156,7 @@ mongoose
     useFindAndModify: false
   })
   .then(() => {
-    app.listen(3000, () => {
-      console.log("Server is running on Port 3000");
+    app.listen(port, () => {
+      console.log(`Server is running on Port ${port}`);
     });
   });
-}catch(err){
-  console.log(err)
-}

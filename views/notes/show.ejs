@@ -10,7 +10,7 @@
                 Subject- <%= note.subject %>
               </p>
     <span class="badge text-dark m-3 title4 d-flex-inline"><%= note.semester %></span>
-    <span class="btn title4 m-3 col-sm-1" href="<%= note.url  %> ">Open Notes</span>
+    <a class="btn title4 m-3 col-sm-1" href="<%= note.url  %> ">Open Notes</a>
     <div class="text-muted mb-2">
       <%= note.createdOn.toLocaleDateString() %>
     </div>
