@@ -9,12 +9,13 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
   
-  
+ 
   
 }
 .title {
-  color: rgb(10, 133, 152);
+  color: rgb(0, 0, 0);
   font-family: "Stylish", sans-serif;
   /* height: 40em; */
   display: flex;
@@ -61,15 +62,20 @@ div.container {
   align-items: center;
   justify-content: center;
 }
-center {
+.MOTTO{
   margin: 0;
   font-family: "Audiowide", cursive;
   letter-spacing: 0.1em;
   font-size: 5.2rem;
   /* color: white; */
   color: rgb(0, 0, 0);
-  opacity: 0;
+  color: #7ef5ed;
+  opacity: 1;
   animation: appear 5s ease forwards;
+  background: #7ef5ed7b;
+  background: rgba(0, 0, 0, 0.612);
+  border-radius: 20px;
+  padding: 2rem;
 }
 
 .nav-link {

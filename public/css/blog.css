@@ -1,17 +1,29 @@
 @import "cbs.css";
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
+
 
 .narticle {
   color: rgb(10, 133, 152);
   font-family: "Stylish", sans-serif;
 }
 
+.ntitle{
+  color: black;
+}
 .text1 {
   color: black;
 }
 
-body {
-  background-color: rgb(255, 255, 255);
+.notedisplay {
+  background: url(/Images/notesbg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  /* background-color: rgb(255, 255, 255); */
 }
+
+
 .card-body {
   background-color: rgba(34, 131, 146, 0.712);
 }
@@ -22,4 +34,49 @@ body {
 
 .form-group{
   font-size: 25px;
+}
+
+.info{
+  font-size: 25px;
+}
+
+img{
+  max-width: 400px;
+  max-height: 400px;
+}
+.blogimg{
+  height: 220px;
+  /* width: 220px; */
+}
+
+.imgcontent{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1em;
+  margin: 3rem;
+}
+.content{
+  justify-content:center;
+
+}
+.blog-item {
+  margin: 1rem 2rem;
+  border-radius: 5px !important;
+}
+
+.content{
+  text-align: center;
+  font-family: 'Simonetta', cursive;
+  font-size: 25px;
+  color: rgb(70, 192, 14);
+}
+
+.filter{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  background-color: antiquewhite;
+  
 }
