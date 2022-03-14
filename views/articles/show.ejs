@@ -1,22 +1,24 @@
 <%- include("./../partials/head") %>
-<link rel="stylesheet" href="/css/blog.css">
-<body>
+<link rel="stylesheet" href="/css/blog.css" />
+<body >
   <%- include("./../partials/Navbar") %>
-  <div class="container">
-    <div class="narticle col-sm-10">
-    <h1 class="mb-1"><%= article.title %></h1>
-    <p><%= article.description %></p>
-    <div class="text-muted mb-2">
-      <%= article.createdAt.toLocaleDateString() %>
+  
+    <div class="container ">
+      <div class="narticle col-sm-10 info">
+        <h1 class="mb-1"><%= article.title %></h1>
+        <p><%= article.description %></p>
+        <div class="text-muted mb-2">
+          <%= article.createdAt.toLocaleDateString() %>
+        </div>
+        <a href="/articles" class="btn btn-secondary">All Articles</a>
+        <a href="/articles/edit/<%= article.id %>" class="btn btn-info"
+          ><i class="fa fa-thin fa-pencil"></i
+        ></a>
+  
+        <div>-By <%- article.sanitizedHtml %></div>
+      </div>
     </div>
-    <a href="/articles" class="btn btn-secondary">All Articles</a>
-    <a href="/articles/edit/<%= article.id %>" class="btn btn-info"><i class="fa fa-thin fa-pencil"></i></a>
+  </body>
 
-    <div>
-      -By <%- article.sanitizedHtml %>
-    </div>
-  </div>
-  </div>
-</body>
-<%- include("./../partials/footer") %>
+<!-- <%- include("./../partials/footer") %> -->
 </html>

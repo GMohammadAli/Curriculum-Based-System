@@ -1,12 +1,24 @@
 <%- include("./../partials/head") %>
 <link rel="stylesheet" href="/css/blog.css">
-<body>
+<body class="blogdisplay">
   <%- include("./../partials/Navbar") %>
   <div class="container-b">
     <div>
       <h1 class="mb-4 title">BLOG ARTICLES</h1>
     </div>
-    <div class="m-5 col-sm-10">
+    <div class="imgcontent">
+      <div class="content">
+                  <h1 style="color: rgb(218, 10, 107);">Welcome!!</h1> <br>
+           "If you Have knowledge,let
+           <br> others light their candles in it"
+           <br> - Margrate Fuller
+          </div>
+        <div class="blogimg">
+          <img src="/Images/blogs.jpg" alt="..">
+        </div>
+    </div>
+    
+    <div class="m-50 blog-item">
       <div class="btn btn-light mt-4 title">
         <a href="articles/new" class="btn">
           <i class="fa fa-solid fa-plus"></i></a>
@@ -48,5 +60,5 @@
   </div>
   </div>
 </body>
-<%- include("./../partials/footer") %>
+<!-- <%- include("./../partials/footer") %> -->
 </html>

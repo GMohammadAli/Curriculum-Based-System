@@ -1,14 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 footer {
-  position: fixed;
-  background: #32249b;
+
+  position:block;
+  /* background: #7ef5ed; */
   width: 100%;
   bottom: 0;
   left: 0;
+  
+
 }
+/* footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 100px;
+  height: 1px;
+  width: 100%;
+  background: #afafb6;
+} */
 footer .bottom-details {
   width: 100%;
-  background: #352b81;
+  background: #7ef5ed;
 }
 footer .bottom-details .bottom_text {
   margin: auto;
@@ -19,9 +31,9 @@ footer .bottom-details .bottom_text {
 .bottom-details .bottom_text span,
 .bottom-details .bottom_text a {
   font-size: 14px;
-  font-weight: 300;
-  color: #fff;
-  opacity: 0.8;
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  /* opacity: 0; */
   text-decoration: none;
 }
 .bottom-details .bottom_text a:hover {
@@ -31,3 +43,4 @@ footer .bottom-details .bottom_text {
 .bottom-details .bottom_text a {
   margin-right: 10px;
 }
+
