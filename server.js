@@ -60,7 +60,7 @@ app.get("/", checkAuthenticated, (req, res) => {
 });
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("index", { user : req.user });
+  res.render("home", { user : req.user });
 });
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -73,14 +73,6 @@ app.get("/notes", checkAuthenticated, async (req, res) => {
   });
   console.log("Notes Object created!");
   res.render("notes/index", { notes: notes, user : req.user});
-});
-
-app.get("/Sem1", checkAuthenticated, (req, res) => {
-  res.render("Sem1", { user : req.user });
-});
-
-app.get("/Sem2", checkAuthenticated, (req, res) => {
-  res.render("Sem2", { user : req.user });
 });
 
 app.get("/about", checkAuthenticated, (req, res) => {
@@ -112,7 +104,7 @@ app.post(
   "/login",
   checkNotAuthenticated,
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/home",
     failureRedirect: "/login",
     failureFlash: true,
   })
