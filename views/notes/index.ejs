@@ -3,7 +3,7 @@
 <body class="notedisplay" >
   <%- include("./../partials/Navbar") %>
   <nav class="filter navbar navbar-expand-lg navbar-dark ">
-  <div class="container-fluid filter">
+  <div class=" filter-cont">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
       <li class="nav-item dropdown">
@@ -17,7 +17,7 @@
         >
           COURSE
         </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
               <a class="dropdown-item" href="#">Engineering</a>
             </li>
@@ -38,7 +38,7 @@
         >
           BRANCH
         </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
               <a class="dropdown-item" href="#">Computer Engineering</a>
             </li>
@@ -67,7 +67,7 @@
         >
           YEAR
         </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
               <a class="dropdown-item" href="#">First</a>
             </li>
@@ -91,9 +91,9 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Semester
+          SEMESTER
         </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
               <a class="dropdown-item" href="#">Sem-1</a>
             </li>
@@ -127,6 +127,10 @@
     <div>
       <h1 class="mb-4 title">Notes Available</h1>
     </div>
+    <div class="btn btn-light mt-4 col-sm-1 title plus">
+      <a href="notes/new" class="btn">
+        <i class="fa fa-solid fa-plus"></i></a>
+    </div> 
     <div class="m-5 col-sm-10">
       <div class="row text-color">
         <% notes.forEach(note => { %>
@@ -168,10 +172,7 @@
       </div>
       <% }) %>
       </div>
-      <div class="btn btn-light mt-4 col-sm-1 title">
-        <a href="notes/new" class="btn">
-          <i class="fa fa-solid fa-plus"></i></a>
-      </div> 
+      
     </div>
   </div>
 </body>
