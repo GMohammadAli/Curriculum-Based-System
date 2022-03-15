@@ -87,10 +87,6 @@ app.get("/contact", checkAuthenticated, (req, res) => {
   res.render("contact", { user : req.user });
 });
 
-app.get("/profile", checkAuthenticated, (req, res) => {
-  res.render("profile", { user : req.user});
-});
-
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" });
   res.render("articles/index", { articles: articles, user : req.user });
@@ -135,23 +131,40 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
   }
 });
 
-app.post("/update", checkAuthenticated, async (req, res) => {
-  const userFound = await User.findOne({ email: req.body.email });
+// Editing Users
+app.get("/profile", checkAuthenticated, async (req, res) => {
+  res.render("editProfile", { user : req.user });
+});
+
+app.put('/update/:id', async (req, res, next) => {
+  req.user = await User.findById(req.params.id)
+  next()
+  console.log(`${req.params.id}`)
+}, saveUserAndRedirect())
+
+function saveUserAndRedirect() {
+  return async (req, res) => {
+    console.log(req.user);
+    let user = req.user
+    user.name = req.body.name
+    user.email = req.body.email
+    user.gender = req.body.gender
+    user.date_of_Birth = req.body.date_of_Birth
+    user.city = req.body.city
+    user.state = req.body.state
+    user.year = req.body.year
+    user.specialization = req.body.specialization
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword,
-      });
-      await userFound.save();
-      req.flash("error", "Please Sign In Again!");
-      res.redirect("/login");
-    } catch (error) {
-      console.log(error);
-      req.flash("error", "Couldn't Update your Profile");
+      user = await user.save()
+      console.log(`${user.slug} in function`)
+      res.render(`profile`,{ user: user })
+      console.log('--------------X-----------')
+    } catch (e) {
+      console.log(e)
+      res.send(`Couldn't Update User Details`)
     }
-  });
+  }
+}
 
 app.delete("/logout", (req, res) => {
   req.logOut();
