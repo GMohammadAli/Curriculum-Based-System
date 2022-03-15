@@ -143,26 +143,23 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
   }
 });
 
-// app.post("/update", checkAuthenticated, async (req, res) => {
-//   const userFound = await User.findOne({ email: req.body.email });
-
-    // try {
-      // const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      // const user = new User({
-      //   name: req.body.name,
-      //   email: req.body.email,
-      //   password: hashedPassword,
-      // });
-
-//       await userFound.save();
-//       req.flash("error", "Please Sign In Again!");
-//       res.redirect("/login");
-//     } catch (error) {
-//       console.log(error);
-//       res.redirect("/login");
-//     }
-//   }
-// });
+app.post("/update", checkAuthenticated, async (req, res) => {
+  const userFound = await User.findOne({ email: req.body.email });
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+      });
+      await userFound.save();
+      req.flash("error", "Please Sign In Again!");
+      res.redirect("/login");
+    } catch (error) {
+      console.log(error);
+      req.flash("error", "Couldn't Update your Profile");
+    }
+  });
 
 app.delete("/logout", (req, res) => {
   req.logOut();
