@@ -56,11 +56,11 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.get("/", checkAuthenticated, (req, res) => {
-  res.render("index", { name: req.user.name });
+  res.render("index", { user : req.user });
 });
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("index", { name: req.user.name });
+  res.render("home", { user : req.user });
 });
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -70,45 +70,41 @@ app.get("/login", checkNotAuthenticated, (req, res) => {
 app.get("/notes", checkAuthenticated, async (req, res) => {
   const notes = await Notes.find().sort({
     createdAt: "desc",
-  }); /* Sorted In Descending Order*/
+  });
   console.log("Notes Object created!");
-  res.render("notes/index", { notes: notes, name: req.user.name });
-});
-
-app.get("/Sem1", checkAuthenticated, (req, res) => {
-  res.render("Sem1", { name: req.user.name });
-});
-
-app.get("/Sem2", checkAuthenticated, (req, res) => {
-  res.render("Sem2", { name: req.user.name });
+  res.render("notes/index", { notes: notes, user : req.user});
 });
 
 app.get("/about", checkAuthenticated, (req, res) => {
-  res.render("about", { name: req.user.name });
+  res.render("about", { user : req.user });
 });
 
 app.get("/links", checkAuthenticated, (req, res) => {
-  res.render("links", { name: req.user.name });
+  res.render("links", { user : req.user });
 });
 
 app.get("/contact", checkAuthenticated, (req, res) => {
-  res.render("contact", { name: req.user.name });
+  res.render("contact", { user : req.user });
+});
+
+app.get("/profile", checkAuthenticated, (req, res) => {
+  res.render("profile", { user : req.user});
 });
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" });
-  res.render("articles/index", { articles: articles, name: req.user.name });
+  res.render("articles/index", { articles: articles, user : req.user });
 });
 
 app.get("/events", checkAuthenticated, (req, res) => {
-  res.render("events", { name: req.user.name });
+  res.render("events", { user : req.user});
 });
 
 app.post(
   "/login",
   checkNotAuthenticated,
   passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/home",
     failureRedirect: "/login",
     failureFlash: true,
   })
@@ -138,6 +134,24 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     }
   }
 });
+
+app.post("/update", checkAuthenticated, async (req, res) => {
+  const userFound = await User.findOne({ email: req.body.email });
+    try {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword,
+      });
+      await userFound.save();
+      req.flash("error", "Please Sign In Again!");
+      res.redirect("/login");
+    } catch (error) {
+      console.log(error);
+      req.flash("error", "Couldn't Update your Profile");
+    }
+  });
 
 app.delete("/logout", (req, res) => {
   req.logOut();

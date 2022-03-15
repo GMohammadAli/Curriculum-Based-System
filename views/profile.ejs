@@ -1,0 +1,108 @@
+<%- include("partials/head") %>
+<link rel="stylesheet" href="/css/profile.css">
+<%- include("partials/Navbar") %>
+    <body>
+        <h1 class="title">User Profile</h1>
+        <div class="container">
+            <div class="row">
+                <div class="col-10">
+                    <label for="fname">Full Name:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="fname" name="firstname" placeholder="Enter your full name" value="<%= user.name %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="email">Email:</label>
+                </div>
+                <div class="col-90">
+                    <input type="email" id="email" name="email" placeholder="it should contain @,." value="<%= user.email %>"> 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="mobile">Mobile:</label>
+                </div>
+                <div class="col-90">
+                    <input type="tel" id="mobile" name="mobile" placeholder="only 10 digits are allowed" value="<%= user.mobile %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="gender" required>Gender:</label>
+                </div>
+                <div class="col-90">
+                    <input type="radio" id="male" name="gender" value="male"/>Male
+                    <input type="radio" id="female" name="gender" value="female"/>Female
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="dob">Date Of Birth:</label>
+                </div>
+                <div class="col-90">
+                    <input type="Date" id="dob" name="dob" value="<%= user.date_of_Birth %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="city">City:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="city" name="city" maxlength="20" value="<%= user.city %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="state">State:</label>
+                </div>
+                <div class="col-90">
+                    <input type="text" id="state" name="state" value="<%= user.state %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="Current Year of college" required >Current Year of college:</label>
+                </div>
+                <div class="col-90">
+                    <select name="Year" id="Year">
+                        <option value=" ">Select your Year:</option>
+                        <option value="Graduation">Graduation</option>
+                        <option value="1st year.">1st year</option>
+                        <option value="2nd Year.">2nd year</option>
+                        <option value="3rd year.">3rd year</option>
+                        <option value="4th year.">4th year</option>
+                        <option value="12th pass.">12th pass</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="specialization">Specialization:</label>
+                </div>
+                <div class="col-90">
+                    <input type="checkbox" class="specialization" id="cs" name="specialization[]" value="Computer Science">Computer Science<br/>
+                    <input type="checkbox" class="specialization" id="it" name="specialization[]" value="Information Technology">Information Technology<br/>
+                    <input type="checkbox" class="specialization" id="ca" name="specialization[]" value="Computer Architecture">Computer Architecture<br/>
+                    <input type="checkbox" class="specialization" id="tc" name="specialization[]" value="Tele Communication">Tele Communication<br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <label for="password">Password:</label>
+                </div>
+                <div class="col-90">
+                    <input type="password" id="password" name="password" maxlength="8">
+                </div>
+            </div>
+            <div class="row m-2">
+                <form action="/update" method="POST">
+                <button type="submit" class="btn btn-success col-sm-12"><a>Change Profile </a></button>
+                </form>
+            </div>  
+        </div>  
+    </body>
+    <link rel="stylesheet" href="/js/profile.js">
+    <%- include("partials/footer") %>
+</html>
