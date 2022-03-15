@@ -80,8 +80,30 @@ img{
   color: rgb(70, 192, 14);
 }
 
-.filter{
-  
-  background-color: rgb(255, 255, 255);
-  
+.filter{ 
+  background-color: rgb(255, 255, 255);  
+  display: flex ;
+  justify-content: center;
+  animation: navslide forwards 1s ease 1;
+}
+
+@keyframes navslide {
+  0%{
+transform: translateY(-100px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
+.filter-cont{
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.filter-cont > ul >li {
+  margin: 0 3rem;
+}
+.plus{
+  margin-left: 50px;
 }

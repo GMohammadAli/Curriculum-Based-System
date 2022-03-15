@@ -6,6 +6,11 @@
   margin:0;
   box-sizing:border-box;
 }
+.logo{
+  max-width: 60px;
+  max-height: 60px;
+
+}
 .contact{
   background: url(/Images/Cbgpic2.jpg)no-repeat;
   background-size: 100% 100%;
@@ -24,7 +29,7 @@ box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
 
 }
 .CBStag{
-  font-size:12px;
+  font-size:15px;
   text-align: center;
   word-spacing: 3px;  
 }
@@ -36,6 +41,24 @@ box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
   color: rgb(0, 0, 0) !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(5, 147, 142);
+  margin-left: 30px;
+  font-size: 25px !important;
+}
+.navcenter{
+  margin-left: 18%;
+  font-size: 20px;
+  gap: 50px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 .effect-1{
   border: 0;

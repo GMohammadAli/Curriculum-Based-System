@@ -9,10 +9,14 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.linkdisplay{
+  background-color: rgb(100, 98, 98) ;
+}
+.logo{
+  max-width: 60px;
+  max-height: 60px;
 
-  
- 
-  
 }
 .title {
   color: rgb(0, 0, 0);
@@ -41,7 +45,7 @@
 }
 
 .CBStag{
-  font-size:12px;
+  font-size:15px;
   text-align: center;
   word-spacing: 3px;  
 }
@@ -54,6 +58,8 @@
   color: rgb(0, 0, 0) !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(5, 147, 142);
+  margin-left: 30px;
+  font-size: 25px !important;
 }
 
 div.container {
@@ -73,7 +79,7 @@ div.container {
   opacity: 1;
   animation: appear 5s ease forwards;
   background: #7ef5ed7b;
-  background: rgba(0, 0, 0, 0.612);
+  background: rgba(0, 0, 0, 0.479);
   border-radius: 20px;
   padding: 2rem;
 }
@@ -81,10 +87,54 @@ div.container {
 .nav-link {
   color: rgb(0, 0, 0) !important;
 }
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
+.navcenter{
+  margin-left: 18%;
+  font-size: 20px;
+  gap: 50px;
+}
+
+
+.filter-links{ 
+  z-index: 1000;
+  background-color: rgb(255, 253, 253);  
+  display: flex;
+  justify-content: center;
+  animation: navslide forwards 1s ease 1;
+}
+
+@keyframes navslide {
+  0%{
+transform: translateY(-100px);
+  }
+  100%{
+    transform: translateY(0);
+  }
+}
+
+.filter-links{
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-left: 30% ;
+ 
+}
+.filter-links > ul >li {
+  margin: 0 3rem;
+}
 .dropdown-menu {
-  background-color: rgb(255, 255, 255) !important;
-  
+  background-color: rgb(255, 255, 255) !important; 
 }
 
 .left-align {
@@ -99,4 +149,34 @@ div.container {
   100% {
     opacity: 1;
   }
+}
+
+.start-form{
+  display: flex;
+  justify-content: center;
+  margin-top: -30px;
+  
+}
+
+.start{
+  background-color: rgba(17, 17, 17, 0.651);
+  color: rgb(255, 255, 255) !important;
+  width: 180px;
+  height: 60px;
+  margin: 20px;
+  line-height: 60px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 2px solid #ffffff;
+  transition: 0.5s ease;
+}
+
+.start:hover{
+  border: 1px solid transparent;
+  background-color: black;
+    /* background: #7a18ec ; */
+}
+.homeani{
+  background-image: url(/Images/stack.jpg);
+  background-size: cover;
 }
