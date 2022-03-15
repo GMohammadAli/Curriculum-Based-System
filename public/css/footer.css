@@ -1,23 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 footer {
-
-  position:block;
+  position: block;
   /* background: #7ef5ed; */
   width: 100%;
   bottom: 0;
   left: 0;
-  
-
 }
-/* footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 100px;
-  height: 1px;
-  width: 100%;
-  background: #afafb6;
-} */
 footer .bottom-details {
   width: 100%;
   background: #7ef5ed;
@@ -43,4 +31,3 @@ footer .bottom-details .bottom_text {
 .bottom-details .bottom_text a {
   margin-right: 10px;
 }
-

@@ -11,18 +11,18 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,'views'))
 
 router.get('/new', (req, res) => {
-    res.render('./notes/new', { note: new Note() , name: req.user.name })
+    res.render('./notes/new', { note: new Note() , user: req.user })
   })
   
   router.get('/edit/:id', async (req, res) => {
     const note = await Note.findById(req.params.id)
-    res.render('./notes/edit', { note: note , name: req.user.name  })
+    res.render('./notes/edit', { note: note , user: req.user  })
   })
   
   router.get('/:slug', async (req, res) => {
     const note = await Note.findOne({ slug: req.params.slug })
     if (note == null) res.redirect('/')
-    res.render('notes/show', { note: note , name: req.user.name  })
+    res.render('notes/show', { note: note , user: req.user  })
   })
   
   router.post('/', async (req, res, next) => {
@@ -45,12 +45,12 @@ router.get('/new', (req, res) => {
   function saveNoteAndRedirect(path) {
     return async (req, res) => {
       console.log(req.note);
-     let note = req.note
-     note.title = req.body.title
-     note.description = req.body.description
-     note.subject = req.body.subject
-     note.semester = req.body.semester
-     note.url = req.body.url
+      let note = req.note
+      note.title = req.body.title
+      note.description = req.body.description
+      note.subject = req.body.subject
+      note.semester = req.body.semester
+      note.url = req.body.url
       try {
         note = await note.save()
         console.log('function called')
@@ -59,7 +59,7 @@ router.get('/new', (req, res) => {
         console.log('--------------X--------------')
       } catch (e) {
         // console.log(e)
-        res.render(`./notes/${path}`, { note: note , name: req.user.name })
+        res.render(`./notes/${path}`, { note: note , user: req.user })
       }
     }
   }
