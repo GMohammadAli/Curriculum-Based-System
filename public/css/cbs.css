@@ -41,7 +41,7 @@
 }
 
 .CBStag{
-  font-size:12px;
+  font-size:15px;
   text-align: center;
   word-spacing: 3px;  
 }
@@ -51,6 +51,8 @@
 }
 .navbar-brand {
   font-family: "Quintessential", cursive;
+  margin-left: 60px;
+  font-size: 25px;
   color: rgb(0, 0, 0) !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgb(5, 147, 142);
@@ -80,6 +82,12 @@ div.container {
 
 .nav-link {
   color: rgb(0, 0, 0) !important;
+}
+
+.navcenter{
+  margin-left: 280px;
+  gap: 2em;
+  font-size: 20px;
 }
 
 .dropdown-menu {
