@@ -25,7 +25,9 @@
 
 
 .card-body {
-  background-color: rgba(34, 131, 146, 0.712);
+  background-color: rgba(195, 212, 214, 0.712);
+  color: black;
+  font-size: 20px;
 }
 .buttons {
   font-family: "Stylish", sans-serif;
@@ -47,6 +49,11 @@ img{
 .blogimg{
   height: 220px;
   /* width: 220px; */
+}
+.blogwel{
+  color: rgb(26, 171, 182) !important;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(7, 39, 38);
 }
 
 .imgcontent{
@@ -74,9 +81,7 @@ img{
 }
 
 .filter{
-  display: flex;
-  flex-direction: row;
-  gap: 2px;
-  background-color: antiquewhite;
+  
+  background-color: rgb(255, 255, 255);
   
 }

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
 
 body{
-	background-color: black !important;
+	background-color: rgb(255, 255, 255) !important;
 }
 .carousel{
     height: 100%;
@@ -21,7 +21,7 @@ align-items: center; */
 
 }
 .title{
-    color: rgb(10, 133, 152) ;
+    color: rgb(0, 0, 0) ;
     font-family: 'Stylish', sans-serif;
     /* height: 40em; */
     display: flex;

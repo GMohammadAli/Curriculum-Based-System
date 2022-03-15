@@ -23,18 +23,19 @@
 box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
 
 }
-.navbar{
-  font-family: 'Stylish', sans-serif;
+.CBStag{
+  font-size:12px;
+  text-align: center;
+  word-spacing: 3px;  
 }
-.navbar-brand{
-  font-family: 'Quintessential', cursive;
-  color: rgb(0, 0, 0) !important; 
+.navbar {
+  font-family: "Stylish", sans-serif; 
+}
+.navbar-brand {
+  font-family: "Quintessential", cursive;
+  color: rgb(0, 0, 0) !important;
   -webkit-text-stroke-width: 1px;
--webkit-text-stroke-color: rgb(5, 147, 142);   
-}
-
-.nav-link {
-  color: rgb(53, 174, 196) !important;
+  -webkit-text-stroke-color: rgb(5, 147, 142);
 }
 .effect-1{
   border: 0;
@@ -58,9 +59,15 @@ box-shadow: 10px 22px 27px -12px rgb(5, 147, 142);
   left: auto !important;
 }
 
-.dropdown-menu{ 
-  background-color: rgb(82, 125, 132) !important;
+.nav-link {
+  color: rgb(0, 0, 0) !important;
 }
+
+.dropdown-menu {
+  background-color: rgb(255, 255, 255) !important;
+  
+}
+
  .btn1{
   outline:none;
   border-radius: 10px;
