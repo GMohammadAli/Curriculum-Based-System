@@ -157,7 +157,7 @@ function saveUserAndRedirect() {
     try {
       user = await user.save()
       console.log(`${user.slug} in function`)
-      res.render(`profile`,{ user: user })
+      res.render(`profile`,{ user: req.user })
       console.log('--------------X-----------')
     } catch (e) {
       console.log(e)
@@ -173,6 +173,7 @@ app.delete("/logout", (req, res) => {
 
 app.use("/articles", articleRouter);
 app.use("/notes", notesRouter);
+
 
 
 mongoose
