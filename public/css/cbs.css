@@ -106,12 +106,19 @@ div.container {
 }
 
 
-.filter-links{ 
+.filter{ 
   z-index: 1000;
   background-color: rgb(255, 253, 253);  
   display: flex;
   justify-content: center;
   animation: navslide forwards 1s ease 1;
+  gap: 1rem;
+}
+.filter-links{
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-left: 30%;
 }
 
 @keyframes navslide {
@@ -123,13 +130,7 @@ transform: translateY(-100px);
   }
 }
 
-.filter-links{
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-  margin-left: 30% ;
- 
-}
+
 .filter-links > ul >li {
   margin: 0 3rem;
 }
