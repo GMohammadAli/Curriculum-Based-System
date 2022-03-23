@@ -1,32 +1,24 @@
-<%- include("partials/head") %>
-<body class="display">
-<%- include("partials/Navbar") %>
-        <h1>Profile Updated </h1>
-       <div class="form-group">
+<% layout('layouts/boilerplate') %>
+<h1 class="text-center">Profile Updated </h1>
+<div class="container d-flex flex-column">
+        <div class="form-group col-md-6">
             <label for="name">Name</label>
             <input
                 required
                 value="<%= user.name %>"
                 type="text"
-                name="name"
+                name="user[name]"
                 id="name"
                 class="form-control"
             />
         </div>
-        <br />
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label for="email">email</label>
-            <textarea name="email" id="email" class="form-control" cols="10">
-            <%= user.email %></textarea
+            <textarea name="user[email]" id="email" class="form-control" cols="10"><%= user.email %></textarea
             >
         </div>
-        <br />
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label for="gender">Gender</label>
-            <textarea required name="gender" id="gender" class="form-control">
-            <%= user.gender %></textarea
-            >
+            <textarea required name="user[gender]" id="gender" class="form-control"><%= user.gender %></textarea>
         </div>
-</body>
-<%- include("partials/footer") %>
-</html>
+</div>

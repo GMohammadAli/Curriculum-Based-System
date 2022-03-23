@@ -12,6 +12,7 @@ const methodOverride = require("method-override");
 const User = require("./models/User");
 const Notes = require("./models/Note");
 const notesRouter = require("./routes/notes");
+const ejsMate = require("ejs-mate");
 const bcrypt = require("bcryptjs");
 const {
   checkAuthenticated,
@@ -52,6 +53,7 @@ app.use(passport.session());
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 
+app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 

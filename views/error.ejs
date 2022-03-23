@@ -1,6 +1,6 @@
-<%- include("partials/head") %>
+<% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/css/error.css">
-<%- include("partials/Navbar") %>
+
 <body>
 <div id="error-page">
       <div class="content">
@@ -16,11 +16,9 @@
           broken, report a problem.
         </p>
         <div class="btns">
-          <a href="">return home</a>
+          <a href="/">return home</a>
           <a href="">report problem</a>
         </div>
       </div>
 </div>
-<%- include("partials/footer") %>
-</body>
-</html>
+
