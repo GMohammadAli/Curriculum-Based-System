@@ -1,5 +1,5 @@
 require("dotenv").config();
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -18,7 +18,7 @@ const {
   checkNotAuthenticated,
 } = require("./middlewares/auth");
 
-dotenv.config({path : './config.env'})
+dotenv.config({ path: "./config.env" });
 
 const DB = process.env.DATABASE;
 const port = process.env.PORT;
@@ -56,11 +56,11 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 app.get("/", checkAuthenticated, (req, res) => {
-  res.render("index", { user : req.user });
+  res.render("index", { user: req.user });
 });
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home", { user : req.user });
+  res.render("home", { user: req.user });
 });
 
 app.get("/login", checkNotAuthenticated, (req, res) => {
@@ -72,28 +72,29 @@ app.get("/notes", checkAuthenticated, async (req, res) => {
     createdAt: "desc",
   });
   console.log("Notes Object created!");
-  res.render("notes/index", { notes: notes, user : req.user});
+  res.render("notes/index", { notes: notes, user: req.user });
 });
 
 app.get("/about", checkAuthenticated, (req, res) => {
-  res.render("about", { user : req.user });
+  res.render("about", { user: req.user });
 });
 
 app.get("/links", checkAuthenticated, (req, res) => {
-  res.render("links", { user : req.user });
+  res.render("links", { user: req.user });
 });
 
 app.get("/contact", checkAuthenticated, (req, res) => {
-  res.render("contact", { user : req.user });
+  res.render("contact", { user: req.user });
 });
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" });
-  res.render("articles/index", { articles: articles, user : req.user });
+  console.log("Articles Object created!");
+  res.render("articles/index", { articles: articles, user: req.user });
 });
 
 app.get("/events", checkAuthenticated, (req, res) => {
-  res.render("events", { user : req.user});
+  res.render("events", { user: req.user });
 });
 
 app.post(
@@ -133,37 +134,46 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
 // Editing Users
 app.get("/profile", checkAuthenticated, async (req, res) => {
-  res.render("editProfile", { user : req.user });
+  res.render("editProfile", { user: req.user });
 });
 
-app.put('/update/:id', async (req, res, next) => {
-  req.user = await User.findById(req.params.id)
-  next()
-  console.log(`${req.params.id}`)
-}, saveUserAndRedirect())
+app.get("/profile1", checkAuthenticated, async (req, res) => {
+  res.render("profile", { user: req.user });
+});
+
+app.put(
+  "/update/:id",
+  async (req, res, next) => {
+    console.log(req.body + " In Put")
+    req.user = await User.findById(req.params.id)
+    next()
+    console.log(`${req.body}`)
+  },
+  saveUserAndRedirect()
+);
 
 function saveUserAndRedirect() {
   return async (req, res) => {
-    console.log(req.user);
-    let user = req.user
-    user.name = req.body.name
-    user.email = req.body.email
-    user.gender = req.body.gender
-    user.date_of_Birth = req.body.date_of_Birth
-    user.city = req.body.city
-    user.state = req.body.state
-    user.year = req.body.year
-    user.specialization = req.body.specialization
+    console.log(req.user + " In Function");
+    let user = req.user;
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.gender = req.body.gender;
+    user.date_of_Birth = req.body.date_of_Birth;
+    user.city = req.body.city;
+    user.state = req.body.state;
+    user.year = req.body.year;
+    user.specialization = req.body.specialization;
     try {
-      user = await user.save()
-      console.log(`${user.slug} in function`)
-      res.render(`profile`,{ user: req.user })
-      console.log('--------------X-----------')
+      await user.save();
+      console.log(`${user.slug} in function`);
+      res.render(`profile`, { user: req.user });
+      console.log("--------------X-----------");
     } catch (e) {
-      console.log(e)
-      res.send(`Couldn't Update User Details`)
+      console.log(e);
+      res.send(`Couldn't Update User Details `+ e );
     }
-  }
+  };
 }
 
 app.delete("/logout", (req, res) => {
@@ -174,17 +184,24 @@ app.delete("/logout", (req, res) => {
 app.use("/articles", articleRouter);
 app.use("/notes", notesRouter);
 
-
+//Error Template ,If no routes are matched
+app.use((req,res) => {
+  res.render("error",{ user : req.user });
+})
 
 mongoose
-  .connect(DB , {
+  .connect(DB, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false
+    useFindAndModify: false,
   })
   .then(() => {
     app.listen(port, () => {
       console.log(`Server is running on Port ${port}`);
-    });
-  });
+    })
+  })
+  .catch((err) => {
+    console.log("Mongo DB Connnection Error!!");
+    console.log(err);
+  })  

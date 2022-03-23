@@ -14,45 +14,45 @@
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form action="/update/<%= user.id %>?_method=PUT" method="POST">
+                        <form action="/update/<%=user.id%>?_method=PUT" method="POST">
                             <!-- Form Group (username)-->
-                            <div class="mb-3">
+                            <div class="mb-3  form-group">
                                 <label class="small mb-1" for="name">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" id="name" type="text" placeholder="Enter your username" value="<%= user.name %>">
+                                <input class="form-control" id="name" type="text" placeholder="Enter your username" value="<%=user.name%>">
                             </div>
                             <!-- Form Row -->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (organization name)-->
-                                <div class="col-md-6">
+                                <div class="col-md-6  form-group">
                                     <label class="small mb-1" for="organization">Organization name</label>
-                                    <input class="form-control" id="organization" type="text" placeholder="Enter your organization name" value="<%= user.organization %>">
+                                    <input class="form-control" id="organization" type="text" placeholder="Enter your organization name" value="<%=user.organization%>">
                                 </div>
                                 <!-- Form Group (location)-->
-                                <div class="col-md-6">
+                                <div class="col-md-6  form-group">
                                     <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="<%= user.location %>">
+                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="<%=user.location%>" >
                                 </div>
                             </div>
                             <!-- Form Group (email address)-->
-                            <div class="mb-3">
+                            <div class="mb-3  form-group">
                                 <label class="small mb-1" for="email">Email address</label>
-                                <input class="form-control" id="email" type="email" placeholder="Enter your email address" value="<%= user.email %>">
+                                <input class="form-control" id="email" type="email" placeholder="Enter your email address" value="<%=user.email%>">
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
+                                <div class="col-md-6  form-group">
                                     <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="<%= user.number %>">
+                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="<%=user.number%>">
                                 </div>
                                 <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
+                                <div class="col-md-6 form-group">
                                     <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="<%= user.date_Of_Birth %>">
+                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="<%=user.date_Of_Birth%>">
                                 </div>
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="submit">Save changes</button>
+                            <button class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
                 </div>
