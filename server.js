@@ -14,6 +14,7 @@ const Notes = require("./models/Note");
 const notesRouter = require("./routes/notes");
 const ejsMate = require("ejs-mate");
 const bcrypt = require("bcryptjs");
+const AppError = require ('./middlewares/AppError');
 const {
   checkAuthenticated,
   checkNotAuthenticated,
@@ -133,6 +134,12 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     }
   }
 });
+
+
+//Error Handling
+app.get('/admin', (req,res) => {
+  throw new AppError('You are Not an Admin',403);
+})
 
 // Editing Users
 app.get("/profile", checkAuthenticated, async (req, res) => {
