@@ -1,5 +1,4 @@
 require("dotenv").config();
-const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -19,7 +18,6 @@ const {
   checkNotAuthenticated,
 } = require("./middlewares/auth");
 
-dotenv.config({ path: "./config.env" });
 
 const DB = process.env.DATABASE;
 const port = process.env.PORT;

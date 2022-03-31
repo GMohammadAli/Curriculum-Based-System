@@ -1,6 +1,5 @@
 const express = require('express')
 const Article = require('./../models/article')
-const methodOverride = require("method-override")
 const path = require("path")
 const router = express.Router()
 const app = express()
