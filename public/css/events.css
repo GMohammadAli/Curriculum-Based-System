@@ -1,34 +1,124 @@
 @import 'cbs.css';
 @import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
 
+.evedisplay{
+    /* background-color: rgb(188, 188, 188) !important; */
+    background-image: url(/Images/homebg2.jpg) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(2px);
+}
 body{
-	background-color: rgb(100, 98, 98) !important;
+	background-color: rgb(255, 255, 255) !important;
 }
-.carousel{
+/* .carousel{
     height: 100%;
-/* display: flex;
+ display: flex;
 justify-content: center;
-align-items: center; */    
-}
+align-items: center;     
+} */
 .carousel-item {
     height: 100%;
     margin-top: 5vh;
 }
 .carousel-item img{
-    width: 33% !important;
+    width: 50% !important;
     margin: auto;
     height: 100%;
 
+}
+
+.eveslider{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide{
+    margin-right: 10%;
+    margin-top: 10px;
+}
+.evelogo{  
+    max-width: 400px ;
+    max-height: 400px;
+    /* margin-right: 150px; */
+    padding: 10px 10px 10px 10px;
+    background-color: #7ef5ed;
+    border-radius: 10px;
 }
 .title{
     color: rgb(0, 0, 0) ;
     font-family: 'Stylish', sans-serif;
     /* height: 40em; */
-    display: flex;
-    align-items: center;
-    justify-content: center
 }
 
-body{
+.evecont{
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    justify-items: end;
+    align-items: center;
+}
+
+.btneve{
+        background-color: rgba(17, 17, 17, 0.651);
+        color: rgb(255, 255, 255) !important;
+        width: 150px;
+        height: 50px;
+        margin: 20px;
+        line-height: 40px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border: 2px solid #ffffff;
+        transition: 0.5s ease;   
+}
+
+.btneve:hover{
+    border: 1px solid transparent;
     background-color: black;
+      /* background: #7a18ec ; */
+  }
+
+.eve1{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+}
+.eve1img{
+    max-width: 25em;
+    max-height: 25em;
+    margin-left: 20px;
+    padding: 5px 5px 5px 5px;
+    background-color: #7ef5ed;
+    border-radius: 10px;
+}
+
+.evedetails{
+    margin : 5px 1px 1px 200px;
+    color: #00173f;
+    background-color: #ffffffa4;
+    font-family: 'Simonetta', cursive;
+    padding: 30px 30px 10px 40px;   
+    font-size: 20px; 
+    border-radius: 10px;
+}
+.imgcontent{
+    text-align: center;
+  font-family: 'Simonetta', cursive;
+  font-size: 30px;
+  color: rgb(255, 255, 255);
+  background-color: #ffffff37;
+  border-radius: 10px;
+}
+.eveiconlogocont{
+    margin-top: 50px;
+    margin-right: 110px;
+}
+.Evepg{
+    background-image: url(/Images/eventsbg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+     backdrop-filter: blur(1px);
 }
