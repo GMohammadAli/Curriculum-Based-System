@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Stylish&display=swap');
+
+.eventTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Stylish', sans-serif;
+    color: #FDB813;
+    
+    
+}
+
+.countdown{
+    
+    color: rgb(255, 255, 255);
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Stylish', sans-serif;
+    /* transform: scale(2); */
+
+}
+
+.time{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+.time h2{
+    line-height: 1;
+    margin: 0px 0px 15px;
+}
+
+@media(max-width: 500px){
+.eventTitle{
+    font-size: 45px;
+}    
+.time{
+    margin: 5px;
+}
+.time h2{
+    font-size: 12px;
+}
+.time small{
+    font-size: 10px;
+}
+
+}

@@ -90,8 +90,30 @@ app.get("/articles", checkAuthenticated, async (req, res) => {
 })
 
 app.get("/events", checkAuthenticated, (req, res) => {
-  res.render("events", { user: req.user })
-})
+  res.render("events/index", { user: req.user });
+});
+
+app.get("/event1", checkAuthenticated, (req, res) => {
+  res.render("events/event1", { user: req.user });
+});
+app.get("/event2", checkAuthenticated, (req, res) => {
+  res.render("events/event2", { user: req.user });
+});
+app.get("/event3", checkAuthenticated, (req, res) => {
+  res.render("events/event3", { user: req.user });
+});
+app.get("/event4", checkAuthenticated, (req, res) => {
+  res.render("events/event4", { user: req.user });
+});
+app.get("/event5", checkAuthenticated, (req, res) => {
+  res.render("events/event5", { user: req.user });
+});
+app.get("/event6", checkAuthenticated, (req, res) => {
+  res.render("events/event6", { user: req.user });
+});
+app.get("/event7", checkAuthenticated, (req, res) => {
+  res.render("events/event7", { user: req.user });
+});
 
 //User Auth 
 app.get("/login", checkNotAuthenticated, (req, res) => {
