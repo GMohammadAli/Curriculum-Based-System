@@ -1,5 +1,4 @@
 const express = require('express')
-const methodOverride = require("method-override")
 const path = require("path")
 const Note = require('./../models/Note')
 const multer  = require('multer')

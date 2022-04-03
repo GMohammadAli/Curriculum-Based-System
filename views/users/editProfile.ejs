@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/css/profile.css">
-    
+<link rel="stylesheet" href="/css/editProfile.css">
+<div class="container">
     <div class="container-xl px-4 mt-4">
         <!-- Account page navigation-->
         <nav class="nav nav-borders">
@@ -41,13 +41,21 @@
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (phone number)-->
                                 <div class="col-md-6  form-group">
-                                    <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" name="user[phone]" id="inputPhone" type="tel" placeholder="Enter your phone number" value="<%=user.number%>">
+                                    <label class="small mb-1" for="phone">Phone number</label>
+                                    <input class="form-control" name="user[phone]" id="phone" type="text" placeholder="Enter your phone number" value="<%=user.number%>">
                                 </div>
                                 <!-- Form Group (birthday)-->
-                                <div class="col-md-6 form-group">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="user[birthday]" placeholder="Enter your birthday" value="<%=user.date_Of_Birth%>">
+                                <div class="col-md-6 form-group">                
+                                                    <label class="small mb-1" for="birthday">Date of Birth</label>
+                                                    <input type='date' class="form-control input-group date" name="user[birthday]" value="<%-user.birthday%>"/>
+                                                    <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                            <script type="date/javascript">
+                                                $(function () {
+                                                    $('#birthday').datetimepicker();
+                                                });
+                                            </script>   
                                 </div>
                             </div>
                             <!-- Save changes button-->
@@ -58,3 +66,4 @@
             </div>
         </div>
     </div>
+</div>   
