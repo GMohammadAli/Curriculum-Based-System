@@ -4,36 +4,36 @@ const slugify = require('slugify')
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: [true, "Username Can't be empty!"],
   },
   email: {
     type: String,
-    required: true
+    required: [true, "User Email Can't be empty!"],
   },
   password: {
     type: String,
     required: true
   },
   gender: {
-    type: String,
-  },
-  date_of_Birth : {
-    type: Date
-  },
-  location : {
     type: String
   },
-  phone : {
+  birthday: {
+    type: Date
+  },
+  location: {
+    type: String
+  },
+  phone: {
     type: Number
   },
-  organization : {
+  organization: {
     type: String
   },
   slug: {
     type: String,
     required: true,
     unique: true
-  }
+  },
 });
 
 userSchema.pre('validate', function(next) {
