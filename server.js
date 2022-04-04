@@ -1,4 +1,8 @@
+if(process.env.NODE_ENV !== 'production'){
 require("dotenv").config()
+}
+
+
 const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
@@ -135,7 +139,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
   if (userFound) {
     req.flash("error", "User with that email already exists")
-    res.redirect("users/login")
+    res.redirect("/login")
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -170,7 +174,7 @@ app.put(
   console.log(req.body);
   const user = await User.findByIdAndUpdate(id, {
     ...req.body.user,
-  });
+  },{ runValidators:true });
   await user.save();
   req.flash("success", "Successfully updated User Profile!");
   res.redirect(`/profile`);
