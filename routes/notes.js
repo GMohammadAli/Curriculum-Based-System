@@ -5,61 +5,73 @@ const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const router = express.Router()
 const app = express()
+const semesters = [
+  "SEM I",
+  "SEM II",
+  "SEM III",
+  "SEM IV",
+  "SEM V",
+  "SEM VI",
+  "SEM VII",
+  "SEM VIII",
+]
+const years = ["FE", "SE", "TE", "BE"]
+const branches = ["COMPS", "IT", "EXTC", "ETRX", "INST"]
+const courses = ["MCA", "B.Tech"]
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,'views'))
+app.use(express.static(path.join(__dirname, "/public")));
 
 router.get('/new', (req, res) => {
-    res.render('./notes/new', { note: new Note() , user: req.user })
+  res.render("./notes/new", {
+    note: new Note(),
+    user: req.user,
+    semesters,
+    years,
+    branches,
+    courses
   })
+})
+
+router.post("/new", async (req, res) => {
+  console.log(req.body);
+  const note = new Note(req.body.note);
+  await note.save();
+  res.redirect("/notes");
+})
   
-  router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', async (req, res) => {
     const note = await Note.findById(req.params.id)
-    res.render('./notes/edit', { note: note , user: req.user  })
-  })
+    res.render("./notes/edit", {
+      note: note,
+      user: req.user,
+      semesters,
+      years,
+      branches,
+      courses
+    });
+})
   
-  router.get('/:slug', async (req, res) => {
-    const note = await Note.findOne({ slug: req.params.slug })
-    if (note == null) res.redirect('/')
-    res.render('notes/show', { note: note , user: req.user  })
-  })
+router.get('/:slug', async (req, res) => {
+  const note = await Note.findOne({ slug: req.params.slug })
+  if (note == null) res.redirect('/')
+  res.render('notes/show', { note: note , user: req.user  })
+})
   
-  router.post('/', async (req, res, next) => {
-    req.note = new Note()
-    next()
-    console.log('running')
-  }, saveNoteAndRedirect('new'))
-  
-  router.put('/:id', async (req, res, next) => {
-    req.note = await Note.findById(req.params.id)
-    next()
-    console.log('running edit')
-  }, saveNoteAndRedirect('edit'))
-  
-  router.delete('/:id', async (req, res) => {
-    await Note.findByIdAndDelete(req.params.id)
-    res.redirect('/notes')
-  })
-  
-  function saveNoteAndRedirect(path) {
-    return async (req, res) => {
-      console.log(req.note);
-      let note = req.note
-      note.title = req.body.title
-      note.description = req.body.description
-      note.subject = req.body.subject
-      note.semester = req.body.semester
-      note.url = req.body.url
-      try {
-        note = await note.save()
-        console.log('function called')
-        console.log(`${note.slug}`)
-        res.redirect(`/notes/${note.slug}`)
-        console.log('--------------X--------------')
-      } catch (e) {
-        // console.log(e)
-        res.render(`./notes/${path}`, { note: note , user: req.user })
-      }
-    }
-  }
+
+router.put('/:id', async (req, res) => {
+  console.log(req.body);
+  const { id } = req.params;
+  const note = await Note.findByIdAndUpdate(id, { ...req.body.note });
+  await note.save();
+  res.redirect(`/notes/${note.slug}`)
+})
+
+router.delete('/:id', async (req, res) => {
+  await Note.findByIdAndDelete(req.params.id)
+  res.redirect('/notes')
+})
+
 module.exports = router

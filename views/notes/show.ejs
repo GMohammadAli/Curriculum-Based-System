@@ -4,21 +4,18 @@
   <%- include("./../partials/Navbar") %>
   <div class="container">
     <div class="narticle col-sm-10">
-    <h1 class="mb-1"><%= note.title %></h1>
-    <p class="card-text"><%= note.description %></p>
-    <p class="card-text">
-                Subject- <%= note.subject %>
-              </p>
-    <span class="badge text-dark m-3 title4 d-flex-inline"><%= note.semester %></span>
-    <a class="btn title4 m-3 col-sm-1" href="<%= note.url  %> ">Open Notes</a>
+    <h1 class="mb-1"><%=note.title%></h1>
+    <span class="card-text"><%=note.subject%></span>
+    <span class="badge text-dark m-3 title4 d-flex-inline"><%=note.semester%></span>
+    <a class="btn title4 m-3 col-sm-1" href="<%=note.url%>">Open Notes</a>
     <div class="text-muted mb-2">
       <%= note.createdOn.toLocaleDateString() %>
     </div>
     
     <a href="/notes" class="btn btn-secondary">All notes</a>
-    <a href="/notes/edit/<%= note.id %>" class="btn btn-info"><i class="fa fa-thin fa-pencil"></i></a>
+    <a href="/notes/edit/<%=note.id%>" class="btn btn-info"><i class="fa fa-thin fa-pencil"></i></a>
   </div>
   </div>
 </body>
-<!-- <%- include("./../partials/footer") %> -->
+<%- include("./../partials/footer") %>
 </html>

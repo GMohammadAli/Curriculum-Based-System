@@ -71,7 +71,7 @@ app.get("/notes", checkAuthenticated, async (req, res) => {
   const notes = await Notes.find().sort({
     createdAt: "desc",
   })
-  console.log("Notes Object created!")
+  console.log("Notes Route Accessed!")
   res.render("notes/index", { notes: notes, user: req.user })
 })
 
@@ -89,7 +89,7 @@ app.get("/contact", checkAuthenticated, (req, res) => {
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" })
-  console.log("Articles Object created!")
+  console.log("Articles Route Accessed!")
   res.render("articles/index", { articles: articles, user: req.user })
 })
 
@@ -188,8 +188,8 @@ app.delete("/logout", (req, res) => {
 
 //Users Auth ends here
 
-app.use("/articles", articleRouter)
-app.use("/notes", notesRouter)
+app.use("/articles", checkAuthenticated, articleRouter);
+app.use("/notes", checkAuthenticated,  notesRouter);
 
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {
