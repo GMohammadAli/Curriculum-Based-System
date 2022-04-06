@@ -12,8 +12,7 @@ const notesSchema = new Schema({
     required: true,
   },
   subject: {
-    type: String,
-    required: true,
+    type: String
   },
   semester: {
     type: String,

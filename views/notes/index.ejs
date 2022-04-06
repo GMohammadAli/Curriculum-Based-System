@@ -3,7 +3,8 @@
 <body class="notedisplay" >
   <%- include("./../partials/Navbar") %>
   <nav class="filter navbar navbar-expand-lg navbar-dark ">
-  <div class=" filter-cont">
+  <form action="/notes/filter" method="get">
+  <div class="filter-cont">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
       <li class="nav-item dropdown">
@@ -18,12 +19,12 @@
           COURSE
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <li> 
-              <a class="dropdown-item" href="#">Engineering</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">MCA</a>
-            </li>
+              <li> 
+                <a class="dropdown-item" href="/notes/filter" >Engineering</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" class="btn" value="MCA" >MCA</a>
+              </li>
           </ul>
       </li>
 
@@ -40,19 +41,19 @@
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
-              <a class="dropdown-item" href="#">Computer Engineering</a>
+              <a class="dropdown-item" href="notes/filter">Computer Engineering</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Electronics & Telecommunication</a>
+              <a class="dropdown-item" href="notes/filter">Electronics & Telecommunication</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Electronics</a>
+              <a class="dropdown-item" href="notes/filter">Electronics</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Information Technology</a>
+              <a class="dropdown-item" href="notes/filter">Information Technology</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Instrumentation</a>
+              <a class="dropdown-item" href="notes/filter">Instrumentation</a>
             </li>
           </ul>
       </li>
@@ -69,16 +70,16 @@
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
-              <a class="dropdown-item" href="#">First</a>
+              <a class="dropdown-item" href="notes/filter">First</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Second</a>
+              <a class="dropdown-item" href="notes/filter">Second</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Third</a>
+              <a class="dropdown-item" href="notes/filter">Third</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Fourth</a>
+              <a class="dropdown-item" href="notes/filter">Fourth</a>
             </li>
           </ul>
       </li>
@@ -95,34 +96,35 @@
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <li> 
-              <a class="dropdown-item" href="#">Sem-1</a>
+              <a class="dropdown-item" href="notes/filter">Sem-1</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-2</a>
+              <a class="dropdown-item" href="notes/filter">Sem-2</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-3</a>
+              <a class="dropdown-item" href="notes/filter">Sem-3</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-4</a>
+              <a class="dropdown-item" href="notes/filter">Sem-4</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-5</a>
+              <a class="dropdown-item" href="notes/filter">Sem-5</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-6</a>
+              <a class="dropdown-item" href="notes/filter">Sem-6</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-7</a>
+              <a class="dropdown-item" href="notes/filter">Sem-7</a>
             </li>
             <li> 
-              <a class="dropdown-item" href="#">Sem-8</a>
+              <a class="dropdown-item" href="notes/filter">Sem-8</a>
             </li>
           </ul>
       </li>
     </ul>
   </div>
-    </nav>
+  </form>
+  </nav>
   <div class="container-b">
     <div>
       <h1 class="mb-4 title">Notes Available</h1>
@@ -176,5 +178,6 @@
     </div>
   </div>
 </body>
+<script src="/js/filter.js"></script>
 <%- include("./../partials/footer") %>
 </html>

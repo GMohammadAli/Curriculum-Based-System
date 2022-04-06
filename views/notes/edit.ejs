@@ -15,7 +15,7 @@
                 id="title"
                 class="form-control"
                 value="<%=note.title%>"
-              />            
+                required/>            
               <div class="valid-feedback">
                 Looks good!
               </div>
@@ -23,7 +23,7 @@
             <br />
             <div class="form-label">
               <label for="subject">Subject</label>
-              <input name="note[subject]" id="subject" class="form-control" value="<%=note.subject%>"></input>
+              <input name="note[subject]" id="subject" class="form-control" value="<%=note.subject%>" required></input>
               <div class="valid-feedback">
                   Looks good!
               </div>
@@ -31,7 +31,7 @@
             <br />
             <div class="form-label">
               <label for="semester">Semester</label>
-              <select class="form-select" name="note[semester]" id="semester">
+              <select class="form-select" name="note[semester]"  id="semester" required>
                     <% for(let semester of semesters){ %>
                     <option value="<%=semester%>" <%= note.semester === semester ? 'selected': '' %>><%=semester%></option>
                     <% } %>
@@ -43,7 +43,7 @@
             <br />
             <div class="form-label">
               <label for="course">Course</label>
-              <select class="form-select" name="note[course]" id="course">
+              <select class="form-select" name="note[course]" id="course" required>
                     <% for(let course of courses){ %>
                       <option value="<%=course%>" <%= note.course === course ? 'selected': '' %>><%=course%></option>
                     <% } %>
@@ -55,7 +55,7 @@
             <br />
             <div class="form-label">
               <label for="year">Year</label>
-              <select class="form-select" name="note[year]" id="year">
+              <select class="form-select" name="note[year]" id="year" required>
                     <% for(let year of years){ %>
                     <option value="<%=year%>" <%= note.year === year ? 'selected': '' %>><%=year%></option>
                     <% } %>
@@ -67,7 +67,7 @@
             <br />
             <div class="form-label">
               <label for="branch">Branch</label>
-              <select class="form-select" name="note[branch]" id="branch">
+              <select class="form-select" name="note[branch]" id="branch" required>
                     <% for(let branch of branches){ %>
                     <option value="<%=branch%>" <%= note.branch === branch ? 'selected': '' %>><%=branch%></option>
                     <% } %>
@@ -79,7 +79,7 @@
             <br />
             <div class="form-label">
               <label for="upload">Add link to Notes:</label>
-              <input type="url" name="note[url]" id="upload" value="<%=note.url%>"/>
+              <input type="url" name="note[url]" id="upload" value="<%=note.url%>" required />
               <div class="valid-feedback">
                 Looks good!
               </div>
