@@ -26,6 +26,7 @@ const client = new MongoClient(url);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.json());
 
 router.get("/new", (req, res) => {
   res.render("./notes/new", {
@@ -46,12 +47,14 @@ router.post("/new", async (req, res) => {
 });
 
 //Filter Route
-router.get('/filter', async (req,res) => {
+router.post('/filter', async (req,res) => {
   console.log(req.body)
   console.log('filter route accessed')
-  const _filterTo = 'course'
-  const value = 'MCA'
-  runFilter(_filterTo, value);
+  const _filter = Object.keys(req.body.filter)[0];
+  const value = Object.values(req.body.filter)[0];
+  console.log(_filter + ' in post route');
+  console.log(value);
+  runFilter(_filter, value)
 })
 
 router.get("/edit/:id", async (req, res) => {
@@ -86,22 +89,36 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-async function runFilter(_filterTo, value ) {
+async function runFilter(_filter, value ) {
+  return async(req, res) => {
   try {
     await client.connect();
     const database = client.db("CBS");
     const collections = database.collection('notes');
     // query for filter method
-    if( _filterTo == 'course'){
-    const query = { 'course': `${value}` };
-    console.log(query)
-    const findResult = await collections.find(query).toArray();
-    console.log("Found documents =>", findResult);
-    console.log(findResult.length);
+    if (_filter === "course") {
+      const query = { course: `${value}` };
+      const notes = await collections.find(query);
+      console.log(notes);
+      res.render('./notes/index',{ notes: notes , user : req.user })
+    } else if (_filter === "semester") {
+      const query = { semester: `${value}` };
+      const notes = await collections.find(query);
+      res.render("./notes/index", { notes: notes, user: req.user });
+    } else if (_filter === "year") {
+      const query = { year: `${value}` };
+      const notes = await collections.find(query);
+      res.render("./notes/index", { notes: notes, user: req.user });
+    } else if (_filter === "branch") {
+      const query = { branch: `${value}` };
+      const notes = await collections.find(query);
+      res.render("./notes/index", { notes: notes, user: req.user });
     }
+
   } finally {
     await client.close();
   }
+}
 }
 
 module.exports = router;
