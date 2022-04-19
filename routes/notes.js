@@ -89,31 +89,36 @@ router.delete("/:id", async (req, res) => {
 });
 
 
-async function runFilter(_filter, value ) {
+async function runFilter( _filter, value ) {
   return async(req, res) => {
   try {
     await client.connect();
     const database = client.db("CBS");
     const collections = database.collection('notes');
     // query for filter method
-    if (_filter === "course") {
+    // if (_filter == "course") {
+      console.log(" in filter funtion");
+      console.log(value);
       const query = { course: `${value}` };
       const notes = await collections.find(query);
-      console.log(notes);
-      res.render('./notes/index',{ notes: notes , user : req.user })
-    } else if (_filter === "semester") {
-      const query = { semester: `${value}` };
-      const notes = await collections.find(query);
-      res.render("./notes/index", { notes: notes, user: req.user });
-    } else if (_filter === "year") {
-      const query = { year: `${value}` };
-      const notes = await collections.find(query);
-      res.render("./notes/index", { notes: notes, user: req.user });
-    } else if (_filter === "branch") {
-      const query = { branch: `${value}` };
-      const notes = await collections.find(query);
-      res.render("./notes/index", { notes: notes, user: req.user });
-    }
+      console.log(notes.count());
+      // res.render('./notes/index',{ notes: notes , user : req.user })
+    // } else if (_filter == "semester") {
+    //   const query = { semester: `${value}` };
+    //   const notes = await collections.find(query);
+    //   console.log(notes);
+    //   res.render("./notes/index", { notes: notes, user: req.user });
+    // } else if (_filter == "year") {
+    //   const query = { year: `${value}` };
+    //   const notes = await collections.find(query);
+    //   console.log(notes);
+    //   res.render("./notes/index", { notes: notes, user: req.user });
+    // } else if (_filter == "branch") {
+    //   const query = { branch: `${value}` };
+    //   const notes = await collections.find(query);
+    //   console.log(notes);
+    //   res.render("./notes/index", { notes: notes, user: req.user });
+    // }
 
   } finally {
     await client.close();
