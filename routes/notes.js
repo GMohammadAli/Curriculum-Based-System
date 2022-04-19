@@ -93,6 +93,7 @@ router.post('/filter', async (req,res) => {
 
 //New Error 'no primary server available' check stack overflow 
 //This happens only the second time we run the filter route 
+//Also check the individual options for the notes
 async function runFilter( _filter, value ) {
   try {
     await client.connect();
