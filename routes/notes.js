@@ -46,17 +46,6 @@ router.post("/new", async (req, res) => {
   res.redirect("/notes");
 });
 
-//Filter Route
-router.post('/filter', async (req,res) => {
-  console.log(req.body)
-  console.log('filter route accessed')
-  const _filter = Object.keys(req.body.filter)[0];
-  const value = Object.values(req.body.filter)[0];
-  console.log(_filter + ' in post route');
-  console.log(value);
-  runFilter(_filter, value)
-})
-
 router.get("/edit/:id", async (req, res) => {
   const note = await Note.findById(req.params.id);
   res.render("./notes/edit", {
@@ -89,41 +78,68 @@ router.delete("/:id", async (req, res) => {
 });
 
 
+//Filter Route
+router.post('/filter', async (req,res) => {
+  console.log(req.body)
+  console.log('filter route accessed')
+  const _filter = Object.keys(req.body.filter)[0];
+  const value = Object.values(req.body.filter)[0];
+  console.log(_filter + ' in post route');
+  console.log(value);
+  const notes = await runFilter(_filter, value);
+  res.render("notes/index", { notes: notes, user: req.user });
+})
+
+
+//New Error 'no primary server available' check stack overflow 
+//This happens only the second time we run the filter route 
 async function runFilter( _filter, value ) {
-  return async(req, res) => {
   try {
     await client.connect();
     const database = client.db("CBS");
     const collections = database.collection('notes');
     // query for filter method
-    // if (_filter == "course") {
-      console.log(" in filter funtion");
-      console.log(value);
+    console.log(_filter + " in filter funtion");
+    if (_filter == "course") {
       const query = { course: `${value}` };
+      const notes = await collections.find(query); 
+      const notesArray = await notes.map( function(note) { return note } ).toArray();
+      console.log(notesArray);
+      return notesArray;
+    } else if (_filter == "semester") {
+      const query = { semester: `${value}` };
       const notes = await collections.find(query);
-      console.log(notes.count());
-      // res.render('./notes/index',{ notes: notes , user : req.user })
-    // } else if (_filter == "semester") {
-    //   const query = { semester: `${value}` };
-    //   const notes = await collections.find(query);
-    //   console.log(notes);
-    //   res.render("./notes/index", { notes: notes, user: req.user });
-    // } else if (_filter == "year") {
-    //   const query = { year: `${value}` };
-    //   const notes = await collections.find(query);
-    //   console.log(notes);
-    //   res.render("./notes/index", { notes: notes, user: req.user });
-    // } else if (_filter == "branch") {
-    //   const query = { branch: `${value}` };
-    //   const notes = await collections.find(query);
-    //   console.log(notes);
-    //   res.render("./notes/index", { notes: notes, user: req.user });
-    // }
-
-  } finally {
+      const notesArray = await notes
+        .map(function (note) {
+          return note;
+        })
+        .toArray();
+      console.log(notesArray);
+      return notesArray;
+    } else if (_filter == "year") {
+      const query = { year: `${value}` };
+      const notes = await collections.find(query);
+      const notesArray = await notes
+        .map(function (note) {
+          return note;
+        })
+        .toArray();
+      console.log(notesArray);
+      return notesArray;
+    } else if (_filter == "branch") {
+      const query = { branch: `${value}` };
+      const notes = await collections.find(query);
+      const notesArray = await notes
+        .map(function (note) {
+          return note;
+        })
+        .toArray();
+      console.log(notesArray);
+      return notesArray;
+    }
+  }finally {
     await client.close();
   }
-}
 }
 
 module.exports = router;
