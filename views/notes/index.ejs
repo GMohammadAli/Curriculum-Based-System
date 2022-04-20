@@ -130,25 +130,47 @@
               <a href="<%= note.url  %> ">Open Notes</a>
             </div>
           <div class="rmed title4">
-          <a
-            href="notes/<%= note.slug %>"
-            class="btn"
-            ><i class="fa fa-thin fa-bars"></i></a
-          >
-          <a
-            href="notes/edit/<%= note.id %>"
-            class="btn"
-            ><i class="fa fa-thin fa-pencil"></i></a
-          >
-          <form
-            action="/notes/<%= note.id %>?_method=DELETE"
-            method="POST"
-            class="d-inline"
-          >
-            <button type="submit" class="btn">
-              <i class="fa fa-duatone fa-trash"></i>
-            </button>
-          </form>
+          <% if ( page === 'filter') {%> 
+            <a
+              href="<%= note.slug %>"
+              class="btn"
+              ><i class="fa fa-thin fa-bars"></i></a
+            >
+            <a
+              href="edit/<%= note._id %>"
+              class="btn"
+              ><i class="fa fa-thin fa-pencil"></i></a
+            >
+            <form
+              action="/notes/<%= note._id %>?_method=DELETE"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn">
+                <i class="fa fa-duatone fa-trash"></i>
+              </button>
+            </form>
+          <% } else { %> 
+              <a
+                href="notes/<%= note.slug %>"
+                class="btn"
+                ><i class="fa fa-thin fa-bars"></i></a
+              >
+              <a
+                href="notes/edit/<%= note.id %>"
+                class="btn"
+                ><i class="fa fa-thin fa-pencil"></i></a
+              >
+              <form
+                action="/notes/<%= note.id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button type="submit" class="btn">
+                  <i class="fa fa-duatone fa-trash"></i>
+                </button>
+              </form>
+          <% } %> 
         </div>
         </div>
       </div>
@@ -158,6 +180,5 @@
     </div>
   </div>
 </body>
-<script src="/js/filter.js"></script>
 <%- include("./../partials/footer") %>
 </html>

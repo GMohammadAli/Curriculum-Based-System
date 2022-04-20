@@ -67,14 +67,6 @@ app.get("/home", checkAuthenticated, (req, res) => {
   res.render("home", { user: req.user })
 })
 
-app.get("/notes", checkAuthenticated, async (req, res) => {
-  const notes = await Notes.find().sort({
-    createdAt: "desc",
-  })
-  console.log("Notes Route Accessed!")
-  res.render("notes/index", { notes: notes, user: req.user })
-})
-
 app.get("/about", checkAuthenticated, (req, res) => {
   res.render("about", { user: req.user })
 })
@@ -92,6 +84,15 @@ app.get("/articles", checkAuthenticated, async (req, res) => {
   console.log("Articles Route Accessed!")
   res.render("articles/index", { articles: articles, user: req.user })
 })
+
+app.get("/notes", checkAuthenticated, async (req, res) => {
+  const notes = await Notes.find().sort({
+    createdAt: "desc",
+  });
+  console.log("Notes Route Accessed!");
+  res.render("notes/index", { notes: notes, user: req.user, page:'index' });
+});
+
 
 app.get("/events", checkAuthenticated, (req, res) => {
   res.render("events/index", { user: req.user });
@@ -192,9 +193,9 @@ app.use("/articles", checkAuthenticated, articleRouter);
 app.use("/notes", checkAuthenticated,  notesRouter);
 
 //Error Template ,If no routes are matched
-app.all('*',(req,res) => {
-  res.render("error",{ user : req.user })
-})
+// app.all('*',(req,res) => {
+//   res.render("error",{ user : req.user })
+// })
 
 mongoose
   .connect(DB, {

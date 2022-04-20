@@ -58,6 +58,26 @@ router.get("/edit/:id", async (req, res) => {
   });
 });
 
+//Filter Routes
+router.post('/filter', async (req,res,next) => {
+  console.log(req.body)
+  console.log('filter route accessed')
+  const _filter = Object.keys(req.body.filter)[0];
+  const value = Object.values(req.body.filter)[0];
+  console.log(_filter + ' in post route');
+  console.log(value);
+  req.notes = await runFilter(_filter, value);
+  next()
+})
+
+router.all('/filter',async(req,res) => {
+  res.render("notes/index", {
+    notes: req.notes,
+    user: req.user,
+    page: "filter"
+  });
+})
+
 router.get("/:slug", async (req, res) => {
   const note = await Note.findOne({ slug: req.params.slug });
   if (note == null) res.redirect("/");
@@ -77,22 +97,6 @@ router.delete("/:id", async (req, res) => {
   res.redirect("/notes");
 });
 
-
-//Filter Route
-router.post('/filter', async (req,res) => {
-  console.log(req.body)
-  console.log('filter route accessed')
-  const _filter = Object.keys(req.body.filter)[0];
-  const value = Object.values(req.body.filter)[0];
-  console.log(_filter + ' in post route');
-  console.log(value);
-  const notes = await runFilter(_filter, value);
-  res.render("notes/index", { notes: notes, user: req.user });
-})
-
-
-//New Error 'no primary server available' check stack overflow 
-//This happens only the second time we run the filter route 
 //Also check the individual options for the notes
 async function runFilter( _filter, value ) {
     await client.connect();
