@@ -95,7 +95,6 @@ router.post('/filter', async (req,res) => {
 //This happens only the second time we run the filter route 
 //Also check the individual options for the notes
 async function runFilter( _filter, value ) {
-  try {
     await client.connect();
     const database = client.db("CBS");
     const collections = database.collection('notes');
@@ -138,9 +137,6 @@ async function runFilter( _filter, value ) {
       console.log(notesArray);
       return notesArray;
     }
-  }finally {
-    await client.close();
-  }
 }
 
 module.exports = router;
