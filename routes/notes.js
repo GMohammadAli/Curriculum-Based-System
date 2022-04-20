@@ -5,6 +5,7 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
 const router = express.Router();
 const app = express();
+const { isAuthorOfNote } = require('./../middlewares/isAuthor');
 const semesters = [
   "SEM I",
   "SEM II",
@@ -42,11 +43,12 @@ router.get("/new", (req, res) => {
 router.post("/new", async (req, res) => {
   console.log(req.body);
   const note = new Note(req.body.note);
+  note.author = req.user._id;
   await note.save();
   res.redirect("/notes");
 });
 
-router.get("/edit/:id", async (req, res) => {
+router.get("/edit/:id", isAuthorOfNote , async (req, res) => {
   const note = await Note.findById(req.params.id);
   res.render("./notes/edit", {
     note: note,
@@ -84,7 +86,7 @@ router.get("/:slug", async (req, res) => {
   res.render("notes/show", { note: note, user: req.user });
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", isAuthorOfNote , async (req, res) => {
   console.log(req.body);
   const { id } = req.params;
   const note = await Note.findByIdAndUpdate(id, { ...req.body.note });
@@ -92,7 +94,7 @@ router.put("/:id", async (req, res) => {
   res.redirect(`/notes/${note.slug}`);
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", isAuthorOfNote , async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);
   res.redirect("/notes");
 });

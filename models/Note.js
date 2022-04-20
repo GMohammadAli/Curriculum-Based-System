@@ -12,7 +12,7 @@ const notesSchema = new Schema({
     required: true,
   },
   subject: {
-    type: String
+    type: String,
   },
   semester: {
     type: String,
@@ -28,19 +28,23 @@ const notesSchema = new Schema({
     ],
     required: true,
   },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
   year: {
     type: String,
-    enum: ['FE','SE','TE','BE'],
+    enum: ["FE", "SE", "TE", "BE"],
     required: true,
   },
   branch: {
     type: String,
-    enum: ['COMPS','IT','EXTC','ETRX','INST'],
+    enum: ["COMPS", "IT", "EXTC", "ETRX", "INST"],
     required: true,
   },
   course: {
     type: String,
-    enum: ['MCA','B.Tech'],
+    enum: ["MCA", "B.Tech"],
     required: true,
   },
   createdOn: {

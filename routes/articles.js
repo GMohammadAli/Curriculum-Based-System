@@ -3,6 +3,7 @@ const Article = require('./../models/article')
 const path = require("path")
 const router = express.Router()
 const app = express()
+const { isAuthorOfArticle } = require("./../middlewares/isAuthor");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,'views'))
@@ -12,10 +13,10 @@ router.get('/new', (req, res) => {
   res.render('./articles/new', { article: new Article() , user: req.user})
 })
 
-router.get('/edit/:id', async (req, res) => {
-  const article = await Article.findById(req.params.id)
-  res.render('./articles/edit', { article: article , user: req.user  })
-})
+router.get("/edit/:id", isAuthorOfArticle , async (req, res) => {
+  const article = await Article.findById(req.params.id);
+  res.render("./articles/edit", { article: article, user: req.user });
+});
 
 router.get('/:slug', async (req, res) => {
   const article = await Article.findOne({ slug: req.params.slug })
@@ -28,16 +29,21 @@ router.post('/', async (req, res, next) => {
   next()
 }, saveArticleAndRedirect('new'))
 
-router.put('/:id', async (req, res, next) => {
-  req.article = await Article.findById(req.params.id)
-  next()
-  console.log('running edit')
-}, saveArticleAndRedirect('edit'))
+router.put(
+  "/:id",
+  isAuthorOfArticle ,
+  async (req, res, next) => {
+    req.article = await Article.findById(req.params.id);
+    next();
+    console.log("running edit");
+  },
+  saveArticleAndRedirect("edit")
+);
 
-router.delete('/:id', async (req, res) => {
-  await Article.findByIdAndDelete(req.params.id)
-  res.redirect('/articles')
-})
+router.delete("/:id", isAuthorOfArticle , async (req, res) => {
+  await Article.findByIdAndDelete(req.params.id);
+  res.redirect("/articles");
+});
 
 function saveArticleAndRedirect(path) {
   return async (req, res) => {
@@ -46,6 +52,7 @@ function saveArticleAndRedirect(path) {
     article.description = req.body.description
     article.markdown = req.body.markdown
     try {
+      article.author = req.user._id;
       article = await article.save()
       console.log(`${article.slug}`)
       res.redirect(`/articles/${article.slug}`)

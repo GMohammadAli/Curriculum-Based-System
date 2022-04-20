@@ -109,6 +109,9 @@
     <div>
       <h1 class="mb-4 title">Notes Available</h1>
     </div>
+    <div class="m-5">
+    <%- include('./../partials/flash')%>
+    </div>
     <div class="btn btn-light mt-4 col-sm-1 title plus">
       <a href="notes/new" class="btn">
         <i class="fa fa-solid fa-plus"></i></a>
@@ -180,5 +183,10 @@
     </div>
   </div>
 </body>
-<%- include("./../partials/footer") %>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 </html>
