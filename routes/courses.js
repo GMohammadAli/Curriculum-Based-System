@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const Course = require('./../models/Course')
 const router = express.Router();
 // const app = express();

@@ -27,12 +27,18 @@ const courseSchema = new Schema({
   },
   domain: {
     type: String,
-    enum: ["Web Development", "Artificial Intelligence", "Machine Learning", "Game Development", "Cloud Computing"],
+    enum: [
+      "Web Development",
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Game Development",
+      "Cloud Computing",
+    ],
     required: true,
   },
   instructor_name: {
-      type : String,
-      required: true
+    type: String,
+    required: true,
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -60,13 +66,21 @@ const courseSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-  }
+  },
+  sanitizedHtml: {
+    type: String,
+    required: true,
+  },
 });
 
 courseSchema.pre("validate", function (next) {
-  if (this.title) {
-    this.slug = slugify(this.title, { lower: true, strict: true });
+  if (this.name) {
+    this.slug = slugify(this.name, { lower: true, strict: true });
   }
+  if (this.instructor_name) {
+    this.sanitizedHtml = dompurify.sanitize(marked.parse(this.instructor_name));
+  }
+
   next();
 });
 

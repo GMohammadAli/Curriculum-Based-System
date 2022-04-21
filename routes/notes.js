@@ -1,8 +1,6 @@
 const express = require("express");
-const path = require("path");
 const Note = require("./../models/Note");
 const router = express.Router();
-const app = express();
 const { isAuthorOfNote } = require('./../middlewares/isAuthor');
 const semesters = [
   "SEM I",
@@ -21,11 +19,6 @@ const courses = ["MCA", "B.Tech"];
 const { MongoClient } = require("mongodb");
 const url = process.env.DATABASE;
 const client = new MongoClient(url);
-
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "/public")));
-app.use(express.json());
 
 router.get("/new", (req, res) => {
   res.render("./notes/new", {

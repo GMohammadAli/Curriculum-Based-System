@@ -1,13 +1,7 @@
 const express = require('express')
 const Article = require('./../models/article')
-const path = require("path")
 const router = express.Router()
-const app = express()
 const { isAuthorOfArticle } = require("./../middlewares/isAuthor");
-
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname,'views'))
-app.use(express.static(path.join(__dirname, "/public")));
 
 router.get('/new', (req, res) => {
   res.render('./articles/new', { article: new Article()})
