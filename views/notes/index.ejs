@@ -113,8 +113,11 @@
     <%- include('./../partials/flash')%>
     </div>
     <div class="btn btn-light mt-4 col-sm-1 title plus">
-      <a href="notes/new" class="btn">
-        <i class="fa fa-solid fa-plus"></i></a>
+      <% if( page === 'filter') {  %>
+        <a href="./new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
+      <% }else { %>
+        <a href="notes/new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
+      <% } %>
     </div> 
     <div class="m-5 col-sm-10">
       <div class="row text-color">

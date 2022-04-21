@@ -87,7 +87,7 @@ router.delete("/:id", isAuthorOfNote , async (req, res) => {
   res.redirect("/notes");
 });
 
-//Also check the individual options for the notes
+
 async function runFilter( _filter, value ) {
     await client.connect();
     const database = client.db("CBS");
