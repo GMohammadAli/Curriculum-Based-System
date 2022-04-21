@@ -27,7 +27,7 @@
   </div>
   <br />
   <div class="eve1">
-    <img class="eve1img" src="/Images/ISA.jpeg" alt=".." />
+    <img class="eve1img" src="/Images/ISA.png" alt=".." />
 
     <div class="evedetails">
       <h2 style="text-align: center">IOT BOOTCAMP</h2>
@@ -36,11 +36,37 @@
       <br />
       Venue - Offline <br />
       <br />
-      Description - <br />
+      Description - This bootcamp will cover : Fundamentals of Microcontrollers,
+      Introduction to ISA shield, Projects such as voice controlled
+      LED,Bluetooth controlled robot and many more... <br />
       <br />
       Co-ordinators - Madhure Phadge (+918999041433) , Esha Kadam
       (+917045201495)
     </div>
   </div>
-  <script src="/js/count.js"></script>
+  <script>
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById(`minutes`);
+    const seconds = document.getElementById("seconds");
+
+    const evetime = new Date(`25 April 2022  00:00:00`);
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const diff = evetime - currentTime;
+
+      const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+      const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const m = Math.floor(diff / 1000 / 60) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+
+      days.innerHTML = d;
+      hours.innerHTML = h < 10 ? "0" + h : h;
+      minutes.innerHTML = m < 10 ? "0" + m : m;
+      seconds.innerHTML = s < 10 ? "0" + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>

@@ -30,7 +30,7 @@
     <img class="eve1img" src="/Images/CSI2.jpeg" alt=".." />
     <div class="evedetails">
       <h2 style="text-align: center">PYTHON & DJANGO</h2>
-      Date - 19th & 20th March, 2022
+      Date - 19th & 20th April, 2022
       <br />
       <br />
       Time - 11 am to 1 pm
@@ -38,10 +38,36 @@
       <br />
       Venue - Offline <br />
       <br />
-      Description - <br />
+      Description - The participants will learn about the basics of Python
+      including File Handling and libraries like Tkinter. And also, they will
+      learn about Django Framework. <br />
       <br />
       Co-ordinators - NA
     </div>
   </div>
-  <script src="/js/count.js"></script>
+  <script>
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById(`minutes`);
+    const seconds = document.getElementById("seconds");
+
+    const evetime = new Date(``);
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const diff = evetime - currentTime;
+
+      const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+      const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const m = Math.floor(diff / 1000 / 60) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+
+      days.innerHTML = d;
+      hours.innerHTML = h < 10 ? "0" + h : h;
+      minutes.innerHTML = m < 10 ? "0" + m : m;
+      seconds.innerHTML = s < 10 ? "0" + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>

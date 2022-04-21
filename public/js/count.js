@@ -3,7 +3,7 @@ const hours = document.getElementById('hours');
 const minutes = document.getElementById(`minutes`);
 const seconds = document.getElementById('seconds');
 
-const evetime = new Date(`5 April 2022  00:00:00`);
+const evetime = new Date(`20 April 2022  00:00:00`);
 
 function updateCountdown(){
     const currentTime = new Date();
