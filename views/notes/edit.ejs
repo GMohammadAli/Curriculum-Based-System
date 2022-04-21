@@ -4,11 +4,93 @@
   <%- include("./../partials/Navbar") %>
   <div class="container">
   <div class="narticle col-sm-8">
-  <form action="/notes/<%= note.id %>?_method=PUT" method="POST">
-    <%- include("_form_fields") %> 
+  <form action="/notes/<%= note.id %>?_method=PUT" method="POST" novalidate class="validated-form"> 
+   <!-- enctype="multipart/form-data" -->
+    <!-- Form Starts here -->
+            <div class="form-label">
+              <label for="title">Title</label>
+              <input
+                type="text"
+                name="note[title]"
+                id="title"
+                class="form-control"
+                value="<%=note.title%>"
+                required/>            
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="subject">Subject</label>
+              <input name="note[subject]" id="subject" class="form-control" value="<%=note.subject%>" required></input>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="semester">Semester</label>
+              <select class="form-select" name="note[semester]"  id="semester" required>
+                    <% for(let semester of semesters){ %>
+                    <option value="<%=semester%>" <%= note.semester === semester ? 'selected': '' %>><%=semester%></option>
+                    <% } %>
+              </select>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="course">Course</label>
+              <select class="form-select" name="note[course]" id="course" required>
+                    <% for(let course of courses){ %>
+                      <option value="<%=course%>" <%= note.course === course ? 'selected': '' %>><%=course%></option>
+                    <% } %>
+              </select>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="year">Year</label>
+              <select class="form-select" name="note[year]" id="year" required>
+                    <% for(let year of years){ %>
+                    <option value="<%=year%>" <%= note.year === year ? 'selected': '' %>><%=year%></option>
+                    <% } %>
+              </select>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="branch">Branch</label>
+              <select class="form-select" name="note[branch]" id="branch" required>
+                    <% for(let branch of branches){ %>
+                    <option value="<%=branch%>" <%= note.branch === branch ? 'selected': '' %>><%=branch%></option>
+                    <% } %>
+              </select>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+            </div>
+            <br />
+            <div class="form-label">
+              <label for="upload">Add link to Notes:</label>
+              <input type="url" name="note[url]" id="upload" value="<%=note.url%>" required />
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <br />
+            <a href="/notes" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Save</button>
+    <!-- Form Ends Here! -->
   </form>
   </div>
   </div>
 </body>
-<!-- <%- include("./../partials/footer") %> -->
+<script src="/public/js/validateForms.js"></script>
 </html>

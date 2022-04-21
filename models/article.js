@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const marked = require('marked')
+const { Schema } = mongoose
 const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
@@ -8,29 +9,33 @@ const dompurify = createDomPurify(new JSDOM().window)
 const articleSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
-    type: String
+    type: String,
   },
   markdown: {
     type: String,
-    required: true
+    required: true,
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   },
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   slug: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   sanitizedHtml: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 articleSchema.pre('validate', function(next) {
   if (this.title) {

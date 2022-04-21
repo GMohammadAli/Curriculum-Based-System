@@ -1,44 +1,69 @@
 const mongoose = require("mongoose")
 const marked = require('marked')
+const { Schema } = mongoose
 const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
 const dompurify = createDomPurify(new JSDOM().window)
 
-const notesSchema = new mongoose.Schema({
- title: {
+const notesSchema = new Schema({
+  title: {
     type: String,
-    required: true
+    required: true,
   },
   subject: {
     type: String,
-    required: true
   },
- semester: {
+  semester: {
     type: String,
-    required: true
+    enum: [
+      "SEM I",
+      "SEM II",
+      "SEM III",
+      "SEM IV",
+      "SEM V",
+      "SEM VI",
+      "SEM VII",
+      "SEM VIII",
+    ],
+    required: true,
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  year: {
+    type: String,
+    enum: ["FE", "SE", "TE", "BE"],
+    required: true,
+  },
+  branch: {
+    type: String,
+    enum: ["COMPS", "IT", "EXTC", "ETRX", "INST"],
+    required: true,
+  },
+  course: {
+    type: String,
+    enum: ["MCA", "B.Tech"],
+    required: true,
   },
   createdOn: {
-      type: Date,
-      default: Date.now
-  },
-  description: {
-      type: String,
-      required: true
+    type: Date,
+    default: Date.now,
   },
   url: {
-    type:String,
-    required: true
+    type: String,
+    required: true,
   },
   slug: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   sanitizedHtml: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 notesSchema.pre('validate', function(next) {

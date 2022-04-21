@@ -1,23 +1,35 @@
+if(process.env.NODE_ENV !== 'production'){
 require("dotenv").config()
+}
+
+
 const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const passport = require("passport")
-const Article = require("./models/article")
-const articleRouter = require("./routes/articles")
 const flash = require("express-flash")
 const session = require("express-session")
 const methodOverride = require("method-override")
 const User = require("./models/User")
 const Notes = require("./models/Note")
+const Course = require('./models/Course')
+const Article = require("./models/article");
+const articleRouter = require("./routes/articles");
 const notesRouter = require("./routes/notes")
+const coursesRouter = require("./routes/courses")
 const ejsMate = require("ejs-mate")
 const bcrypt = require("bcryptjs")
 const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require("./middlewares/auth")
-
+const domain = [
+  "Web Development",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Game Development",
+  "Cloud Computing",
+];
 
 const DB = process.env.DATABASE
 const port = process.env.PORT
@@ -51,68 +63,87 @@ app.use(passport.session())
 app.use(methodOverride("_method"))
 app.use(express.static(path.join(__dirname, "/public")))
 
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
+
+
 app.engine("ejs", ejsMate)
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 
 app.get("/", checkAuthenticated, (req, res) => {
-  res.render("index", { user: req.user })
+  res.render("index")
 })
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home", { user: req.user })
+  res.render("home")
+})
+
+app.get("/about", checkAuthenticated, (req, res) => {
+  res.render("about")
+})
+
+app.get("/contact", checkAuthenticated, (req, res) => {
+  res.render("contact")
+})
+
+app.get("/links", checkAuthenticated, (req, res) => {
+  res.render("links");
+});
+
+app.get('/courses',checkAuthenticated , async (req,res) => {
+  const courses = await Course.find().sort({ createdAt: "desc" });
+  console.log("Courses Route Accessed!");
+  res.render("courses/index", {
+    courses: courses,
+    domain: domain,
+    page: "index",
+   });
+})
+
+app.get("/articles", checkAuthenticated, async (req, res) => {
+  const articles = await Article.find().sort({ createdAt: "desc" })
+  console.log("Articles Route Accessed!")
+  res.render("articles/index", { articles: articles})
 })
 
 app.get("/notes", checkAuthenticated, async (req, res) => {
   const notes = await Notes.find().sort({
     createdAt: "desc",
-  })
-  console.log("Notes Object created!")
-  res.render("notes/index", { notes: notes, user: req.user })
-})
+  });
+  console.log("Notes Route Accessed!");
+  res.render("notes/index", { notes: notes, page:'index' });
+});
 
-app.get("/about", checkAuthenticated, (req, res) => {
-  res.render("about", { user: req.user })
-})
-
-app.get("/links", checkAuthenticated, (req, res) => {
-  res.render("links", { user: req.user })
-})
-
-app.get("/contact", checkAuthenticated, (req, res) => {
-  res.render("contact", { user: req.user })
-})
-
-app.get("/articles", checkAuthenticated, async (req, res) => {
-  const articles = await Article.find().sort({ createdAt: "desc" })
-  console.log("Articles Object created!")
-  res.render("articles/index", { articles: articles, user: req.user })
-})
 
 app.get("/events", checkAuthenticated, (req, res) => {
-  res.render("events/index", { user: req.user });
+  res.render("events/index");
 });
 
 app.get("/event1", checkAuthenticated, (req, res) => {
-  res.render("events/event1", { user: req.user });
+  res.render("events/event1");
 });
 app.get("/event2", checkAuthenticated, (req, res) => {
-  res.render("events/event2", { user: req.user });
+  res.render("events/event2");
 });
 app.get("/event3", checkAuthenticated, (req, res) => {
-  res.render("events/event3", { user: req.user });
+  res.render("events/event3");
 });
 app.get("/event4", checkAuthenticated, (req, res) => {
-  res.render("events/event4", { user: req.user });
+  res.render("events/event4");
 });
 app.get("/event5", checkAuthenticated, (req, res) => {
-  res.render("events/event5", { user: req.user });
+  res.render("events/event5");
 });
 app.get("/event6", checkAuthenticated, (req, res) => {
-  res.render("events/event6", { user: req.user });
+  res.render("events/event6");
 });
 app.get("/event7", checkAuthenticated, (req, res) => {
-  res.render("events/event7", { user: req.user });
+  res.render("events/event7");
 });
 
 //User Auth 
@@ -135,7 +166,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 
   if (userFound) {
     req.flash("error", "User with that email already exists")
-    res.redirect("users/login")
+    res.redirect("/login")
   } else {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
@@ -156,11 +187,11 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 })
 
 app.get("/editProfile", checkAuthenticated, async (req, res) => {
-  res.render("users/editProfile", { user: req.user })
+  res.render("users/editProfile")
 })
 
 app.get("/profile", checkAuthenticated, async (req, res) => {
-  res.render("users/profile", { user: req.user })
+  res.render("users/profile")
 })
 
 app.put(
@@ -170,7 +201,7 @@ app.put(
   console.log(req.body);
   const user = await User.findByIdAndUpdate(id, {
     ...req.body.user,
-  });
+  },{ runValidators:true });
   await user.save();
   req.flash("success", "Successfully updated User Profile!");
   res.redirect(`/profile`);
@@ -184,12 +215,14 @@ app.delete("/logout", (req, res) => {
 
 //Users Auth ends here
 
-app.use("/articles", articleRouter)
-app.use("/notes", notesRouter)
+app.use("/articles", checkAuthenticated, articleRouter);
+app.use("/notes", checkAuthenticated,  notesRouter);
+app.use("/courses", checkAuthenticated, coursesRouter);
+
 
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {
-  res.render("error",{ user : req.user })
+  res.render("error")
 })
 
 mongoose

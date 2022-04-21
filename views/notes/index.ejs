@@ -1,9 +1,9 @@
 <%- include("./../partials/head") %>
 <link rel="stylesheet" href="/css/blog.css">
 <body class="notedisplay" >
-  <%- include("./../partials/Navbar") %>
+<%- include("./../partials/Navbar") %>
   <nav class="filter navbar navbar-expand-lg navbar-dark ">
-  <div class=" filter-cont">
+  <div class="filter-cont">
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
       <li class="nav-item dropdown">
@@ -18,12 +18,13 @@
           COURSE
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <li> 
-              <a class="dropdown-item" href="#">Engineering</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">MCA</a>
-            </li>
+            <form action="/notes/filter" method="post">
+              <select class="form-select" name="filter[course]" id="course" >
+                <option value="MCA">MCA</option>
+                <option value="B.Tech">Engineering</option>
+              </select>
+              <button>Submit</button>
+            </form>
           </ul>
       </li>
 
@@ -39,21 +40,16 @@
           BRANCH
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <li> 
-              <a class="dropdown-item" href="#">Computer Engineering</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Electronics & Telecommunication</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Electronics</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Information Technology</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Instrumentation</a>
-            </li>
+            <form action="/notes/filter" method="post">
+              <select class="form-select" name="filter[branch]" id="branch" >
+                <option value="COMPS">Computer Engineering</option>
+                <option value="EXTC">Electronics & Telecommunication</option>
+                <option value="ETRX">Electronics</option>
+                <option value="IT">Information Technology</option>
+                <option value="INST">Instrumentation</option>
+              </select>
+              <button>Submit</button>
+            </form>
           </ul>
       </li>
       <li class="nav-item dropdown">
@@ -68,18 +64,15 @@
           YEAR
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <li> 
-              <a class="dropdown-item" href="#">First</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Second</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Third</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Fourth</a>
-            </li>
+            <form action="/notes/filter" method="post">
+              <select class="form-select" name="filter[year]" id="year" >
+                <option value="FE">FE</option>
+                <option value="SE">SE</option>
+                <option value="TE">TE</option>
+                <option value="BE">BE</option>
+              </select>
+              <button>Submit</button>
+            </form>
           </ul>
       </li>
       <li class="nav-item dropdown">
@@ -94,38 +87,30 @@
           SEMESTER
         </a>
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <li> 
-              <a class="dropdown-item" href="#">Sem-1</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-2</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-3</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-4</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-5</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-6</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-7</a>
-            </li>
-            <li> 
-              <a class="dropdown-item" href="#">Sem-8</a>
-            </li>
+            <form action="/notes/filter" method="post">
+              <select class="form-select" name="filter[semester]" id="semester" >
+                <option value="SEM I">SEM I</option>
+                <option value="SEM II">SEM II</option>
+                <option value="SEM III">SEM III</option>
+                <option value="SEM IV">SEM IV</option>
+                <option value="SEM V">SEM V</option>
+                <option value="SEM VI">SEM VI</option>
+                <option value="SEM VII">SEM VII</option>
+                <option value="SEM VIII">SEM VIII</option>
+              </select>
+              <button>Submit</button>
+            </form>
           </ul>
       </li>
     </ul>
   </div>
-    </nav>
+  </nav>
   <div class="container-b">
     <div>
       <h1 class="mb-4 title">Notes Available</h1>
+    </div>
+    <div class="m-5">
+    <%- include('./../partials/flash')%>
     </div>
     <div class="btn btn-light mt-4 col-sm-1 title plus">
       <a href="notes/new" class="btn">
@@ -148,25 +133,47 @@
               <a href="<%= note.url  %> ">Open Notes</a>
             </div>
           <div class="rmed title4">
-          <a
-            href="notes/<%= note.slug %>"
-            class="btn"
-            ><i class="fa fa-thin fa-bars"></i></a
-          >
-          <a
-            href="notes/edit/<%= note.id %>"
-            class="btn"
-            ><i class="fa fa-thin fa-pencil"></i></a
-          >
-          <form
-            action="/notes/<%= note.id %>?_method=DELETE"
-            method="POST"
-            class="d-inline"
-          >
-            <button type="submit" class="btn">
-              <i class="fa fa-duatone fa-trash"></i>
-            </button>
-          </form>
+          <% if ( page === 'filter') {%> 
+            <a
+              href="<%= note.slug %>"
+              class="btn"
+              ><i class="fa fa-thin fa-bars"></i></a
+            >
+            <a
+              href="edit/<%= note._id %>"
+              class="btn"
+              ><i class="fa fa-thin fa-pencil"></i></a
+            >
+            <form
+              action="/notes/<%= note._id %>?_method=DELETE"
+              method="POST"
+              class="d-inline"
+            >
+              <button type="submit" class="btn">
+                <i class="fa fa-duatone fa-trash"></i>
+              </button>
+            </form>
+          <% } else { %> 
+              <a
+                href="notes/<%= note.slug %>"
+                class="btn"
+                ><i class="fa fa-thin fa-bars"></i></a
+              >
+              <a
+                href="notes/edit/<%= note.id %>"
+                class="btn"
+                ><i class="fa fa-thin fa-pencil"></i></a
+              >
+              <form
+                action="/notes/<%= note.id %>?_method=DELETE"
+                method="POST"
+                class="d-inline"
+              >
+                <button type="submit" class="btn">
+                  <i class="fa fa-duatone fa-trash"></i>
+                </button>
+              </form>
+          <% } %> 
         </div>
         </div>
       </div>
@@ -177,4 +184,10 @@
   </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+  integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+  crossorigin="anonymous"></script>
 </html>
