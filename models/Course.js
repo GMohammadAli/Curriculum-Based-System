@@ -16,7 +16,7 @@ ImageSchema.virtual("thumbnail").get(function () {
 });
 
 const courseSchema = new Schema({
-  title: {
+  name: {
     type: String,
     required: true,
   },
@@ -29,6 +29,10 @@ const courseSchema = new Schema({
     type: String,
     enum: ["Web Development", "Artificial Intelligence", "Machine Learning", "Game Development", "Cloud Computing"],
     required: true,
+  },
+  instructor_name: {
+      type : String,
+      required: true
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -56,21 +60,13 @@ const courseSchema = new Schema({
     type: String,
     required: true,
     unique: true,
-  },
-  sanitizedHtml: {
-    type: String,
-    required: true,
-  },
+  }
 });
 
 courseSchema.pre("validate", function (next) {
   if (this.title) {
     this.slug = slugify(this.title, { lower: true, strict: true });
   }
-  if (this.subject) {
-    this.sanitizedHtml = dompurify.sanitize(marked.parse(this.subject));
-  }
-
   next();
 });
 

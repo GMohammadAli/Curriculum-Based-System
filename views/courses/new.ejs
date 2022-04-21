@@ -2,6 +2,96 @@
 <%- include("./../partials/Navbar") %>
 <body>
 
+<div class="row">
+<h1 class="text-center">New Course</h1>
+<div class="col-6 offset-3">
+    <form action="/courses/new" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="name">Name of Course</label>
+            <input class="form-control" type="text" id="name" name="course[name]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="author">Instructor's Name</label>
+            <input class="form-control" type="text" id="author" name="course[instructor_name]" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="price">Course Price</label>
+              <select class="form-select" name="course[price]" id="price" required>
+                    <% for(let price of prices){ %>
+                    <option value="<%=price%>"%>><%=price%></option>
+                    <% } %>
+              </select>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+         <div class="mb-3">
+            <label class="form-label" for="domain">Domain</label>
+              <select class="form-select" name="course[domain]" id="domain" required>
+                    <% for(let domain of domains){ %>
+                    <option value="<%=domain%>"%>><%=domain%></option>
+                    <% } %>
+              </select>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="platform">Platform of the Course</label>
+              <select class="form-select" name="course[platform]" id="platform" required>
+                    <% for(let platform of platforms){ %>
+                    <option value="<%=platform%>"%>><%=platform%></option>
+                    <% } %>
+              </select>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="technologies">Technologies Covered by this Course</label>
+            <textarea class="form-control" type="text" id="technologies" name="course[technologies]"
+                required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+
+        <div class="mb-3">
+                <label class="form-label" for="course">Course Url</label>
+                <input class="form-control" type="text" id="course" name="course[course_link]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+        </div>
+        
+        <div class="mb-3">
+            <div class="form-file custom-file">
+                <input type="file" class="form-file-input" id="image" name="image" multiple>
+                <label class="form-file-label" for="image">
+                    <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                    <span class="form-file-button">Browse</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <button class="btn btn-success">Add Course</button>
+        </div>
+    </form>
+    <a href="/courses">All Courses</a>
+</div>
+</div>
 
 <body>
 </body>
@@ -11,4 +101,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
   integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
   crossorigin="anonymous"></script>
+<script src='/public/js/validateForms.js'></script>
 </html>

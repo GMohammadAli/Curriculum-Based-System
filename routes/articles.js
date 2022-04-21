@@ -10,18 +10,18 @@ app.set("views", path.join(__dirname,'views'))
 app.use(express.static(path.join(__dirname, "/public")));
 
 router.get('/new', (req, res) => {
-  res.render('./articles/new', { article: new Article() , user: req.user})
+  res.render('./articles/new', { article: new Article()})
 })
 
 router.get("/edit/:id", isAuthorOfArticle , async (req, res) => {
   const article = await Article.findById(req.params.id);
-  res.render("./articles/edit", { article: article, user: req.user });
+  res.render("./articles/edit", { article: article });
 });
 
 router.get('/:slug', async (req, res) => {
   const article = await Article.findOne({ slug: req.params.slug })
   if (article == null) res.redirect('/')
-  res.render('articles/show', { article: article ,user: req.user })
+  res.render('articles/show', { article: article })
 })
 
 router.post('/', async (req, res, next) => {
@@ -59,7 +59,7 @@ function saveArticleAndRedirect(path) {
       console.log('--------------X-----------')
     } catch (e) {
       console.log(e)
-      res.render(`./articles/${path}`, { article: article , user: req.user })
+      res.render(`./articles/${path}`, { article: article })
     }
   }
 }

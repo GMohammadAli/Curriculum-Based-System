@@ -30,7 +30,6 @@ app.use(express.json());
 router.get("/new", (req, res) => {
   res.render("./notes/new", {
     note: new Note(),
-    user: req.user,
     semesters,
     years,
     branches,
@@ -50,7 +49,6 @@ router.get("/edit/:id", isAuthorOfNote , async (req, res) => {
   const note = await Note.findById(req.params.id);
   res.render("./notes/edit", {
     note: note,
-    user: req.user,
     semesters,
     years,
     branches,
@@ -73,7 +71,6 @@ router.post('/filter', async (req,res,next) => {
 router.all('/filter',async(req,res) => {
   res.render("notes/index", {
     notes: req.notes,
-    user: req.user,
     page: "filter"
   });
 })
@@ -81,7 +78,7 @@ router.all('/filter',async(req,res) => {
 router.get("/:slug", async (req, res) => {
   const note = await Note.findOne({ slug: req.params.slug });
   if (note == null) res.redirect("/");
-  res.render("notes/show", { note: note, user: req.user });
+  res.render("notes/show", { note: note});
 });
 
 router.put("/:id", isAuthorOfNote , async (req, res) => {

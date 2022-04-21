@@ -64,6 +64,7 @@ app.use(methodOverride("_method"))
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.use((req, res, next) => {
+  res.locals.user = req.user;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
@@ -75,35 +76,39 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 
 app.get("/", checkAuthenticated, (req, res) => {
-  res.render("index", { user: req.user })
+  res.render("index")
 })
 
 app.get("/home", checkAuthenticated, (req, res) => {
-  res.render("home", { user: req.user })
+  res.render("home")
 })
 
 app.get("/about", checkAuthenticated, (req, res) => {
-  res.render("about", { user: req.user })
+  res.render("about")
 })
 
 app.get("/contact", checkAuthenticated, (req, res) => {
-  res.render("contact", { user: req.user })
+  res.render("contact")
 })
 
 app.get("/links", checkAuthenticated, (req, res) => {
-  res.render("links", { user: req.user });
+  res.render("links");
 });
 
 app.get('/courses',checkAuthenticated , async (req,res) => {
   const courses = await Course.find().sort({ createdAt: "desc" });
   console.log("Courses Route Accessed!");
-  res.render("courses/index", { courses: courses, user: req.user , domain : domain });
+  res.render("courses/index", {
+    courses: courses,
+    domain: domain,
+    page: "index",
+   });
 })
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" })
   console.log("Articles Route Accessed!")
-  res.render("articles/index", { articles: articles, user: req.user })
+  res.render("articles/index", { articles: articles})
 })
 
 app.get("/notes", checkAuthenticated, async (req, res) => {
@@ -111,34 +116,34 @@ app.get("/notes", checkAuthenticated, async (req, res) => {
     createdAt: "desc",
   });
   console.log("Notes Route Accessed!");
-  res.render("notes/index", { notes: notes, user: req.user, page:'index' });
+  res.render("notes/index", { notes: notes, page:'index' });
 });
 
 
 app.get("/events", checkAuthenticated, (req, res) => {
-  res.render("events/index", { user: req.user });
+  res.render("events/index");
 });
 
 app.get("/event1", checkAuthenticated, (req, res) => {
-  res.render("events/event1", { user: req.user });
+  res.render("events/event1");
 });
 app.get("/event2", checkAuthenticated, (req, res) => {
-  res.render("events/event2", { user: req.user });
+  res.render("events/event2");
 });
 app.get("/event3", checkAuthenticated, (req, res) => {
-  res.render("events/event3", { user: req.user });
+  res.render("events/event3");
 });
 app.get("/event4", checkAuthenticated, (req, res) => {
-  res.render("events/event4", { user: req.user });
+  res.render("events/event4");
 });
 app.get("/event5", checkAuthenticated, (req, res) => {
-  res.render("events/event5", { user: req.user });
+  res.render("events/event5");
 });
 app.get("/event6", checkAuthenticated, (req, res) => {
-  res.render("events/event6", { user: req.user });
+  res.render("events/event6");
 });
 app.get("/event7", checkAuthenticated, (req, res) => {
-  res.render("events/event7", { user: req.user });
+  res.render("events/event7");
 });
 
 //User Auth 
@@ -182,11 +187,11 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
 })
 
 app.get("/editProfile", checkAuthenticated, async (req, res) => {
-  res.render("users/editProfile", { user: req.user })
+  res.render("users/editProfile")
 })
 
 app.get("/profile", checkAuthenticated, async (req, res) => {
-  res.render("users/profile", { user: req.user })
+  res.render("users/profile")
 })
 
 app.put(
@@ -217,7 +222,7 @@ app.use("/courses", checkAuthenticated, coursesRouter);
 
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {
-  res.render("error",{ user : req.user })
+  res.render("error")
 })
 
 mongoose
