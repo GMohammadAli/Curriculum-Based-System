@@ -1,10 +1,9 @@
 const express = require("express");
 const Course = require('./../models/Course')
 const router = express.Router();
-// const app = express();
 const { isAuthorOfCourse } = require("./../middlewares/isAuthor");
 const multer = require("multer");
-const { storage } = require("./../cloudinary");
+const { storage, cloudinary } = require("./../cloudinary");
 const upload = multer({ storage });
 
 const platforms = ["UDEMY", "COURSERA", "NPTEL", "UDACITY", "YOUTUBE"];
@@ -28,5 +27,41 @@ router.post("/new", upload.array('image') , async (req, res) => {
     req.flash("success", "Successfully made a new course!");
     res.redirect(`/courses`);
 });
+
+router.get("/edit/:id", isAuthorOfCourse , async (req, res) => {
+  const course = await Course.findById(req.params.id);
+  res.render("./courses/edit", {
+    course: course,
+    platforms,
+    prices,
+    domains
+  });
+});
+
+//Filter Routes
+
+router.put("/:id", isAuthorOfCourse, async (req, res) => {
+  console.log(req.body);
+  const { id } = req.params;
+  const course = await Course.findByIdAndUpdate(id, { ...req.body.course });
+//   const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+//   course.images.push(...imgs);
+//   if (req.body.deleteImages) {
+//     for (let filename of req.body.deleteImages) {
+//       await cloudinary.uploader.destroy(filename);
+//     }
+//     await campground.updateOne({
+//       $pull: { images: { filename: { $in: req.body.deleteImages } } },
+//     });
+//   }
+  await course.save();
+  res.redirect(`/courses`);
+});
+
+router.delete("/:id", isAuthorOfCourse, async (req, res) => {
+  await Course.findByIdAndDelete(req.params.id);
+  res.redirect("/courses");
+});
+
 
 module.exports = router

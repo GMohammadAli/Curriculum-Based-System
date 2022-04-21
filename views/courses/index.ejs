@@ -96,33 +96,65 @@
     </div> 
     <div class="m-5 col-sm-10">
       <div class="row text-color">
-        <% courses.forEach(course => { %>
+        <div class="row m-1">
+          <% courses.forEach(course => { %>
             <%  for( let i = 0; i < domain.length; i++ ){  %>
-                <%if(course.domain === domain[i]){  %>
-                  <h2 class="mb-4 title" ><%= course.domain %></h2>
-                  <div class="row m-1">
-                      <div class="col-sm-3 title3">
-                        <div class="card">
-                          <img src="<%=course.images[0].url%>" class="card-img-top" alt="..." >
-                          <div class="card-body">
-                            <h5 class="card-title"><%= course.title %></h5>
-                            <p class="card-text"><%= course.technologies %></p>
-                            <% if (course.price === "Paid") { %> 
-                            <span style="color: red;"><%= course.price %></span>
-                            <% } %> 
-                            <p class="card-text">Domain- <%= course.domain %></p>
-                            <p class="card-text">Available On- <%= course.platform %></p>
-                            <p class="card-text">By @<%=course.instructor_name%></a> </p>
-                            <a href="<%=course.course_link %>" target="YT 1"class="btn btn-primary">Course Link</Link></a>
-                          </div>
-                        </div>
-                      </div>
+              <!-- <h2 class="mb-4 title" >.domain %></h2> -->
+              <%if(course.domain === domain[i]){  %>
+                <div class="col-sm-3 title3">
+                  <div class="card">
+                    <img src="<%=course.images[0].url%>" class="card-img-top" alt="..." >
+                    <div class="card-body">
+                      <h5 class="card-title"><%= course.title %></h5>
+                      <p class="card-text"><%= course.technologies %></p>
+                      <% if (course.price === "Paid") { %> 
+                      <span style="color: red;"><%= course.price %></span>
+                      <% } %> 
+                      <p class="card-text">Domain- <%= course.domain %></p>
+                      <p class="card-text">Available On- <%= course.platform %></p>
+                      <p class="card-text">By @<%=course.instructor_name%></a> </p>
+                      <a href="<%=course.link %>" target="YT 1"class="btn btn-primary">Course Link</Link></a>
                     </div>
-                <% }  %>
+                    <div class="rmed title4">
+                      <% if ( page === 'filter') {%>
+                        <a
+                          href="edit/<%= course._id %>"
+                          class="btn"
+                          ><i class="fa fa-thin fa-pencil"></i></a
+                        >
+                        <form
+                          action="/courses/<%= course._id %>?_method=DELETE"
+                          method="POST"
+                          class="d-inline"
+                        >
+                          <button type="submit" class="btn">
+                            <i class="fa fa-duatone fa-trash"></i>
+                          </button>
+                        </form>
+                      <% } else { %> 
+                          <a
+                            href="courses/edit/<%= course.id %>"
+                            class="btn"
+                            ><i class="fa fa-thin fa-pencil"></i></a
+                          >
+                          <form
+                            action="/courses/<%= course.id %>?_method=DELETE"
+                            method="POST"
+                            class="d-inline"
+                          >
+                            <button type="submit" class="btn">
+                              <i class="fa fa-duatone fa-trash"></i>
+                            </button>
+                          </form>
+                      <% } %> 
+                    </div>
+                  </div>
+                </div>                   
+              <% } %>
             <% } %>
-        <% }) %>
-      </div>
-      
+          <% }) %>
+        </div>
+      </div> 
     </div>
   </div>
 </body>

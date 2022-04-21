@@ -5,10 +5,10 @@
 <div class="row">
 <h1 class="text-center">New Course</h1>
 <div class="col-6 offset-3">
-    <form action="/courses/new" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+    <form action="/courses/<%=course.id%>?_method=PUT" method="POST" novalidate class="validated-form" >
         <div class="mb-3">
             <label class="form-label" for="name">Name of Course</label>
-            <input class="form-control" type="text" id="name" name="course[name]" required>
+            <input class="form-control" type="text" id="name" name="course[name]" value="<%=course.name%>" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -16,7 +16,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="author">Instructor's Name</label>
-            <input class="form-control" type="text" id="author" name="course[instructor_name]" required>
+            <input class="form-control" type="text" id="author" name="course[instructor_name]" value="<%=course.instructor_name%>" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -24,7 +24,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="price">Course Price</label>
-              <select class="form-select" name="course[price]" id="price" required>
+              <select class="form-select" name="course[price]" id="price" value="<%=course.price%>" required>
                     <% for(let price of prices){ %>
                     <option value="<%=price%>"%>><%=price%></option>
                     <% } %>
@@ -36,7 +36,7 @@
 
          <div class="mb-3">
             <label class="form-label" for="domain">Domain</label>
-              <select class="form-select" name="course[domain]" id="domain" required>
+              <select class="form-select" name="course[domain]" id="domain"  value="<%=course.domain%>" required>
                     <% for(let domain of domains){ %>
                     <option value="<%=domain%>"%>><%=domain%></option>
                     <% } %>
@@ -48,7 +48,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="platform">Platform of the Course</label>
-              <select class="form-select" name="course[platform]" id="platform" required>
+              <select class="form-select" name="course[platform]" id="platform" value="<%=course.platform%>" required>
                     <% for(let platform of platforms){ %>
                     <option value="<%=platform%>"%>><%=platform%></option>
                     <% } %>
@@ -60,29 +60,43 @@
 
         <div class="mb-3">
             <label class="form-label" for="technologies">Technologies Covered by this Course</label>
-            <textarea class="form-control" type="text" id="technologies" name="course[technologies]"
-                required></textarea>
+            <textarea class="form-control" type="text" id="technologies" name="course[technologies]" required><%=course.technologies%></textarea>
             <div class="valid-feedback">
                 Looks good!
             </div>
         </div>
 
         <div class="mb-3">
-                <label class="form-label" for="course">Link to the Course</label>
-                <input class="form-control" type="text" id="course" name="course[course_link]" required>
+                <label class="form-label" for="link">Link to the Course</label>
+                <input class="form-control" type="text" id="link" name="course[link]" value="<%=course.link%>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
         </div>
         
-        <div class="mb-3">
+        <!-- <div class="mb-3">
             <div class="form-file custom-file">
                 <input type="file" class="form-file-input" id="image" name="image" multiple>
+                <label class="form-file-label" for="image">
+                        <span class="form-file-text custom-file-label">Add more image(s)...</span>
+                        <span class="form-file-button">Browse</span>
+                </label>
             </div>
-        </div>
+        </div> -->
+
+         <!-- <div class="mb-3">
+            <course.images.forEach(function(img, i) {  %>
+
+            <img src="<img.thumbnail %>" class="img-thumbnail" alt="">
+            <div class="form-check-inline">
+                <input type="checkbox" id="image-<i%>" name="deleteImages[]" value="<img.filename%>">
+            </div>
+            <label for="image-<i%>">Delete?</label>
+            < })%>
+        </div> -->
 
         <div class="mb-3">
-            <button class="btn btn-success">Add Course</button>
+            <button class="btn btn-success">Update Course</button>
         </div>
     </form>
     <a href="/courses">All Courses</a>

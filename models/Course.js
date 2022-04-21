@@ -21,7 +21,7 @@ const courseSchema = new Schema({
     required: true,
   },
   images: [ImageSchema],
-  course_link: {
+  link: {
     type: String,
     required: true,
   },
