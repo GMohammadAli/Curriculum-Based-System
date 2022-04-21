@@ -1,0 +1,178 @@
+<%- include("./../partials/head") %>
+<body class="linkdisplay">
+<%- include("./../partials/Navbar") %>
+<body>
+  <nav class="filter navbar navbar-expand-lg navbar-dark ">
+    <div class="filter-links">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            COURSE
+          </a>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li> 
+                <a class="dropdown-item" href="#">Web Development</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">Artificial Intelligence</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">Cloud Computing</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">Game Development</a>
+              </li>
+            </ul>
+        </li>
+  
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            PRICE
+          </a>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li> 
+                <a class="dropdown-item" href="#">Free</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">Paid</a>
+              </li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            PLATFORM
+          </a>
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li> 
+                <a class="dropdown-item" href="#">UDEMY</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">COURSERA</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">NPTEL</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">UDACITY</a>
+              </li>
+              <li> 
+                <a class="dropdown-item" href="#">YOUTUBE</a>
+              </li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+      </nav>
+      <br><br>
+  <div class="container-b">
+    <div>
+      <h1 class="mb-4 title">Courses Available</h1>
+    </div>
+    <div class="m-5">
+    <%- include('./../partials/flash')%>
+    </div>
+    <div class="btn btn-light mt-4 col-sm-1 title plus">
+      <a href="courses/new" class="btn">
+        <i class="fa fa-solid fa-plus"></i></a>
+    </div> 
+    <div class="m-5 col-sm-10">
+      <div class="row text-color">
+        <% courses.forEach(course => { %>
+            <%  for( let i = 0; i < domain.length; i++ ){  %>
+                <h2 class="title" ><%= domain[i] %></h2>
+                <%if(course.domain === domain[i]){  %>
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-body title3">
+                            <h5 class="card-title"><%= course.title %></h5>
+                            <p class="card-text">
+                                <%= course.description %>
+                            </p>
+                            <span class="badge bg-light text-dark mb-3 title4"><%= course.semester %></span>
+                            <p class="card-text">
+                                Subject- <%= course.subject %>
+                            </p>
+                            <a href="<%= course.url  %> ">Open courses</a>
+                            </div>
+                        <div class="rmed title4">
+                        <% if ( page === 'filter') {%> 
+                            <a
+                            href="<%= course.slug %>"
+                            class="btn"
+                            ><i class="fa fa-thin fa-bars"></i></a
+                            >
+                            <a
+                            href="edit/<%= course._id %>"
+                            class="btn"
+                            ><i class="fa fa-thin fa-pencil"></i></a
+                            >
+                            <form
+                            action="/courses/<%= course._id %>?_method=DELETE"
+                            method="POST"
+                            class="d-inline"
+                            >
+                            <button type="submit" class="btn">
+                                <i class="fa fa-duatone fa-trash"></i>
+                            </button>
+                            </form>
+                        <% } else { %> 
+                            <a
+                                href="courses/<%= course.slug %>"
+                                class="btn"
+                                ><i class="fa fa-thin fa-bars"></i></a
+                            >
+                            <a
+                                href="courses/edit/<%= course.id %>"
+                                class="btn"
+                                ><i class="fa fa-thin fa-pencil"></i></a
+                            >
+                            <form
+                                action="/courses/<%= course.id %>?_method=DELETE"
+                                method="POST"
+                                class="d-inline"
+                            >
+                                <button type="submit" class="btn">
+                                <i class="fa fa-duatone fa-trash"></i>
+                                </button>
+                            </form>
+                        <% } %> 
+                        </div>
+                        </div>
+                    </div>
+                <% }  %>
+            <% } %>
+        <% }) %>
+      </div>
+      
+    </div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+  integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+  crossorigin="anonymous"></script>
+</html>

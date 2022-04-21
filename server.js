@@ -7,21 +7,29 @@ const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const passport = require("passport")
-const Article = require("./models/article")
-const articleRouter = require("./routes/articles")
 const flash = require("express-flash")
 const session = require("express-session")
 const methodOverride = require("method-override")
 const User = require("./models/User")
 const Notes = require("./models/Note")
+const Course = require('./models/Course')
+const Article = require("./models/article");
+const articleRouter = require("./routes/articles");
 const notesRouter = require("./routes/notes")
+const coursesRouter = require("./routes/courses")
 const ejsMate = require("ejs-mate")
 const bcrypt = require("bcryptjs")
 const {
   checkAuthenticated,
   checkNotAuthenticated,
 } = require("./middlewares/auth")
-
+const domain = [
+  "Web Development",
+  "Artificial Intelligence",
+  "Machine Learning",
+  "Game Development",
+  "Cloud Computing",
+];
 
 const DB = process.env.DATABASE
 const port = process.env.PORT
@@ -61,6 +69,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.engine("ejs", ejsMate)
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
@@ -77,12 +86,18 @@ app.get("/about", checkAuthenticated, (req, res) => {
   res.render("about", { user: req.user })
 })
 
-app.get("/links", checkAuthenticated, (req, res) => {
-  res.render("links", { user: req.user })
-})
-
 app.get("/contact", checkAuthenticated, (req, res) => {
   res.render("contact", { user: req.user })
+})
+
+app.get("/links", checkAuthenticated, (req, res) => {
+  res.render("links", { user: req.user });
+});
+
+app.get('/courses',checkAuthenticated , async (req,res) => {
+  const courses = await Course.find().sort({ createdAt: "desc" });
+  console.log("Courses Route Accessed!");
+  res.render("courses/index", { courses: courses, user: req.user , domain : domain });
 })
 
 app.get("/articles", checkAuthenticated, async (req, res) => {
@@ -197,6 +212,8 @@ app.delete("/logout", (req, res) => {
 
 app.use("/articles", checkAuthenticated, articleRouter);
 app.use("/notes", checkAuthenticated,  notesRouter);
+app.use("/courses", checkAuthenticated, coursesRouter);
+
 
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {

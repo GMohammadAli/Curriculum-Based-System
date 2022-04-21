@@ -72,8 +72,8 @@
 
       <form action="/login" method="post">
         <h1>Sign in</h1>
-        <% if (messages) { %>
-          <p><%= messages.error %></p>
+        <% if ((error && error.length) || (success && success.length)) { %>
+          <p><%= error || success %></p>
        <% } %>
         <div class="email">
           <input type="email" class="email-input" placeholder="email"  name="email" required />

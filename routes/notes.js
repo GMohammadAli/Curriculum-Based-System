@@ -1,8 +1,6 @@
 const express = require("express");
 const path = require("path");
 const Note = require("./../models/Note");
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" });
 const router = express.Router();
 const app = express();
 const { isAuthorOfNote } = require('./../middlewares/isAuthor');
@@ -106,13 +104,13 @@ async function runFilter( _filter, value ) {
     const collections = database.collection('notes');
     // query for filter method
     console.log(_filter + " in filter funtion");
-    if (_filter == "course") {
+    if (_filter === "course") {
       const query = { course: `${value}` };
       const notes = await collections.find(query); 
       const notesArray = await notes.map( function(note) { return note } ).toArray();
       console.log(notesArray);
       return notesArray;
-    } else if (_filter == "semester") {
+    } else if (_filter === "semester") {
       const query = { semester: `${value}` };
       const notes = await collections.find(query);
       const notesArray = await notes
@@ -122,7 +120,7 @@ async function runFilter( _filter, value ) {
         .toArray();
       console.log(notesArray);
       return notesArray;
-    } else if (_filter == "year") {
+    } else if (_filter === "year") {
       const query = { year: `${value}` };
       const notes = await collections.find(query);
       const notesArray = await notes
@@ -132,7 +130,7 @@ async function runFilter( _filter, value ) {
         .toArray();
       console.log(notesArray);
       return notesArray;
-    } else if (_filter == "branch") {
+    } else if (_filter === "branch") {
       const query = { branch: `${value}` };
       const notes = await collections.find(query);
       const notesArray = await notes
