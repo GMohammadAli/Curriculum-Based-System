@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="eve1">
-    <img class="eve1img" src="/Images/CSI.jpeg" alt=".." />
+    <img class="eve1img" src="/Images/CSI.png" alt=".." />
     <div class="evedetails">
       <h2 style="text-align: center">REACTJs & MATERIAL-UI</h2>
       Time - 11 am to 1 pm
@@ -34,10 +34,36 @@
       <br />
       Venue - Offline <br />
       <br />
-      Description - <br />
+      Description - This Workshop will teach you How to create a Single Page
+      Application using Javascript Library without the hassle of writing
+      multiple lines of Html & Css <br />
       <br />
       Co-ordinators - NA
     </div>
   </div>
-  <script src="/js/count.js"></script>
+  <script>
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById(`minutes`);
+    const seconds = document.getElementById("seconds");
+
+    const evetime = new Date(``);
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const diff = evetime - currentTime;
+
+      const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+      const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const m = Math.floor(diff / 1000 / 60) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+
+      days.innerHTML = d;
+      hours.innerHTML = h < 10 ? "0" + h : h;
+      minutes.innerHTML = m < 10 ? "0" + m : m;
+      seconds.innerHTML = s < 10 ? "0" + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>

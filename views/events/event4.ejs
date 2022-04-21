@@ -30,7 +30,7 @@
     <img class="eve1img" src="/Images/IEEE.jpeg" alt=".." />
     <div class="evedetails">
       <h2 style="text-align: center">SPACE ROBOTICS SEMINAR</h2>
-      Date - 25th March
+      Date - 25th April, 2022
       <br />
       <br />
       Time - 3 pm to 5 pm
@@ -38,10 +38,36 @@
       <br />
       Venue - Auditorium <br />
       <br />
-      Description - <br />
+      Description - Mr. Sourav Karmakar is a roboticist, CEO Infinos Tech, a
+      TEDx Speaker and has delivered talks at FAiL Talk along with Motivational
+      Sessions and various Space Talks as well!<br />
       <br />
       Co-ordinators - NA
     </div>
   </div>
-  <script src="/js/count.js"></script>
+  <script>
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById(`minutes`);
+    const seconds = document.getElementById("seconds");
+
+    const evetime = new Date(`25 April 2022 00:00:00`);
+
+    function updateCountdown() {
+      const currentTime = new Date();
+      const diff = evetime - currentTime;
+
+      const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+      const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+      const m = Math.floor(diff / 1000 / 60) % 60;
+      const s = Math.floor(diff / 1000) % 60;
+
+      days.innerHTML = d;
+      hours.innerHTML = h < 10 ? "0" + h : h;
+      minutes.innerHTML = m < 10 ? "0" + m : m;
+      seconds.innerHTML = s < 10 ? "0" + s : s;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
