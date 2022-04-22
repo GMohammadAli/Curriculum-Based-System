@@ -17,6 +17,20 @@
         >
           COURSE
         </a>
+                    <!-- <li class="nav-item dropdown">
+              <a class="dropdown-item" href="/notes" target=""> NOTES </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/courses" target="">COURSES</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/articles" target="">BLOGS</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/events" target="">EVENTS</a>
+            </li>
+          </ul>
+        </li> -->
           <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <form action="/notes/filter" method="post">
               <select class="form-select" name="filter[course]" id="course" >
@@ -139,11 +153,6 @@
           <div class="rmed title4">
           <% if ( page === 'filter') {%> 
             <a
-              href="<%= note.slug %>"
-              class="btn"
-              ><i class="fa fa-thin fa-bars"></i></a
-            >
-            <a
               href="edit/<%= note._id %>"
               class="btn"
               ><i class="fa fa-thin fa-pencil"></i></a
@@ -158,11 +167,6 @@
               </button>
             </form>
           <% } else { %> 
-              <a
-                href="notes/<%= note.slug %>"
-                class="btn"
-                ><i class="fa fa-thin fa-bars"></i></a
-              >
               <a
                 href="notes/edit/<%= note.id %>"
                 class="btn"
