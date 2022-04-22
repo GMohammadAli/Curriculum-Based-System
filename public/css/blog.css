@@ -3,8 +3,28 @@
 
 
 .narticle {
+  color: rgb(0, 0, 0);
+  font-family: "Stylish", sans-serif;
+  /* margin-top: 10px; */
+  font-size: 20px;
+  font-weight:bolder;
+  
+}
+
+.notesnew{
+  overflow: hidden;
+  background-image: url(/Images/Notesnew.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.narticle2{
   color: rgb(10, 133, 152);
   font-family: "Stylish", sans-serif;
+  margin-top: 1em;
+  font-size: 20px;
+
 }
 
 .ntitle{
@@ -106,4 +126,32 @@ transform: translateY(-100px);
 }
 .plus{
   margin-left: 50px;
+}
+
+.yrbranch{
+  display: flex;
+  justify-content: space-between;
+  /* margin-right: 400px; */
+}
+
+.cancel{
+      background-color: rgb(255, 212, 212);
+      /* color: red; */
+}
+.save{
+  background-color: rgb(255, 212, 212);
+  color: rgb(0, 189, 0);
+}
+
+.newblogdisplay{
+  background-image: url(/Images/newblog.jpg);
+  background-size: cover;
+  
+}
+
+.newblog{
+  color:black;
+  font-family: "Stylish", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
 }
