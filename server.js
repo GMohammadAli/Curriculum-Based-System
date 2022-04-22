@@ -219,7 +219,6 @@ app.use("/articles", checkAuthenticated, articleRouter);
 app.use("/notes", checkAuthenticated,  notesRouter);
 app.use("/courses", checkAuthenticated, coursesRouter);
 
-
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {
   res.render("error")
