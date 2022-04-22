@@ -47,13 +47,14 @@ module.exports.renderEditForm = async (req, res) => {
 };
 
 module.exports.runFilterRoute = async (req, res, next) => {
-  console.log(req.body);
   console.log("filter route accessed");
-  const _filter = Object.keys(req.body.filter)[0];
-  const value = Object.values(req.body.filter)[0];
-  console.log(_filter + " in post route");
+  console.log(req.params)
+//   const _filter = Object.keys(req.body.filter)[0];
+//   const value = Object.values(req.body.filter)[0];
+  const { filter , value  } = req.params;
+  console.log(filter + " in post route");
   console.log(value);
-  req.notes = await runFilter(_filter, value);
+  req.notes = await runFilter(filter, value);
   next();
 };
 
