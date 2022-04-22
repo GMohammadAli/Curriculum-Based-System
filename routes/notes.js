@@ -4,18 +4,18 @@ const { isAuthorOfNote } = require('./../middlewares/isAuthor');
 const notes = require('./../controllers/notes')
 
 router.route('/new')
-.get(notes.renderNewForm )
-.post(notes.createNewNote)
+    .get(notes.renderNewForm )
+    .post(notes.createNewNote)
 
 router.get("/edit/:id", isAuthorOfNote , notes.renderEditForm )
 
 router.route('/filter/:filter/:value')
-.get(notes.runFilterRoute )
-.all(notes.showFilter )
+    .get(notes.runFilterRoute )
+    .all(notes.showFilter )
 
 
 router.route('/:id')
-.put( isAuthorOfNote , notes.updateNote )
-.delete(isAuthorOfNote , notes.deleteNote )
+    .put( isAuthorOfNote , notes.updateNote )
+    .delete(isAuthorOfNote , notes.deleteNote )
 
 module.exports = router;

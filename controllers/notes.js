@@ -32,6 +32,7 @@ module.exports.createNewNote = async (req, res) => {
   const note = new Note(req.body.note);
   note.author = req.user._id;
   await note.save();
+  req.flash("success", "Successfully made a new note!");
   res.redirect("/notes");
 };
 
@@ -49,8 +50,6 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.runFilterRoute = async (req, res, next) => {
   console.log("filter route accessed");
   console.log(req.params)
-//   const _filter = Object.keys(req.body.filter)[0];
-//   const value = Object.values(req.body.filter)[0];
   const { filter , value  } = req.params;
   console.log(filter + " in post route");
   console.log(value);
@@ -61,7 +60,7 @@ module.exports.runFilterRoute = async (req, res, next) => {
 module.exports.showFilter = async (req, res) => {
   res.render("notes/index", {
     notes: req.notes,
-    page: "filter",
+    page: "filter"
   });
 };
 
@@ -70,11 +69,13 @@ module.exports.updateNote = async (req, res) => {
   const { id } = req.params;
   const note = await Note.findByIdAndUpdate(id, { ...req.body.note });
   await note.save();
+  req.flash("success", "Successfully updated the note!");
   res.redirect(`/notes`);
 };
 
 module.exports.deleteNote = async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);
+  req.flash("success", "Successfully deleted the note!");
   res.redirect("/notes");
 };
 

@@ -8,18 +8,16 @@ const upload = multer({ storage });
 
 
 router.route('/new')
-.get( courses.renderNewForm )
-.post( upload.array('image') , courses.createCourse )
+    .get( courses.renderNewForm )
+    .post( upload.array('image') , courses.createCourse )
 
 router.get("/edit/:id", isAuthorOfCourse , courses.renderEditForm )
 
-//Filter Routes
-router.route('/filter')
-.post( courses.runFilterRoute )
-.all( courses.showFilter )
+router.route("/filter/:filter/:value")
+  .get(courses.runFilterRoute) 
 
 router.route('/:id')
-.put( isAuthorOfCourse, courses.updateCourse )
-.delete( isAuthorOfCourse, courses.deleteCourse )
+    .put( isAuthorOfCourse, courses.updateCourse )
+    .delete( isAuthorOfCourse, courses.deleteCourse )
 
 module.exports = router

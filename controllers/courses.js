@@ -24,7 +24,7 @@ module.exports.renderNewForm = async (req, res) => {
     prices,
     domains,
   });
-};
+}
 
 module.exports.createCourse = async (req, res) => {
   console.log(req.body);
@@ -48,26 +48,21 @@ module.exports.renderEditForm = async (req, res) => {
     prices,
     domains,
   });
-};
+}
 
-module.exports.runFilterRoute = async (req, res, next) => {
-  console.log(req.body);
+module.exports.runFilterRoute = async (req, res) => {
+  console.log(req.params);
   console.log("filter route accessed");
-  const _filter = Object.keys(req.body.filter)[0];
-  const value = Object.values(req.body.filter)[0];
-  console.log(_filter + " in post route");
+  const { filter, value } = req.params;
+  console.log(filter + " in post route");
   console.log(value);
-  req.courses = await runFilter(_filter, value);
-  next();
-};
-
-module.exports.showFilter = async (req, res) => {
+  req.courses = await runFilter(filter, value);
   res.render("courses/index", {
     courses: req.courses,
     page: "filter",
-    domain: domains,
+    domain: domains
   });
-};
+}
 
 module.exports.updateCourse = async (req, res) => {
   console.log(req.body);
@@ -84,19 +79,20 @@ module.exports.updateCourse = async (req, res) => {
   //     });
   //   }
   await course.save();
+  req.flash("success", "Successfully updated the course!");
   res.redirect(`/courses`);
-};
+}
 
 module.exports.deleteCourse = async (req, res) => {
   await Course.findByIdAndDelete(req.params.id);
+  req.flash("success", "Successfully deleted the course!");
   res.redirect("/courses");
-};
+}
 
 async function runFilter(_filter, value) {
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("courses");
-  // query for filter method
   console.log(_filter + " in filter funtion");
   if (_filter === "domain") {
     const query = { domain: `${value}` };
