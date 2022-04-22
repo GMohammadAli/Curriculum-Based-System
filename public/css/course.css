@@ -1,0 +1,25 @@
+@import "cbs.css";
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
+
+
+body{
+    background-image: url(/Images/Coursenew.jpg);
+    background-size: cover;
+    overflow-x: hidden;
+    font-family: "Stylish", sans-serif;   
+    font-size: 20px;
+    font-weight: bold;
+     /* color: rgb(10, 133, 152); */
+}
+
+
+.allcourse{
+    margin-left: 40%;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-weight: 20px;
+}
+
+.addcoursess{
+    font-weight: bold;
+}

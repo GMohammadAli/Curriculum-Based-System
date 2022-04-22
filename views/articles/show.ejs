@@ -4,9 +4,10 @@
 <body >
   <%- include("./../partials/Navbar") %>
   
-    <div class="container">
-      <div class="narticle col-sm-10 info">
-        <h1 class="mb-1"><%=article.title%></h1>
+
+    <div class="container ">
+      <div class="narticle2 col-sm-10 info">
+        <h1 class="mb-1"><%= article.title %></h1>
         <p><%= article.description %></p>
         <div class="text-muted mb-2">
           <%= article.createdAt.toLocaleDateString() %>
@@ -66,4 +67,5 @@
       </div>
     </div>
   </body>
+
 </html>

@@ -1,10 +1,11 @@
 <%- include("./../partials/head") %>
 <%- include("./../partials/Navbar") %>
+<link rel="stylesheet" href="/css/course.css">
 <body>
 
 <div class="row">
 <h1 class="text-center">New Course</h1>
-<div class="col-6 offset-3">
+<div class="addcourses col-6 offset-3">
     <form action="/courses/new" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
         <div class="mb-3">
             <label class="form-label" for="name">Name of Course</label>
@@ -89,12 +90,12 @@
             <button class="btn btn-success">Add Course</button>
         </div>
     </form>
-    <a href="/courses">All Courses</a>
+    <button class="allcourse">
+        <a href="/courses" style="text-decoration: none; color: black;">All Courses</a>
+    </button>
 </div>
 </div>
 
-<body>
-</body>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
   crossorigin="anonymous"></script>
