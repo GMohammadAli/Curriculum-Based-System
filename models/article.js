@@ -4,6 +4,7 @@ const { Schema } = mongoose
 const slugify = require('slugify')
 const createDomPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
+const Review = require("./review");
 const dompurify = createDomPurify(new JSDOM().window)
 
 const articleSchema = new mongoose.Schema({
@@ -20,8 +21,14 @@ const articleSchema = new mongoose.Schema({
   },
   author: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
   },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -34,7 +41,7 @@ const articleSchema = new mongoose.Schema({
   sanitizedHtml: {
     type: String,
     required: true,
-  },
+  }
 });
 
 articleSchema.pre('validate', function(next) {
@@ -48,5 +55,16 @@ articleSchema.pre('validate', function(next) {
 
   next()
 })
+
+
+articleSchema.post("findOneAndDelete", async function (doc) {
+  if (doc) {
+    await Review.deleteMany({
+      _id: {
+        $in: doc.reviews,
+      },
+    });
+  }
+});
 
 module.exports = mongoose.model('Article', articleSchema)
