@@ -118,14 +118,14 @@
       <div class="row text-color">
         <div class="row m-1">
           <% courses.forEach(course => { %>
-            <%  for( let i = 0; i < domain.length; i++ ){  %>
-              <!-- <h2 class="mb-4 title" >.domain %></h2> -->
-              <%if(course.domain === domain[i]){  %>
+            <!--   for( let i = 0; i < domain.length; i++ ){  %>
+              <h2 class="mb-4 title" >.domain %></h2> -->
+              <!-- if(course.domain === domain[i]){  %> --> 
                 <div class="col-sm-3 title3">
-                  <div class="card">
+                  <div class="card mb-3">
                     <img src="<%=course.images[0].url%>" class="card-img-top" alt="..." >
                     <div class="card-body">
-                      <h5 class="card-title"><%= course.title %></h5>
+                      <h5 class="card-title"><%= course.name %></h5>
                       <p class="card-text"><%= course.technologies %></p>
                       <% if (course.price === "Paid") { %> 
                       <span style="color: red;"><%= course.price %></span>
@@ -172,8 +172,8 @@
                     </div>
                   </div>
                 </div>                   
-              <% } %>
-            <% } %>
+              <!--  } %>
+             } %> -->
           <% }) %>
         </div>
       </div> 
