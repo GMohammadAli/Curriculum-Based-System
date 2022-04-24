@@ -17,15 +17,14 @@
         >
           COURSE
         </a>
-          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <form action="/notes/filter" method="post">
-              <select class="form-select" name="filter[course]" id="course" >
-                <option value="MCA">MCA</option>
-                <option value="B.Tech">Engineering</option>
-              </select>
-              <button>Submit</button>
-            </form>
-          </ul>
+        <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/course/MCA" target="">MCA</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/course/B.Tech" target="">Engineering</a>
+          </li>
+        </ul>
       </li>
 
       <li class="nav-item dropdown">
@@ -39,18 +38,23 @@
         >
           BRANCH
         </a>
-          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <form action="/notes/filter" method="post">
-              <select class="form-select" name="filter[branch]" id="branch" >
-                <option value="COMPS">Computer Engineering</option>
-                <option value="EXTC">Electronics & Telecommunication</option>
-                <option value="ETRX">Electronics</option>
-                <option value="IT">Information Technology</option>
-                <option value="INST">Instrumentation</option>
-              </select>
-              <button>Submit</button>
-            </form>
-          </ul>
+        <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/branch/COMPS" target="">Computer Engineering</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/branch/EXTC" target="">Electronics & Telecommunication</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/branch/ETRX" target="">Electronics</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/branch/IT" target="">Information Technology</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/branch/INST" target="">Instrumentation</a>
+          </li>
+        </ul>
       </li>
       <li class="nav-item dropdown">
         <a
@@ -63,7 +67,21 @@
         >
           YEAR
         </a>
-          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+        <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/year/FE" target="">FE</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/year/SE" target="">SE</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/year/TE" target="">TE</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/year/BE" target="">BE</a>
+          </li>
+        </ul>
+          <!-- <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
             <form action="/notes/filter" method="post">
               <select class="form-select" name="filter[year]" id="year" >
                 <option value="FE">FE</option>
@@ -73,7 +91,7 @@
               </select>
               <button>Submit</button>
             </form>
-          </ul>
+          </ul> -->
       </li>
       <li class="nav-item dropdown">
         <a
@@ -86,21 +104,32 @@
         >
           SEMESTER
         </a>
-          <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-            <form action="/notes/filter" method="post">
-              <select class="form-select" name="filter[semester]" id="semester" >
-                <option value="SEM I">SEM I</option>
-                <option value="SEM II">SEM II</option>
-                <option value="SEM III">SEM III</option>
-                <option value="SEM IV">SEM IV</option>
-                <option value="SEM V">SEM V</option>
-                <option value="SEM VI">SEM VI</option>
-                <option value="SEM VII">SEM VII</option>
-                <option value="SEM VIII">SEM VIII</option>
-              </select>
-              <button>Submit</button>
-            </form>
-          </ul>
+        <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM I" target="">SEM I</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM II" target="">SEM II</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM III" target="">SEM III</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM IV" target="">SEM IV</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM V" target="">SEM V</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM VI" target="">SEM VI</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM VII" target="">SEM VII</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-item" href="/notes/filter/semester/SEM VIII" target="">SEM VIII</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
@@ -114,7 +143,7 @@
     </div>
     <div class="btn btn-light mt-4 col-sm-1 title plus">
       <% if( page === 'filter') {  %>
-        <a href="./new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
+        <a href="/notes/new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
       <% }else { %>
         <a href="notes/new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
       <% } %>
@@ -139,7 +168,8 @@
           <div class="rmed title4">
           <% if ( page === 'filter') {%> 
             <a
-              href="edit/<%= note._id %>"
+              href="/notes/edit/<%= note._id %>"
+
               class="btn"
               ><i class="fa fa-thin fa-pencil"></i></a
             >

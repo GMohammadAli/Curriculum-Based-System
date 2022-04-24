@@ -17,7 +17,24 @@
           >
             COURSE
           </a>
-            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+            <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/domain/Web Development" target="">Web Development</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/domain/Artificial Intelligence" target="">Artificial Intelligence</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/domain/Cloud Computing" target="">Cloud Computing</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/domain/Machine Learning" target="">Machine Learning</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/domain/Game Development" target="">Game Development</a>
+              </li>
+            </ul>
+            <!-- <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
               <li>
               <form action="/courses/filter" method="post">
                   <select class="form-select" name="filter[domain]" id="domain" >
@@ -30,7 +47,7 @@
                   <button>Submit</button>
               </form>
               </li> 
-            </ul>
+            </ul> -->
         </li>
   
         <li class="nav-item dropdown">
@@ -44,15 +61,12 @@
           >
             PRICE
           </a>
-            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-              <li>
-              <form action="/courses/filter" method="post">
-                  <select class="form-select" name="filter[price]" id="price" >
-                    <option value="Free">Free</option>
-                    <option value="Paid">Paid</option>
-                  </select>
-                  <button>Submit</button>
-              </form>
+            <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/price/Free" target="">Free</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/price/Paid" target="">Paid</a>
               </li>
             </ul>
         </li>
@@ -67,18 +81,21 @@
           >
             PLATFORM
           </a>
-            <ul class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
-              <li>
-              <form action="/courses/filter" method="post">
-                  <select class="form-select" name="filter[platform]" id="platform" >
-                    <option value="UDEMY">UDEMY</option>
-                    <option value="COURSERA">COURSERA</option>
-                    <option value="NPTEL">NPTEL</option>
-                    <option value="UDACITY">UDACITY</option>
-                    <option value="YOUTUBE">YOUTUBE</option>
-                  </select>
-                  <button>Submit</button>
-              </form>
+            <ul  class="dropdown-menu dropdown-content" aria-labelledby="dropdownMenuButton">
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/platform/UDEMY" target="">UDEMY</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/platform/COURSERA" target="">COURSERA</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/platform/NPTEL" target="">NPTEL</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/platform/UDACITY" target="">UDACITY</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="dropdown-item" href="/courses/filter/platform/YOUTUBE" target="">YOUTUBE</a>
               </li>
             </ul>
         </li>
@@ -92,7 +109,7 @@
     </div>
     <div class="m-5 btn btn-light mt-4 col-sm-1 title plus">
       <% if( page === 'filter') {  %>
-        <a href="./new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
+        <a href="/courses/new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
       <% }else { %>
         <a href="courses/new" class="btn"><i class="fa fa-solid fa-plus"></i></a>
       <% } %>
@@ -123,7 +140,7 @@
                     <div class="rmed title4">
                       <% if ( page === 'filter') {%>
                         <a
-                          href="edit/<%= course._id %>"
+                          href="/courses/edit/<%= course._id %>"
                           class="btn"
                           ><i class="fa fa-thin fa-pencil"></i></a
                         >
