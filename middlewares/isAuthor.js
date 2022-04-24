@@ -1,6 +1,6 @@
 const Note = require('./../models/Note')
 const Article = require('./../models/article')
-const Course = require("./../models/course");
+const Course = require("./../models/Course");
 const Review = require("./../models/review");
 
 
