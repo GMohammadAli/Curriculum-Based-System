@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
+
+.editprofiledisplay{
+  font-family: "Stylish", sans-serif; 
+}
+.usertag{
+  margin: auto;
+  font-size: 35px;
+  font-weight: bold;
+
+}
+.card-header{
+  font-size: 20px;
+  font-weight: bold !important;
+}
+
+.Accdetails{
+  margin: auto;
+  font-size: 20px;
+}
+
 .card {
   box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
 }

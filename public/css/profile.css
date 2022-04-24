@@ -1,5 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
+
+
 .main-body {
     padding: 15px;
+    font-family: "Stylish", sans-serif;
+    margin-top: 20px;
 }
 .card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);

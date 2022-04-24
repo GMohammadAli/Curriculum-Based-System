@@ -13,9 +13,9 @@ router.route('/filter/:filter/:value')
     .get(notes.runFilterRoute )
     .all(notes.showFilter )
 
-
 router.route('/:id')
     .put( isAuthorOfNote , notes.updateNote )
     .delete(isAuthorOfNote , notes.deleteNote )
+
 
 module.exports = router;

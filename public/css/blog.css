@@ -135,12 +135,25 @@ transform: translateY(-100px);
 }
 
 .cancel{
-      background-color: rgb(255, 212, 212);
-      /* color: red; */
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  /* color: red; */
+}
+
+.cancel:hover{
+  border: 2px solid rgb(245, 57, 57);
+  background-color: rgb(245, 57, 57);
+  
+}
+
+.save:hover{
+  background-color: rgb(65, 255, 65);
+  border: 2px solid rgb(65, 255, 65);
 }
 .save{
-  background-color: rgb(255, 212, 212);
-  color: rgb(0, 189, 0);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
 }
 
 .newblogdisplay{
@@ -154,4 +167,14 @@ transform: translateY(-100px);
   font-family: "Stylish", sans-serif;
   font-size: 20px;
   font-weight: bold;
+}
+
+
+
+
+.editnotesdisplay{
+  overflow: hidden;
+  background-image: url(/Images/editnotes.jpg);
+  background-size: cover;
+  
 }
