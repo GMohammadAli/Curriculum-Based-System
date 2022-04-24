@@ -54,13 +54,9 @@ module.exports.runFilterRoute = async (req, res, next) => {
   console.log(filter + " in post route");
   console.log(value);
   req.notes = await runFilter(filter, value);
-  next();
-};
-
-module.exports.showFilter = async (req, res) => {
   res.render("notes/index", {
     notes: req.notes,
-    page: "filter"
+    page: "filter",
   });
 };
 
@@ -83,7 +79,6 @@ async function runFilter(_filter, value) {
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("notes");
-  // query for filter method
   console.log(_filter + " in filter funtion");
   if (_filter === "course") {
     const query = { course: `${value}` };
