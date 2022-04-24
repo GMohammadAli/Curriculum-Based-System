@@ -18,6 +18,9 @@ const articleRouter = require("./routes/articles");
 const notesRouter = require("./routes/notes")
 const coursesRouter = require("./routes/courses")
 const ejsMate = require("ejs-mate")
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require('helmet');
+const MongoDBStore = require("connect-mongo")(session);
 const bcrypt = require("bcryptjs")
 const {
   checkAuthenticated,
@@ -33,6 +36,7 @@ const domain = [
 
 const DB = process.env.DATABASE
 const port = process.env.PORT
+const secret = process.env.SESSION_SECRET
 
 const app = express()
 
@@ -50,18 +54,88 @@ initializePassport(
 )
 
 app.use(express.urlencoded({ extended: true }))
+
+const store = new MongoDBStore({
+  url: DB,
+  secret,
+  touchAfter: 24 * 60 * 60
+})
+
+store.on("error", function (e) {
+  console.log("SESSION STORE ERROR", e);
+});
+
+const sessionConfig = {
+  store,
+  name: 'session',
+  //a default name to connect.sid
+  secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    // secure: true ,
+    // says that the cookie can be configured only when used through https request
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+} 
+
+
+
 app.use(flash())
+app.use(session(sessionConfig))
+app.use(helmet())
+
+const scriptSrcUrls = [
+  "https://stackpath.bootstrapcdn.com/",
+  "https://kit.fontawesome.com/",
+  "https://cdnjs.cloudflare.com/",
+  "https://cdn.jsdelivr.net",
+];
+const styleSrcUrls = [
+  "https://kit-free.fontawesome.com/",
+  "https://stackpath.bootstrapcdn.com/",
+  "https://use.fontawesome.com/",
+];
+// const connectSrcUrls = [
+  // "https://api.mapbox.com/",
+  // "https://a.tiles.mapbox.com/",
+  // "https://b.tiles.mapbox.com/",
+  // "https://events.mapbox.com/",
+// ];
+const fontSrcUrls = [];
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: [],
+      // connectSrc: ["'self'", ...connectSrcUrls],
+      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      workerSrc: ["'self'", "blob:"],
+      objectSrc: [],
+      imgSrc: [
+        "'self'",
+        "blob:",
+        "data:",
+        "https://res.cloudinary.com/dzeilpbmo/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+        "https://images.unsplash.com/",
+      ],
+      fontSrc: ["'self'", ...fontSrcUrls],
+    },
   })
-)
+);
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride("_method"))
 app.use(express.static(path.join(__dirname, "/public")))
+
+//For protection against Mongo Injection Attacks
+app.use(mongoSanitize({
+    replaceWith: "_",
+}))
+
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
@@ -234,6 +308,7 @@ mongoose
   .then(() => {
     app.listen(port, () => {
       console.log(`Server is running on Port ${port}`)
+      console.log(`Database Connected`);
     })
   })
   .catch((err) => {
