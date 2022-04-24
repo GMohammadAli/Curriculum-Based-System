@@ -68,12 +68,6 @@ router.all('/filter',async(req,res) => {
   });
 })
 
-router.get("/:slug", async (req, res) => {
-  const note = await Note.findOne({ slug: req.params.slug });
-  if (note == null) res.redirect("/");
-  res.render("notes/show", { note: note});
-});
-
 router.put("/:id", isAuthorOfNote , async (req, res) => {
   console.log(req.body);
   const { id } = req.params;
