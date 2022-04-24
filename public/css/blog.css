@@ -1,7 +1,6 @@
 @import "cbs.css";
 @import url('https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap');
 
-
 .narticle {
   color: rgb(0, 0, 0);
   font-family: "Stylish", sans-serif;
@@ -11,6 +10,16 @@
   
 }
 
+.rev{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+margin-top: -100px;
+}
+
+.showblogdisplay{
+  font-family: "Stylish", sans-serif;
+}
 .notesnew{
   overflow: hidden;
   background-image: url(/Images/Notesnew.jpg);
@@ -159,7 +168,7 @@ transform: translateY(-100px);
 .newblogdisplay{
   background-image: url(/Images/newblog.jpg);
   background-size: cover;
-  
+  overflow: hidden;
 }
 
 .newblog{

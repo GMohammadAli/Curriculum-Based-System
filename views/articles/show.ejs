@@ -1,7 +1,7 @@
 <%- include("./../partials/head") %>
 <link rel="stylesheet" href="/css/blog.css" />
 <link rel="stylesheet" href="/css/stars.css">
-<body >
+<body class="showblogdisplay" >
   <%- include("./../partials/Navbar") %>
   
 
@@ -20,8 +20,25 @@
         <blockquote>-By <%- article.sanitizedHtml %></blockquote>
       </div>
     </div>
-    <div class="container">
+    <div class="rev">
       <div class="col-sm-10 m-5">
+              <% for(let review of article.reviews) { %>
+                <div class="card mb-3 ">
+                    <div class="card-body">
+                        <h5 class="card-title"> <%= review.author.name %></h5>
+                        <p class="starability-result" data-rating="<%=review.rating%>">
+                            Rated: <%= review.rating %> stars
+                        </p>
+                        <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.name %></h6>
+                        <p class="card-text">Review: <%= review.body %></p>
+                        <%  if( review.author.equals( user._id)) { %>
+                          <form action="/articles/<%=article._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                              <button class="btn btn-sm btn-danger">Delete</button>
+                          </form>
+                        <%  } %>
+                    </div>
+                </div>
+              <% } %>
               <h2>Leave a Review</h2>
               <form action="/articles/<%=article._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
                     <fieldset class="starability-basic">
@@ -47,23 +64,6 @@
                     </div>
                     <button class="btn btn-success">Submit</button>
               </form>
-              <% for(let review of article.reviews) { %>
-                <div class="card mb-3 ">
-                    <div class="card-body">
-                        <h5 class="card-title"> <%= review.author.name %></h5>
-                        <p class="starability-result" data-rating="<%=review.rating%>">
-                            Rated: <%= review.rating %> stars
-                        </p>
-                        <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.name %></h6>
-                        <p class="card-text">Review: <%= review.body %></p>
-                        <%  if( review.author.equals( user._id)) { %>
-                          <form action="/articles/<%=article._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
-                              <button class="btn btn-sm btn-danger">Delete</button>
-                          </form>
-                        <%  } %>
-                    </div>
-                </div>
-              <% } %>
       </div>
     </div>
   </body>
