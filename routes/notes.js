@@ -11,7 +11,6 @@ router.get("/edit/:id", isAuthorOfNote , notes.renderEditForm )
 
 router.route('/filter/:filter/:value')
     .get(notes.runFilterRoute )
-    .all(notes.showFilter )
 
 
 router.route('/:id')
