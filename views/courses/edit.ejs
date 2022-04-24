@@ -1,10 +1,11 @@
 <%- include("./../partials/head") %>
 <%- include("./../partials/Navbar") %>
+<link rel="stylesheet" href="/css/course.css">
 <body>
 
 <div class="row">
 <h1 class="text-center">New Course</h1>
-<div class="col-6 offset-3">
+<div class="col-6 offset-3 addcourses">
     <form action="/courses/<%=course.id%>?_method=PUT" method="POST" novalidate class="validated-form" >
         <div class="mb-3">
             <label class="form-label" for="name">Name of Course</label>
@@ -99,7 +100,9 @@
             <button class="btn btn-success">Update Course</button>
         </div>
     </form>
-    <a href="/courses">All Courses</a>
+    <button class="allcourse">
+        <a href="/courses" style="text-decoration: none; color: black;">All Courses</a>
+    </button>
 </div>
 </div>
 
