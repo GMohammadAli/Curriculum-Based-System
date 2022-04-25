@@ -88,17 +88,17 @@ app.use(session(sessionConfig))
 app.use(helmet())
 
 const scriptSrcUrls = [
-  "https://kit.fontawesome.com/76751ef86b.js",
+  "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
-  "https://bootswatch.com/",
+  "https://bootswatch.com/"
 ];
 const styleSrcUrls = [
-  "https://kit-free.fontawesome.com/76751ef86b.js",
+  "https://kit-free.fontawesome.com/",
   "https://use.fontawesome.com/",
 ];
 const connectSrcUrls = [
-  "https://kit-free.fontawesome.com/76751ef86b.js",
+  "https://kit-free.fontawesome.com/",
   "https://use.fontawesome.com/",
 ];
 const fontSrcUrls = [
