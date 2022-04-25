@@ -1,4 +1,4 @@
-@import url("error2.css");
+@import "error2.css";
 
 body {
     background: -webkit-repeating-linear-gradient(-45deg,

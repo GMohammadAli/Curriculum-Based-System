@@ -1,6 +1,6 @@
-@import url("cbs2.css");
-@import url("cbs3.css");
-@import url("cbs4.css");
+@import "cbs2.css";
+@import "cbs3.css";
+@import "cbs4.css";
 .display{
   /* background-color: rgba(4, 74, 99, 0.591); */
   /* background-color: rgb(0, 0, 0); */

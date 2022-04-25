@@ -1,4 +1,4 @@
-@import url("error2.css");
+@import "error2.css";
 footer {
   position: block;
   /* background: #7ef5ed; */
