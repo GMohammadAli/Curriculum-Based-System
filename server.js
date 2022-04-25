@@ -89,7 +89,6 @@ app.use(helmet())
 
 const scriptSrcUrls = [
   "https://stackpath.bootstrapcdn.com/",
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
@@ -102,7 +101,6 @@ const styleSrcUrls = [
   "https://cdnjs.cloudflare.com/",
   "https://bootswatch.com/",
   "https://fonts.googleapis.com/",
-  "https://use.fontawesome.com/",
 ];
 const connectSrcUrls = [
   "https://api.mapbox.com/",
