@@ -127,7 +127,7 @@ app.use(helmet())
 //         "blob:",
 //         "data:",
 //         "/public/Images/",
-//         "https://res.cloudinary.com/dzeilpbmo/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
+//         "https://res.cloudinary.com/CLOUDINARY_CLOUD_NAME/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
 //         "https://images.unsplash.com/",
 //       ],
 //       fontSrc: ["'self'", ...fontSrcUrls],
