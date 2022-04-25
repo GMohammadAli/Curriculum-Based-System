@@ -35,8 +35,8 @@ const domain = [
 ];
 
 const DB = process.env.DATABASE
-const port = process.env.PORT
-const secret = process.env.SESSION_SECRET
+const port = process.env.PORT || 3000
+const secret = process.env.SESSION_SECRET || 'notasecret'
 
 const app = express()
 
