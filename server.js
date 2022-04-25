@@ -98,6 +98,7 @@ const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
   "https://use.fontawesome.com/",
   "https://ka-f.fontawesome.com/"
+  "https://cdn.jsdelivr.net/"
 ];
 const connectSrcUrls = [
   "https://kit-free.fontawesome.com/",
