@@ -88,23 +88,18 @@ app.use(session(sessionConfig))
 app.use(helmet())
 
 const scriptSrcUrls = [
-  // "https://kit.fontawesome.com/",
-  // "https://cdnjs.cloudflare.com/",
-  // "https://cdn.jsdelivr.net/",
-  // "https://bootswatch.com/"
+  "https://kit.fontawesome.com/",
+  "https://cdnjs.cloudflare.com/",
+  "https://cdn.jsdelivr.net/",
+  "https://bootswatch.com/"
 ];
 const styleSrcUrls = [
-  // "https://kit-free.fontawesome.com/",
-  // "https://use.fontawesome.com/",
-  // "https://cdnjs.cloudflare.com/",
-  // "https://fonts.googleapis.com/",
+  "https://kit-free.fontawesome.com/",
+  "https://use.fontawesome.com/",
 ];
 const connectSrcUrls = [
-  // "https://fonts.googleapis.com/",
-  // "https://api.mapbox.com/",
-  // "https://a.tiles.mapbox.com/",
-  // "https://b.tiles.mapbox.com/",
-  // "https://events.mapbox.com/",
+  "https://kit-free.fontawesome.com/",
+  "https://use.fontawesome.com/",
 ];
 const fontSrcUrls = [
   "https://fonts.googleapis.com/",
