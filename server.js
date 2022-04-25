@@ -109,6 +109,7 @@ const connectSrcUrls = [
 const fontSrcUrls = [
   "https://fonts.googleapis.com/",
   "https://fonts.gstatic.com",
+  "https://kit-free.fontawesome.com/",
 ];
 app.use(
   helmet.contentSecurityPolicy({
