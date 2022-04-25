@@ -126,7 +126,7 @@ app.use(
         // "'self'",
         "blob:",
         "data:",
-        "/public/Images/",
+        "./public/Images/",
         "https://res.cloudinary.com/dzeilpbmo/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
         "https://images.unsplash.com/",
       ],
