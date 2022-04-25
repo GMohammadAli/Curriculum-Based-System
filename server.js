@@ -111,8 +111,10 @@ const connectSrcUrls = [
   "https://events.mapbox.com/",
 ];
 const fontSrcUrls = [
-  "https://fonts.googleapis.com/",
-  "https://fonts.gstatic.com"
+  "https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@1,900&display=swap",
+  "https://fonts.googleapis.com/css2?family=Audiowide&family=Bangers&family=Poiret+One&display=swap",
+  "https://fonts.googleapis.com/css2?family=Stylish&display=swap",
+  "https://fonts.googleapis.com/css2?family=Quintessential&display=swap",
 ];
 app.use(
   helmet.contentSecurityPolicy({
