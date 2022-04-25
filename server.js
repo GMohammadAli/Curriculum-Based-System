@@ -115,19 +115,19 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-      workerSrc: ["'self'", "blob:"],
+      // connectSrc: ["'self'", ...connectSrcUrls],
+      // scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+      // styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+      // workerSrc: ["'self'", "blob:"],
       objectSrc: [],
       imgSrc: [
-        "'self'",
-        "blob:",
-        "data:",
+        // "'self'",
+        // "blob:",
+        // "data:",
         "https://res.cloudinary.com/dzeilpbmo/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
         "https://images.unsplash.com/",
       ],
-      fontSrc: ["'self'", ...fontSrcUrls],
+      // fontSrc: ["'self'", ...fontSrcUrls],
     },
   })
 );
