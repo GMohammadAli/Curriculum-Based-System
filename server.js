@@ -103,6 +103,7 @@ const styleSrcUrls = [
   "https://fonts.googleapis.com/",
 ];
 const connectSrcUrls = [
+  "https://fonts.googleapis.com/",
   "https://api.mapbox.com/",
   "https://a.tiles.mapbox.com/",
   "https://b.tiles.mapbox.com/",
