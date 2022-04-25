@@ -123,7 +123,7 @@ app.use(
       imgSrc: [
         // "'self'",
         // "blob:",
-        // "data:",
+        "data:",
         "https://res.cloudinary.com/dzeilpbmo/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT!
         "https://images.unsplash.com/",
       ],
