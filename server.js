@@ -91,7 +91,8 @@ const scriptSrcUrls = [
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
-  "https://bootswatch.com/"
+  "https://bootswatch.com/",
+  "https://ka-f.fontawesome.com/",
 ];
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
