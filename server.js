@@ -136,6 +136,9 @@ app.use(passport.session())
 app.use(methodOverride("_method"))
 app.use(express.static(path.join(__dirname, "/public")))
 
+app.use("/css", express.static(__dirname + "/css"));
+app.use("/js", express.static(__dirname + "/js"));
+
 //For protection against Mongo Injection Attacks
 app.use(mongoSanitize({
     replaceWith: "_",
