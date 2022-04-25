@@ -5,108 +5,99 @@
   <div class="container">
   <div class="narticle col-sm-8">
   <form action="/notes/new" method="POST" novalidate class="validated-form" >
-    <!-- enctype="multipart/form-data" -->
-    <!-- Form Starts here -->
+            <!-- enctype="multipart/form-data" -->
+            <!-- Form Starts here -->
 
-    <center style="color: white;">
-      <h2>NEW NOTES</h2>
-    </center>
-            <div class="form-label">
-              <label for="title">Title</label>
-              <input
-                type="text"
-                name="note[title]"
-                id="title"
-                class="form-control"
-                required/>            
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-            <br />
+            <center style="color: white;">
+              <h2>NEW NOTES</h2>
+            </center>
+                    <div class="form-label">
+                      <label for="title">Title</label>
+                      <input
+                        type="text"
+                        name="note[title]"
+                        id="title"
+                        class="form-control"
+                        required/>            
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <br />
+                  <div class="yrbranch">
+                    <!-- COURSE -->
+                    <div class="form-label">
+                      <label for="course">Course</label>
+                      <select class="form-select" name="note[course]" id="course" required>
+                            <% for(let course of courses){ %>
+                              <option value="<%=course%>"%>><%=course%></option>
+                            <% } %>
+                      </select>
+                      <div class="valid-feedback">
+                          Looks good!
+                      </div>
+                    </div>
+                    <!-- BRANCH -->
+                    <div class="form-label">
+                      <label for="branch">Branch</label>
+                      <select class="form-select" name="note[branch]" id="branch" required>
+                            <% for(let branch of branches){ %>
+                            <option value="<%=branch%>"%>><%=branch%></option>
+                            <% } %>
+                      </select>
+                      <div class="valid-feedback">
+                          Looks good!
+                      </div>
+                    </div>
+                    <!-- YEAR -->
+                                <div class="form-label">
+                                <label for="year">Year</label>
+                                <select class="form-select" name="note[year]" id="year" required>
+                                      <% for(let year of years){ %>
+                                      <option value="<%=year%>"%>><%=year%></option>
+                                      <% } %>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                              </div>
+                  </div>
+                  <br>
+                  <!-- SEMESTER -->
+                              <div class="form-label">
+                                <label for="semester">Semester</label>
+                                <select class="form-select" name="note[semester]" id="semester" required>
+                                      <% for(let semester of semesters){ %>
+                                      <option value="<%=semester%>"%>><%=semester%></option>
+                                      <% } %>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                              </div>
+                              <br />
+                  <!-- SUBJECT -->
+                              <div class="form-label">
+                                <label for="subject">Subject</label>
+                                <input name="note[subject]" id="subject" class="form-control" required></input>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                              </div>
+                              <br />
 
-
-<div class="yrbranch">
-  <!-- COURSE -->
-  <div class="form-label">
-    <label for="course">Course</label>
-    <select class="form-select" name="note[course]" id="course" required>
-          <% for(let course of courses){ %>
-            <option value="<%=course%>"%>><%=course%></option>
-          <% } %>
-    </select>
-    <div class="valid-feedback">
-        Looks good!
-    </div>
-  </div>
-  <!-- BRANCH -->
-  <div class="form-label">
-    <label for="branch">Branch</label>
-    <select class="form-select" name="note[branch]" id="branch" required>
-          <% for(let branch of branches){ %>
-          <option value="<%=branch%>"%>><%=branch%></option>
-          <% } %>
-    </select>
-    <div class="valid-feedback">
-        Looks good!
-    </div>
-  </div>
-  <!-- YEAR -->
-              <div class="form-label">
-              <label for="year">Year</label>
-              <select class="form-select" name="note[year]" id="year" required>
-                    <% for(let year of years){ %>
-                    <option value="<%=year%>"%>><%=year%></option>
-                    <% } %>
-              </select>
-              <div class="valid-feedback">
-                  Looks good!
-              </div>
-            </div>
-            
-
-           
-
-</div>
-<br>
-
-
-
-<!-- SEMESTER -->
-            <div class="form-label">
-              <label for="semester">Semester</label>
-              <select class="form-select" name="note[semester]" id="semester" required>
-                    <% for(let semester of semesters){ %>
-                    <option value="<%=semester%>"%>><%=semester%></option>
-                    <% } %>
-              </select>
-              <div class="valid-feedback">
-                  Looks good!
-              </div>
-            </div>
-            <br />
-<!-- SUBJECT -->
-            <div class="form-label">
-              <label for="subject">Subject</label>
-              <input name="note[subject]" id="subject" class="form-control" required></input>
-              <div class="valid-feedback">
-                  Looks good!
-              </div>
-            </div>
-            <br />
-
-            <div class="form-label">
-              <label for="upload">Add link to Notes:</label>
-              <input type="url" name="note[url]" id="upload" value="<%=note.url%>" required/>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-            <br />
-            <button class="cancel">
-              <a href="/notes" style="text-decoration: none; color: rgb(0, 0, 0);" >Cancel</a>              
-            </button>
-            <button type="submit" class="save">Save</button>
+                              <div class="form-label">
+                                <label for="upload">Add link to Notes:</label>
+                                <input type="url" name="note[url]" id="upload" value="<%=note.url%>" required/>
+                                <div class="valid-feedback">
+                                  Looks good!
+                                </div>
+                              </div>
+                              <br />
+                    <button class="cancel">
+                      <a href="/notes" style="text-decoration: none; color: rgb(0, 0, 0);" >Cancel</a>              
+                    </button>
+                    <button type="submit" class="save">Save</button>
     <!-- Form Ends Here! -->
   </form>
 </div>
