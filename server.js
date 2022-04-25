@@ -107,9 +107,8 @@ const connectSrcUrls = [
   // "https://events.mapbox.com/",
 ];
 const fontSrcUrls = [
-  // "https://fonts.googleapis.com/",
-  // "https://fonts.gstatic.com",
-  // "https://kit-free.fontawesome.com/",
+  "https://fonts.googleapis.com/",
+  "https://fonts.gstatic.com",
 ];
 app.use(
   helmet.contentSecurityPolicy({
