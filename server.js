@@ -88,28 +88,28 @@ app.use(session(sessionConfig))
 app.use(helmet())
 
 const scriptSrcUrls = [
-  "https://stackpath.bootstrapcdn.com/",
-  "https://kit.fontawesome.com/",
-  "https://cdnjs.cloudflare.com/",
-  "https://cdn.jsdelivr.net",
+  // "https://stackpath.bootstrapcdn.com/",
+  // "https://kit.fontawesome.com/",
+  // "https://cdnjs.cloudflare.com/",
+  // "https://cdn.jsdelivr.net",
 ];
 const styleSrcUrls = [
-  "https://kit-free.fontawesome.com/",
-  "https://stackpath.bootstrapcdn.com/",
-  "https://use.fontawesome.com/",
-  "https://cdnjs.cloudflare.com/ajax",
-  "https://fonts.googleapis.com",
-  "https://use.fontawesome.com/releases",
+  // "https://kit-free.fontawesome.com/",
+  // "https://stackpath.bootstrapcdn.com/",
+  // "https://use.fontawesome.com/",
+  // "https://cdnjs.cloudflare.com/ajax",
+  // "https://fonts.googleapis.com",
+  // "https://use.fontawesome.com/releases",
 ];
 const connectSrcUrls = [
-  "https://api.mapbox.com/",
-  "https://a.tiles.mapbox.com/",
-  "https://b.tiles.mapbox.com/",
-  "https://events.mapbox.com/",
+  // "https://api.mapbox.com/",
+  // "https://a.tiles.mapbox.com/",
+  // "https://b.tiles.mapbox.com/",
+  // "https://events.mapbox.com/",
 ];
 const fontSrcUrls = [
-  "https://fonts.googleapis.com/css",
-  "https://fonts.googleapis.com/css2"
+  // "https://fonts.googleapis.com/css",
+  // "https://fonts.googleapis.com/css2"
 ];
 app.use(
   helmet.contentSecurityPolicy({
