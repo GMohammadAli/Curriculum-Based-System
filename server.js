@@ -92,13 +92,16 @@ const scriptSrcUrls = [
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net",
-  '',
 ];
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
   "https://stackpath.bootstrapcdn.com/",
   "https://use.fontawesome.com/",
   "https://fonts.googleapis.com/css2",
+  "https://cdnjs.cloudflare.com/ajax",
+  "https://fonts.googleapis.com",
+  "https://use.fontawesome.com/releases",
+  "https://fonts.googleapis.com/css",
 ];
 const connectSrcUrls = [
   "https://api.mapbox.com/",
