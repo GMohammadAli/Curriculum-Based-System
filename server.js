@@ -88,7 +88,6 @@ app.use(session(sessionConfig))
 app.use(helmet())
 
 const scriptSrcUrls = [
-  "https://stackpath.bootstrapcdn.com/",
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net/",
@@ -96,10 +95,8 @@ const scriptSrcUrls = [
 ];
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
-  "https://stackpath.bootstrapcdn.com/",
   "https://use.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
-  "https://bootswatch.com/",
   "https://fonts.googleapis.com/",
 ];
 const connectSrcUrls = [
@@ -111,6 +108,7 @@ const connectSrcUrls = [
 ];
 const fontSrcUrls = [
   "https://fonts.googleapis.com/",
+  "https://fonts.gstatic.com",
 ];
 app.use(
   helmet.contentSecurityPolicy({
