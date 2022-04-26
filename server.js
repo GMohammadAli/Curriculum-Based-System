@@ -87,7 +87,7 @@ app.use(flash())
 app.use(session(sessionConfig))
 app.use(
   helmet({
-    crossOriginEmbedderPolicy: true,
+    crossOriginEmbedderPolicy: false,
     crossOriginResourcePolicy:{ policy: "cross-origin" }
   })
 );
