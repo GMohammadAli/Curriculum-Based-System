@@ -7,9 +7,9 @@
 
     <div class="container-b m-4">
       <div class="narticle2 col-sm-10 info">
-        <h1 class="mb-1"><%= article.title %></h1>
-        <p><%= article.description %></p>
-        <div class="text-muted mb-2">
+        <h1 class="m-3"><%= article.title %></h1>
+        <p class="m-2"> <%= article.description %></p>
+        <div class="text-muted m-2">
           <%= article.createdAt.toLocaleDateString() %>
         </div>
         <a href="/articles" class="btn btn-secondary">All Articles</a>
