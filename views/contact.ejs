@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/contact.css" />
+    <link rel="shortcut icon" href="#">
+    <title>Contact Us</title>
+    <link
+      href="/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="/js/popper.min.js"
+    ></script>
+    <script
+      src="/js/bootstrap.min.js"
+    ></script>
+    <!-- Load an icon library  -->
+    <script
+      src="/js/76751ef86b.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <%- include("partials/Navbar") %>
+    <section class="contact">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-6 mx-auto">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="head text-center text-white py-3">
+                      <h3>Contact Us</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="form p-3">
+                  <div class="form-row my-5">
+                    <div class="col-lg-6">
+                      <input
+                        type="text"
+                        class="effect-1"
+                        placeholder="Enter First Name"
+                      />
+                      <span class="Focus-border"></span>
+                    </div>
+                    <div class="col-lg-6">
+                      <br />
+                      <input
+                        type="text"
+                        class="effect-1"
+                        placeholder="Enter Last Name"
+                      />
+                      <span class="Focus-border"></span>
+                    </div>
+                  </div>
+                  <div class="form-row pb-4">
+                    <div class="col-lg-12">
+                      <input
+                        type="text"
+                        class="effect-1"
+                        placeholder="Email address"
+                      />
+                      <span class="Focus-border"></span>
+                    </div>
+                  </div>
+                  <div class="form-row pt-5">
+                    <div class="col-lg-12">
+                      <input
+                        type="text"
+                        class="effect-1"
+                        placeholder="Your Query"
+                      />
+                      <span class="Focus-border"></span>
+                    </div>
+                  </div>
+                  <div class="form-row pt-4">
+                    <div class="col-lg-6">
+                      <p>
+                        <input type="checkbox" name="" value="" />I'm not a
+                        robot
+                      </p>
+                    </div>
+                    <div class="offset-2 col-lg-4">
+                      <button class="btn1" type="button" name="button">
+                        Send Message
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <%- include("partials/footer") %>
+</html>
