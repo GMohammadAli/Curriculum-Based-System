@@ -85,10 +85,10 @@ const sessionConfig = {
 
 app.use(flash())
 app.use(session(sessionConfig))
-app.use(
+app.use( 
   helmet({
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy:{ policy: "same-site" }
+    crossOriginEmbedderPolicy: true ,
+    crossOriginResourcePolicy: { policy: "same-site" },
   })
 );
 
