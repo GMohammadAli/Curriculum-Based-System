@@ -88,7 +88,7 @@ app.use(session(sessionConfig))
 app.use( 
   helmet({
     crossOriginEmbedderPolicy: true ,
-    crossOriginResourcePolicy: { policy: "same-site" },
+    // crossOriginResourcePolicy: { policy: "same-site" },
   })
 );
 
