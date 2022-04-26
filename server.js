@@ -85,7 +85,11 @@ const sessionConfig = {
 
 app.use(flash())
 app.use(session(sessionConfig))
-app.use(helmet())
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+  })
+);
 
 const scriptSrcUrls = [
   "https://kit.fontawesome.com/",
