@@ -3,21 +3,21 @@ const articles = require("./../controllers/articles");
 const router = express.Router()
 const { isAuthorOfArticle } = require("./../middlewares/isAuthor");
 const reviewsRouter = require("./../routes/reviews");
-const { checkAuthenticated } = require('../middlewares/auth');
+const { checkAuthenticated } = require('./../middlewares/auth');
 
-router.get('/new', articles.renderNewForm)
+router.get("/new", checkAuthenticated, articles.renderNewForm);
 
-router.get("/edit/:id", isAuthorOfArticle , articles.renderEditForm)
+router.get("/edit/:id", checkAuthenticated, isAuthorOfArticle , articles.renderEditForm)
 
 router.use("/:id/reviews", checkAuthenticated, reviewsRouter);
 
 router.get('/:slug', articles.showArticle)
 
-router.post('/', articles.newArticle , saveArticleAndRedirect('new'))
+router.post('/', checkAuthenticated , articles.newArticle , saveArticleAndRedirect('new'))
 
 router.route('/:id')
-    .put(isAuthorOfArticle , articles.editArticle ,saveArticleAndRedirect("edit"))
-    .delete( isAuthorOfArticle , articles.deleteArticle)
+    .put( checkAuthenticated,isAuthorOfArticle , articles.editArticle ,saveArticleAndRedirect("edit"))
+    .delete( checkAuthenticated ,isAuthorOfArticle , articles.deleteArticle)
 
 function saveArticleAndRedirect(path) {
   return async (req, res) => {

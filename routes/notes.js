@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { isAuthorOfNote } = require('./../middlewares/isAuthor');
 const notes = require('./../controllers/notes')
+const { checkAuthenticated } = require("./../middlewares/auth");
 
 router.route('/new')
     .get(notes.renderNewForm )
