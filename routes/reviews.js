@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { isReviewAuthor } = require("./../middlewares/isAuthor");
 const reviews = require('./../controllers/reviews')
-const { checkAuthenticated } = require("./../middlewares/auth");
 
 router.post("/",  reviews.createReview )
 

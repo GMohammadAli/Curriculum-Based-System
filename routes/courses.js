@@ -5,27 +5,19 @@ const { isAuthorOfCourse } = require("./../middlewares/isAuthor");
 const multer = require("multer");
 const { storage, cloudinary } = require("./../cloudinary");
 const upload = multer({ storage });
-const { checkAuthenticated } = require("./../middlewares/auth");
 
 
-router
-  .route("/new")
-  .get(checkAuthenticated, courses.renderNewForm)
-  .post(checkAuthenticated, upload.array("image"), courses.createCourse);
+router.route('/new')
+    .get( courses.renderNewForm )
+    .post( upload.array('image') , courses.createCourse )
 
-router.get(
-  "/edit/:id",
-  checkAuthenticated,
-  isAuthorOfCourse,
-  courses.renderEditForm
-);
+router.get("/edit/:id", isAuthorOfCourse , courses.renderEditForm )
 
 router.route("/filter/:filter/:value")
   .get(courses.runFilterRoute) 
 
-router
-  .route("/:id")
-  .put(checkAuthenticated, isAuthorOfCourse, courses.updateCourse)
-  .delete(checkAuthenticated, isAuthorOfCourse, courses.deleteCourse);
+router.route('/:id')
+    .put( isAuthorOfCourse, courses.updateCourse )
+    .delete( isAuthorOfCourse, courses.deleteCourse )
 
 module.exports = router

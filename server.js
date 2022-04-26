@@ -157,23 +157,23 @@ app.engine("ejs", ejsMate)
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 
-app.get("/", (req, res) => {
+app.get("/", checkAuthenticated, (req, res) => {
   res.render("index")
 })
 
-app.get("/home", (req, res) => {
+app.get("/home", checkAuthenticated, (req, res) => {
   res.render("home")
 })
 
-app.get("/about", (req, res) => {
+app.get("/about", checkAuthenticated, (req, res) => {
   res.render("about")
 })
 
-app.get("/contact", (req, res) => {
+app.get("/contact", checkAuthenticated, (req, res) => {
   res.render("contact")
 })
 
-app.get("/links", (req, res) => {
+app.get("/links", checkAuthenticated, (req, res) => {
   res.render("links");
 });
 
@@ -187,13 +187,13 @@ app.get('/courses',checkAuthenticated , async (req,res) => {
    });
 })
 
-app.get("/articles", async (req, res) => {
+app.get("/articles", checkAuthenticated, async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" })
   console.log("Articles Route Accessed!")
   res.render("articles/index", { articles: articles})
 })
 
-app.get("/notes", async (req, res) => {
+app.get("/notes", checkAuthenticated, async (req, res) => {
   const notes = await Notes.find().sort({
     createdAt: "desc",
   });
@@ -202,29 +202,29 @@ app.get("/notes", async (req, res) => {
 });
 
 
-app.get("/events", (req, res) => {
+app.get("/events", checkAuthenticated, (req, res) => {
   res.render("events/index");
 });
 
-app.get("/event1", (req, res) => {
+app.get("/event1", checkAuthenticated, (req, res) => {
   res.render("events/event1");
 });
-app.get("/event2", (req, res) => {
+app.get("/event2", checkAuthenticated, (req, res) => {
   res.render("events/event2");
 });
-app.get("/event3", (req, res) => {
+app.get("/event3", checkAuthenticated, (req, res) => {
   res.render("events/event3");
 });
-app.get("/event4", (req, res) => {
+app.get("/event4", checkAuthenticated, (req, res) => {
   res.render("events/event4");
 });
-app.get("/event5", (req, res) => {
+app.get("/event5", checkAuthenticated, (req, res) => {
   res.render("events/event5");
 });
-app.get("/event6", (req, res) => {
+app.get("/event6", checkAuthenticated, (req, res) => {
   res.render("events/event6");
 });
-app.get("/event7", (req, res) => {
+app.get("/event7", checkAuthenticated, (req, res) => {
   res.render("events/event7");
 });
 
@@ -272,7 +272,7 @@ app.get("/editProfile", checkAuthenticated, async (req, res) => {
   res.render("users/editProfile")
 })
 
-app.get("/profile", checkAuthenticated , async (req, res) => {
+app.get("/profile", checkAuthenticated, async (req, res) => {
   res.render("users/profile")
 })
 
@@ -297,9 +297,9 @@ app.delete("/logout", (req, res) => {
 
 //Users Auth ends here
 
-app.use("/articles", articleRouter);
-app.use("/notes",  notesRouter);
-app.use("/courses", coursesRouter);
+app.use("/articles", checkAuthenticated, articleRouter);
+app.use("/notes", checkAuthenticated,  notesRouter);
+app.use("/courses", checkAuthenticated, coursesRouter);
 
 //Error Template ,If no routes are matched
 app.all('*',(req,res) => {
