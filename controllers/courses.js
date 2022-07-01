@@ -52,13 +52,12 @@ module.exports.renderEditForm = async (req, res) => {
 }
 
 module.exports.runFilterRoute = async (req, res) => {
-  console.log(req.params);
-  console.log("filter route accessed");
+  // console.log(req.params);
+  // console.log("filter route accessed");
   const { filter, value } = req.params;
-  console.log(filter + " in post route");
-  console.log(value);
+  // console.log(filter + " in post route");
+  // console.log(value);
   const query = await getQuery(filter,value) 
-  console.log(query+"in post route")
   req.courses = await getCourses(query);
   res.render("courses/index", {
     courses: req.courses,
@@ -107,13 +106,12 @@ async function getCourses(query){
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("courses");
-  console.log(query+ "in getCourses")
   const courses = await collections.find(query);
   const coursesArray = await courses
     .map(function (course) {
       return course;
     })
     .toArray();
-  console.log(coursesArray);
+  //console.log(coursesArray);
   return coursesArray;
 }

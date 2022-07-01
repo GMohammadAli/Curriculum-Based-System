@@ -14,6 +14,7 @@ const branches = ["COMPS", "IT", "EXTC", "ETRX", "INST"];
 const courses = ["MCA", "B.Tech"];
 
 const { MongoClient } = require("mongodb");
+const { query } = require("express");
 const url = process.env.DATABASE;
 const client = new MongoClient(url);
 
@@ -48,12 +49,13 @@ module.exports.renderEditForm = async (req, res) => {
 };
 
 module.exports.runFilterRoute = async (req, res, next) => {
-  console.log("filter route accessed");
-  console.log(req.params)
+  // console.log("filter route accessed");
+  // console.log(req.params)
   const { filter , value  } = req.params;
-  console.log(filter + " in post route");
-  console.log(value);
-  req.notes = await runFilter(filter, value);
+  // console.log(filter + " in post route");
+  // console.log(value);
+  const query = getQuery(filter,value)
+  req.notes = await getNotes(query);
   res.render("notes/index", {
     notes: req.notes,
     page: "filter",
@@ -75,50 +77,29 @@ module.exports.deleteNote = async (req, res) => {
   res.redirect("/notes");
 };
 
-async function runFilter(_filter, value) {
+async function getQuery(_filter, value) {
+  console.log(_filter + " in filter funtion");
+  if (_filter === "course") {
+    return { course: `${value}` };
+  } else if (_filter === "semester") {
+    return { semester: `${value}` };
+  } else if (_filter === "year") {
+    return { year: `${value}` };
+  } else if (_filter === "branch") {
+    return { branch: `${value}` };
+  }
+}
+
+async function getNotes(query) {
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("notes");
-  console.log(_filter + " in filter funtion");
-  if (_filter === "course") {
-    const query = { course: `${value}` };
-    const notes = await collections.find(query);
-    const notesArray = await notes
-      .map(function (note) {
-        return note;
-      })
-      .toArray();
-    console.log(notesArray);
-    return notesArray;
-  } else if (_filter === "semester") {
-    const query = { semester: `${value}` };
-    const notes = await collections.find(query);
-    const notesArray = await notes
-      .map(function (note) {
-        return note;
-      })
-      .toArray();
-    console.log(notesArray);
-    return notesArray;
-  } else if (_filter === "year") {
-    const query = { year: `${value}` };
-    const notes = await collections.find(query);
-    const notesArray = await notes
-      .map(function (note) {
-        return note;
-      })
-      .toArray();
-    console.log(notesArray);
-    return notesArray;
-  } else if (_filter === "branch") {
-    const query = { branch: `${value}` };
-    const notes = await collections.find(query);
-    const notesArray = await notes
-      .map(function (note) {
-        return note;
-      })
-      .toArray();
-    console.log(notesArray);
-    return notesArray;
-  }
+  const notes = await collections.find(query);
+  const notesArray = await notes
+    .map(function (note) {
+      return note;
+    })
+    .toArray();
+  //console.log(notesArray);
+  return notesArray;
 }
