@@ -95,13 +95,12 @@ module.exports.deleteCourse = async (req, res) => {
 async function getQuery(_filter, value) {
   console.log(_filter + " in filter funtion");
   if (_filter === "domain") {
-    return query = { domain: `${value}` };
+    return { domain: `${value}` };
   } else if (_filter === "price") {
-    return query = { price: `${value}` };
+    return { price: `${value}` };
   } else if (_filter === "platform") {
-    return query = { platform: `${value}` }; 
+    return { platform: `${value}` }; 
   }
-  //return query
 }
 
 async function getCourses(query){
