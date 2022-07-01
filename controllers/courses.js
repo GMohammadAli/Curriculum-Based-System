@@ -94,8 +94,8 @@ async function runFilter(_filter, value) {
   const database = client.db("CBS");
   const collections = database.collection("courses");
   console.log(_filter + " in filter funtion");
-    //const q = ;
-    const query = { _filter : `${value}` };
+    const q = _filter;
+    const query = { q : `${value}` };
     const courses = await collections.find(query);
     const coursesArray = await courses
       .map(function (course) {
