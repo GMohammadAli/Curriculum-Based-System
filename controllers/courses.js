@@ -57,7 +57,9 @@ module.exports.runFilterRoute = async (req, res) => {
   const { filter, value } = req.params;
   console.log(filter + " in post route");
   console.log(value);
-  req.courses = await runFilter(filter, value);
+  const query = await getQuery(filter,value) 
+  console.log(query+"in post route")
+  req.courses = await getCourses(query);
   res.render("courses/index", {
     courses: req.courses,
     page: "filter",
@@ -90,7 +92,7 @@ module.exports.deleteCourse = async (req, res) => {
   res.redirect("/courses");
 }
 
-async function runFilter(_filter, value) {
+async function getQuery(_filter, value) {
   console.log(_filter + " in filter funtion");
   if (_filter === "domain") {
     const query = { domain: `${value}` };
@@ -99,7 +101,7 @@ async function runFilter(_filter, value) {
   } else if (_filter === "platform") {
     const query = { platform: `${value}` }; 
   }
-  return getCourses(query)
+  return query
 }
 
 async function getCourses(query){
