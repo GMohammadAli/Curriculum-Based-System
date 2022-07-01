@@ -94,8 +94,9 @@ async function runFilter(_filter, value) {
   const database = client.db("CBS");
   const collections = database.collection("courses");
   console.log(_filter + " in filter funtion");
-  if (_filter === "domain") {
-    const query = { domain: `${value}` };
+  //if (_filter === "domain") {
+    const q = _filter;
+    const query = { q : `${value}` };
     const courses = await collections.find(query);
     const coursesArray = await courses
       .map(function (course) {
@@ -104,25 +105,25 @@ async function runFilter(_filter, value) {
       .toArray();
     console.log(coursesArray);
     return coursesArray;
-  } else if (_filter === "price") {
-    const query = { price: `${value}` };
-    const courses = await collections.find(query);
-    const coursesArray = await courses
-      .map(function (course) {
-        return course;
-      })
-      .toArray();
-    console.log(coursesArray);
-    return coursesArray;
-  } else if (_filter === "platform") {
-    const query = { platform: `${value}` };
-    const courses = await collections.find(query);
-    const coursesArray = await courses
-      .map(function (course) {
-        return course;
-      })
-      .toArray();
-    console.log(coursesArray);
-    return coursesArray;
-  }
+  // } else if (_filter === "price") {
+  //   const query = { price: `${value}` };
+  //   const courses = await collections.find(query);
+  //   const coursesArray = await courses
+  //     .map(function (course) {
+  //       return course;
+  //     })
+  //     .toArray();
+  //   console.log(coursesArray);
+  //   return coursesArray;
+  // } else if (_filter === "platform") {
+  //   const query = { platform: `${value}` };
+  //   const courses = await collections.find(query);
+  //   const coursesArray = await courses
+  //     .map(function (course) {
+  //       return course;
+  //     })
+  //     .toArray();
+  //   console.log(coursesArray);
+  //   return coursesArray;
+  // }
 }
