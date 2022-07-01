@@ -14,6 +14,7 @@ const domains = [
 ];
 
 const { MongoClient } = require("mongodb");
+const { query } = require("express");
 const url = process.env.DATABASE;
 const client = new MongoClient(url);
 
@@ -90,18 +91,27 @@ module.exports.deleteCourse = async (req, res) => {
 }
 
 async function runFilter(_filter, value) {
+  console.log(_filter + " in filter funtion");
+  if (_filter === "domain") {
+    const query = { domain: `${value}` };
+  } else if (_filter === "price") {
+    const query = { price: `${value}` };
+  } else if (_filter === "platform") {
+    const query = { platform: `${value}` }; 
+  }
+  return getCourses(query)
+}
+
+async function getCourses(query){
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("courses");
-  console.log(_filter + " in filter funtion");
-    const q = _filter;
-    const query = { q : `${value}` };
-    const courses = await collections.find(query);
-    const coursesArray = await courses
-      .map(function (course) {
-        return course;
-      })
-      .toArray();
-    console.log(coursesArray);
-    return coursesArray;
+  const courses = await collections.find(query);
+  const coursesArray = await courses
+    .map(function (course) {
+      return course;
+    })
+    .toArray();
+  console.log(coursesArray);
+  return coursesArray;
 }
