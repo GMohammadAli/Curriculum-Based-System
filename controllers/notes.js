@@ -54,7 +54,7 @@ module.exports.runFilterRoute = async (req, res, next) => {
   const { filter , value  } = req.params;
   // console.log(filter + " in post route");
   // console.log(value);
-  const query = getQuery(filter,value)
+  const query = await getQuery(filter,value)
   req.notes = await getNotes(query);
   res.render("notes/index", {
     notes: req.notes,
