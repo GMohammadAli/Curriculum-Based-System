@@ -106,6 +106,7 @@ async function getCourses(query){
   await client.connect();
   const database = client.db("CBS");
   const collections = database.collection("courses");
+  console.log(query+ "in getCourses")
   const courses = await collections.find(query);
   const coursesArray = await courses
     .map(function (course) {
